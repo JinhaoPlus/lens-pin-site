@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LensPin with iCloud Photos | Downloads &amp; Background Work</title>
+  <meta name="description" content="Understand how LensPin handles iCloud-only originals, downloads, progress, storage, and background limits on iOS 17 through iOS 26 and later.">
+  <meta property="og:type" content="article"><meta property="og:title" content="LensPin with iCloud Photos"><meta property="og:description" content="Understand iCloud downloads, progress, storage, and iOS background limits while LensPin scans photos.">
+  <meta name="theme-color" content="#f4f4f1"><link rel="canonical" href="/support/icloud-photos/"><link rel="alternate" hreflang="en" href="/support/icloud-photos/"><link rel="alternate" hreflang="x-default" href="/support/icloud-photos/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LensPin","item":"/"},{"@type":"ListItem","position":2,"name":"Support","item":"/support/"},{"@type":"ListItem","position":3,"name":"iCloud Photos","item":"/support/icloud-photos/"}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="nav-shell"><a class="brand" href="/"><span class="brand-mark"><img src="/favicon.svg" alt=""></span><span>LensPin</span></a><nav class="desktop-nav" aria-label="Primary navigation"><a href="/how-it-works/">How it works</a><a href="/gpx-photo-geotagging-iphone/">GPX</a><a href="/geotag-dslr-photos-with-iphone-photos/">Without GPX</a><a href="/support/" aria-current="page">Support</a><a class="button button-primary button-small" href="/support/#availability" data-app-store-link>Get LensPin</a></nav><details class="mobile-nav"><summary aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><nav class="mobile-nav-panel" aria-label="Mobile navigation"><a href="/">Home</a><a href="/support/">Support</a><a href="/supported-formats/">Formats &amp; limits</a><a href="/privacy/">Privacy</a></nav></details></div></header>
+  <main id="main" class="page-shell">
+    <ol class="breadcrumb" aria-label="Breadcrumb"><li><a href="/">LensPin</a></li><li><a href="/support/">Support</a></li><li aria-current="page">iCloud Photos</li></ol>
+    <section class="page-hero"><div class="page-hero-copy"><p class="eyebrow">Support · iCloud Photos</p><h1>When the photo is in your library—but not yet on the device.</h1><p class="page-lede">LensPin can ask Apple Photos to download an iCloud-only asset when it needs original metadata or an editable current version. Connection speed, file size, storage, and iOS background rules affect how long that takes.</p><p class="page-date">Reviewed <time datetime="2026-09-17">September 17, 2026</time></p></div><div class="page-hero-visual info-card"><span class="icon-tile indigo">☁</span><h2>iCloud is part of the Photos request</h2><p>LensPin does not connect to an independent photo cloud. Apple's Photos framework retrieves the asset under your iCloud configuration.</p></div></section>
+    <section class="content-section"><div class="prose">
+      <h2>What may need to download</h2>
+      <p>A thumbnail can be visible in Photos while the original file is stored only in iCloud. LensPin may need the local original to read camera metadata that is not available from the Photos item alone. Optional EXIF GPS editing also needs source image data.</p>
+      <h2>What progress means</h2>
+      <p>The scan tracks completed items and can report how many assets required iCloud retrieval. A slow item does not mean the matching engine is uploading the photo; it usually means Photos is obtaining the original.</p>
+      <h2>Keep enough local space</h2>
+      <p>Large RAW files and optional non-destructive edits can require temporary local storage. If storage is low, finish other downloads, free space, or use the default Photos-library location without EXIF editing.</p>
+      <h2>Background behavior by iOS version</h2>
+      <ul><li><strong>iOS 26 and later:</strong> LensPin can use the system continued-processing task for a user-started scan, with system progress while the app is backgrounded or the device locks.</li><li><strong>iOS 17–25:</strong> background time is limited. LensPin keeps the screen awake on the scan view; a long absence can pause work until you return.</li></ul>
+      <h2>If a scan appears stuck</h2>
+      <ol><li>Open Photos and confirm the original can download there.</li><li>Check Wi-Fi or cellular access allowed for Photos.</li><li>Keep LensPin in the foreground on iOS 17–25.</li><li>Try a shorter date range to identify a specific slow or unavailable asset.</li><li>Preserve the progress count and any displayed error before restarting.</li></ol>
+      <div class="callout orange"><strong>Do not repeatedly restart a large scan.</strong><p>If Photos is still downloading originals, repeated restarts can discard useful progress. Return to LensPin first and let the current task continue when possible.</p></div>
+      <h2>Privacy boundary</h2>
+      <p>iCloud transfer is handled by Apple under your Photos settings. LensPin does not send the original to a LensPin server. Read the full <a class="text-link" href="/privacy/">privacy explanation</a>.</p>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="footer-shell"><div class="footer-brand"><a class="brand" href="/"><span class="brand-mark"><img src="/favicon.svg" alt=""></span><span>LensPin</span></a><p>Review-first photo location matching.</p></div><div><p class="footer-title">Support</p><nav class="footer-links"><a href="/support/">All topics</a><a href="/support/gpx-requirements/">GPX requirements</a><a href="/support/location-writeback/">Location writeback</a></nav></div><div><p class="footer-title">Product</p><nav class="footer-links"><a href="/how-it-works/">How it works</a><a href="/supported-formats/">Formats &amp; limits</a></nav></div><div><p class="footer-title">About</p><nav class="footer-links"><a href="/privacy/">Privacy</a></nav></div></div><div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span>LensPin is not affiliated with Apple Inc.</span></div></footer>
+  <script src="/assets/site.js?v=20260917.1" defer></script>
+</body>
+</html>

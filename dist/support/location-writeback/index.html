@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple Photos Location vs EXIF GPS | LensPin Support</title>
+  <meta name="description" content="See how LensPin saves Apple Photos locations, optionally writes EXIF GPS in a non-destructive edit, and reports Added, Failed, or Skipped results.">
+  <meta property="og:type" content="article"><meta property="og:title" content="Apple Photos Location vs EXIF GPS"><meta property="og:description" content="See what LensPin writes to Apple Photos, when optional EXIF GPS applies, and how to verify each result.">
+  <meta name="theme-color" content="#f4f4f1"><link rel="canonical" href="/support/location-writeback/"><link rel="alternate" hreflang="en" href="/support/location-writeback/"><link rel="alternate" hreflang="x-default" href="/support/location-writeback/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LensPin","item":"/"},{"@type":"ListItem","position":2,"name":"Support","item":"/support/"},{"@type":"ListItem","position":3,"name":"Location writeback","item":"/support/location-writeback/"}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="nav-shell"><a class="brand" href="/"><span class="brand-mark"><img src="/favicon.svg" alt=""></span><span>LensPin</span></a><nav class="desktop-nav" aria-label="Primary navigation"><a href="/how-it-works/">How it works</a><a href="/gpx-photo-geotagging-iphone/">GPX</a><a href="/geotag-dslr-photos-with-iphone-photos/">Without GPX</a><a href="/support/" aria-current="page">Support</a><a class="button button-primary button-small" href="/support/#availability" data-app-store-link>Get LensPin</a></nav><details class="mobile-nav"><summary aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><nav class="mobile-nav-panel" aria-label="Mobile navigation"><a href="/">Home</a><a href="/support/">Support</a><a href="/supported-formats/">Formats &amp; limits</a><a href="/privacy/">Privacy</a></nav></details></div></header>
+  <main id="main" class="page-shell">
+    <ol class="breadcrumb" aria-label="Breadcrumb"><li><a href="/">LensPin</a></li><li><a href="/support/">Support</a></li><li aria-current="page">Location writeback</li></ol>
+    <section class="page-hero"><div class="page-hero-copy"><p class="eyebrow">Support · Saving locations</p><h1>Photos location and EXIF GPS are related—but not the same.</h1><p class="page-lede">LensPin always saves an approved point to the Apple Photos item first. Optional EXIF GPS is a separate, non-destructive edit intended to help the current shared or exported version carry coordinates.</p><p class="page-date">Reviewed <time datetime="2026-09-17">September 17, 2026</time></p></div><div class="page-hero-visual result-card"><div class="result-card-head"><div><h2 class="filename">Completed</h2><p class="timestamp">12 selected photos</p></div><span class="status-label">✓ Finished</span></div><p class="result-reason"><strong>11 Added</strong> · 0 Failed · 1 Skipped<br>The skipped item already had a location when LensPin checked again.</p></div></section>
+    <section class="content-section"><div class="prose">
+      <h2>Apple Photos library location</h2>
+      <p>This is the location Apple Photos associates with the asset. It powers the Info map and location-based browsing. LensPin adds this location only after you confirm the selection.</p>
+      <h2>Optional EXIF GPS edit</h2>
+      <p>When enabled, LensPin asks Photos for editable image data, adds GPS to the metadata of a non-destructive current edit, and saves that edit back through Photos. The original photo or RAW remains recoverable.</p>
+      <div class="callout"><strong>Exports can vary.</strong><p>Whether a shared or exported file carries the current edit's GPS can depend on the export path and Photos settings. Verify a sample in the destination workflow before processing a critical archive.</p></div>
+      <h2>Fallback behavior</h2>
+      <p>If the Photos location succeeds but EXIF editing is unsupported or fails, LensPin keeps the successful library location and reports that EXIF was skipped. It does not misreport the whole item as a failed location save.</p>
+      <h2>Why a photo is skipped</h2>
+      <p>LensPin reads the Photos item immediately before writing. If another app, device, or sync operation added a location after the preview was created, LensPin skips that photo rather than overwriting it.</p>
+      <h2>Completion statuses</h2>
+      <div class="card-grid">
+        <article class="info-card"><span class="icon-tile mint">✓</span><h3>Added</h3><p>The Photos-library location was successfully written.</p></article>
+        <article class="info-card"><span class="icon-tile orange">×</span><h3>Failed</h3><p>The location write did not complete. Keep the displayed per-item reason for support.</p></article>
+        <article class="info-card"><span class="icon-tile">↷</span><h3>Skipped</h3><p>The item was intentionally left alone, commonly because it already had a location.</p></article>
+      </div>
+      <h2>LensPin album</h2>
+      <p>Only photos whose location was actually added are collected in the LensPin album. If album collection fails, the completion screen shows a separate warning; it does not undo or hide a successful location write.</p>
+      <h2>How to verify</h2>
+      <ol><li>Open the LensPin album after the batch.</li><li>Open a photo and inspect the Info map and coordinates.</li><li>Compare the point with the route and surrounding photos.</li><li>If EXIF portability matters, export one sample through your actual sharing workflow and inspect it in the destination.</li></ol>
+      <p><a class="text-link" href="/supported-formats/">Check format and EXIF edit support →</a></p>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="footer-shell"><div class="footer-brand"><a class="brand" href="/"><span class="brand-mark"><img src="/favicon.svg" alt=""></span><span>LensPin</span></a><p>Review-first photo location matching.</p></div><div><p class="footer-title">Support</p><nav class="footer-links"><a href="/support/">All topics</a><a href="/support/icloud-photos/">iCloud Photos</a><a href="/support/gpx-requirements/">GPX requirements</a></nav></div><div><p class="footer-title">Product</p><nav class="footer-links"><a href="/how-it-works/">How it works</a><a href="/supported-formats/">Formats &amp; limits</a></nav></div><div><p class="footer-title">About</p><nav class="footer-links"><a href="/privacy/">Privacy</a></nav></div></div><div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span>LensPin is not affiliated with Apple Inc.</span></div></footer>
+  <script src="/assets/site.js?v=20260917.1" defer></script>
+</body>
+</html>
