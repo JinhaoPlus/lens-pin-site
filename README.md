@@ -24,6 +24,8 @@ The repository supports either Cloudflare Pages or Workers Static Assets:
 
 Set SITE_ORIGIN to the final public origin, such as https://example.com, in the Cloudflare build environment. The build uses it to generate an absolute sitemap.xml and the Sitemap entry in robots.txt.
 
+Use `npm run build:production` for release builds. It fails early when `SITE_ORIGIN` is missing, preventing relative canonical URLs from reaching production.
+
 Cloudflare Pages reads security and cache policy from dist/_headers. wrangler.jsonc configures static asset routing, canonical trailing slashes, and the custom 404.html for Workers deployment.
 
-The App Store listing URL is intentionally not invented. Replace support-page availability links with the attributed App Store campaign URL when the listing exists.
+The App Store listing URL is intentionally not invented. Current product CTAs open the on-site matching example. Replace them with the attributed App Store campaign URL when the listing exists.

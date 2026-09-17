@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://lenspin-photo-map-iphone.jinhaoplus.chatgpt.site/sitemap.xml

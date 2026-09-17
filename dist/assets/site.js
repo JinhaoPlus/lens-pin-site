@@ -26,8 +26,8 @@
     if (event.key === 'Escape') document.querySelectorAll('.mobile-nav[open]').forEach((menu) => menu.removeAttribute('open'));
   });
 
-  document.querySelectorAll('[data-app-store-link]').forEach((link) => {
-    link.addEventListener('click', () => track('app_store_click', { page: location.pathname, destination: link.getAttribute('href') }));
+  document.querySelectorAll('[data-demo-link]').forEach((link) => {
+    link.addEventListener('click', () => track('demo_open', { page: location.pathname, destination: link.getAttribute('href') }));
   });
 
   const evidenceTabs = [...document.querySelectorAll('[data-evidence-tab]')];
@@ -47,8 +47,11 @@
   if (evidenceTabs.length && evidenceStage) {
     evidenceTabs.forEach((tab) => tab.addEventListener('click', () => {
       const source = tab.dataset.evidenceTab;
-      evidenceTabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
+      evidenceTabs.forEach((item) => item.setAttribute('aria-pressed', String(item === tab)));
       evidenceStage.dataset.source = source;
+      evidenceStage.setAttribute('aria-label', source === 'gpx'
+        ? 'A camera photo at 10:07 matched between GPX points recorded at 10:02 and 10:12'
+        : 'A camera photo at 10:07 supported by geotagged iPhone photos recorded at 10:02 and 10:12');
       if (evidenceTitle) evidenceTitle.textContent = evidenceContent[source].title;
       if (evidenceCopy) evidenceCopy.textContent = evidenceContent[source].copy;
       track('demo_start', { demo: 'evidence_source', source });
@@ -79,7 +82,7 @@
     const copy = widget.querySelector('[data-task-copy]');
     options.forEach((option) => option.addEventListener('click', () => {
       const value = option.dataset.taskOption;
-      options.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
+      options.forEach((item) => item.setAttribute('aria-pressed', String(item === option)));
       label.textContent = taskContent[value].label;
       title.textContent = taskContent[value].title;
       copy.textContent = taskContent[value].copy;
@@ -98,7 +101,7 @@
     const copy = widget.querySelector('[data-import-copy]');
     options.forEach((option) => option.addEventListener('click', () => {
       const value = option.dataset.importOption;
-      options.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
+      options.forEach((item) => item.setAttribute('aria-pressed', String(item === option)));
       title.textContent = importContent[value].title;
       copy.textContent = importContent[value].copy;
       track('demo_start', { demo: 'import_path', choice: value });
@@ -140,9 +143,16 @@
   document.querySelectorAll('[data-photo-evidence]').forEach((widget) => {
     const buttons = [...widget.querySelectorAll('[data-scenario]')];
     const result = widget.querySelector('[data-scenario-result]');
+    const map = widget.querySelector('[data-scenario-map]');
     buttons.forEach((button) => button.addEventListener('click', () => {
       const value = button.dataset.scenario;
-      buttons.forEach((item) => item.setAttribute('aria-selected', String(item === button)));
+      buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      widget.dataset.scenarioState = value;
+      if (map) map.setAttribute('aria-label', value === 'agree'
+        ? 'Two nearby iPhone photo locations agree around the camera photo time'
+        : value === 'moving'
+          ? 'The iPhone photo locations show movement, so the closer time is favored'
+          : 'The iPhone photo evidence is too far apart or too late for a safe default');
       result.dataset.level = scenarioContent[value].level;
       result.textContent = scenarioContent[value].text;
       track('demo_complete', { demo: 'photo_evidence', scenario: value });

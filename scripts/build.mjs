@@ -5,7 +5,13 @@ const dist = new URL("../dist/", import.meta.url);
 const distPath = dist.pathname;
 const siteOrigin = (process.env.SITE_ORIGIN || "").replace(/\/+$/, "");
 const isCheckOnly = process.argv.includes("--check");
+const isProduction = process.argv.includes("--production");
 const errors = [];
+
+if (isProduction && !siteOrigin) {
+  console.error("SITE_ORIGIN is required for a production build so canonical URLs and sitemap entries are absolute.");
+  process.exit(1);
+}
 
 function walk(directory) {
   return readdirSync(directory).flatMap((name) => {
