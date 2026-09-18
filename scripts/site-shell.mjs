@@ -46,7 +46,7 @@ export function renderFooter(appStoreUrl) {
     <div class="footer-shell">
       <div class="footer-brand"><a class="brand" href="/">${icon}<span>LensPin</span></a><p>Add locations to camera photos already in Apple Photos—with evidence you can review.</p>${storeLink}</div>
       <div><p class="footer-title">Start here</p><nav class="footer-links"><a href="/import-camera-photos-to-iphone/">Import camera photos</a><a href="/add-location-to-photos-iphone/">Add photo locations</a><a href="/how-it-works/">How LensPin works</a></nav></div>
-      <div><p class="footer-title">Methods</p><nav class="footer-links"><a href="/gpx-photo-geotagging-iphone/">With a GPX track</a><a href="/geotag-dslr-photos-with-iphone-photos/">Without GPX</a><a href="/supported-formats/">Formats &amp; limits</a></nav></div>
+      <div><p class="footer-title">Methods</p><nav class="footer-links"><a href="/how-to-get-gpx-file/">Get a GPX file</a><a href="/gpx-photo-geotagging-iphone/">With a GPX track</a><a href="/geotag-dslr-photos-with-iphone-photos/">Without GPX</a><a href="/supported-formats/">Formats &amp; limits</a></nav></div>
       <div><p class="footer-title">Help</p><nav class="footer-links"><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav></div>
     </div>
     <div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span class="apple-legal">Apple, the Apple logo, App Store, iPhone, and iPad are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</span></div>

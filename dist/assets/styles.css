@@ -743,6 +743,37 @@ h1 {
 .product-scope-note { margin: 20px 0 0; padding: 15px 17px; border-radius: 14px; background: var(--surface-soft); color: var(--muted); font-size: .86rem; }
 .product-control-grid .icon-tile { width: 46px; padding: 0 5px; font-size: .72rem; }
 
+/* GPX acquisition guides */
+.gpx-pipeline { display: grid; padding: 24px; border: 1px solid var(--hairline); border-radius: var(--radius-tool); background: var(--surface); box-shadow: var(--shadow-card); gap: 8px; }
+.gpx-pipeline > div { display: grid; min-height: 66px; padding: 13px 15px; border: 1px solid rgba(10,92,224,.12); border-radius: 15px; background: #f7f9fd; grid-template-columns: 36px minmax(0,1fr); align-items: center; column-gap: 12px; }
+.gpx-pipeline > div > span { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 11px; background: #eaf2ff; color: var(--blue); font-size: .7rem; font-weight: 850; grid-row: 1 / 3; }
+.gpx-pipeline strong, .gpx-pipeline small { display: block; }
+.gpx-pipeline small { margin-top: 2px; color: var(--muted); font-size: .76rem; }
+.gpx-pipeline > b { color: #a0a4ad; line-height: 1; text-align: center; transform: rotate(90deg); }
+.recording-choice { display: grid; padding: 14px; border: 1px solid var(--hairline); border-radius: var(--radius-tool); background: var(--surface); box-shadow: var(--shadow-card); gap: 10px; }
+.recording-choice article { display: grid; min-height: 105px; padding: 18px; border-radius: 17px; background: var(--surface-soft); align-content: center; }
+.recording-choice strong { margin-top: 10px; font-size: 1.1rem; }
+.recording-choice small { margin-top: 3px; color: var(--muted); font-size: .78rem; }
+.watch-export-card { display: grid; padding: 14px; border: 1px solid var(--hairline); border-radius: var(--radius-tool); background: var(--surface); box-shadow: var(--shadow-card); grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+.watch-export-card > div { min-height: 150px; padding: 19px; border: 1px solid rgba(10,92,224,.1); border-radius: 17px; background: linear-gradient(145deg,#f9fbff,#f3f6fb); }
+.watch-export-card strong, .watch-export-card span, .watch-export-card b { display: block; }
+.watch-export-card span { margin-top: 7px; color: var(--muted); font-size: .75rem; }
+.watch-export-card b { margin-top: 24px; color: var(--blue); font-size: .82rem; }
+.source-tag { display: inline-flex; width: fit-content; padding: 5px 8px; border-radius: 999px; background: #eaf2ff; color: var(--blue); font-size: .68rem; font-weight: 850; letter-spacing: .08em; }
+.source-tag.mint { background: #e9f7f2; color: var(--mint); }
+.source-tag.indigo { background: #efedfb; color: var(--indigo); }
+.source-tag.orange { background: #fff0e5; color: var(--orange); }
+.source-card-grid .info-card { display: flex; min-height: 250px; align-items: flex-start; flex-direction: column; }
+.source-card-grid .info-card .text-link { margin-top: auto; padding-top: 20px; }
+.source-disclaimer { margin-top: 14px; color: var(--muted); font-size: .82rem !important; }
+.official-links { display: flex; margin-top: 24px; flex-wrap: wrap; gap: 10px; }
+.official-links a { display: inline-flex; min-height: 42px; padding: 10px 13px; border: 1px solid rgba(10,92,224,.16); border-radius: 11px; background: #fff; color: var(--blue); align-items: center; font-size: .82rem; font-weight: 700; text-decoration: none; }
+.official-links a:hover { border-color: rgba(10,92,224,.38); background: #f7faff; }
+.official-links.stacked { align-items: flex-start; flex-direction: column; }
+.official-links.stacked a { width: 100%; }
+.watch-path-list a { display: inline-block; margin-top: 8px; }
+.content-section code, .page-hero code { padding: 2px 5px; border-radius: 6px; background: #ececef; color: #35363b; font-size: .9em; }
+
 /* Home: tactile product story */
 .journey-section { padding-top: 96px; }
 .journey-grid { display: grid; grid-template-columns: minmax(0,1.04fr) minmax(360px,.96fr); align-items: center; gap: clamp(40px,7vw,86px); }
@@ -879,6 +910,11 @@ h1 {
   .cta-band > .app-store-badge-link { justify-self: start; }
   .cta-actions { max-width: none; justify-content: stretch; }
   .plan-strip { grid-template-columns: 1fr; gap: 8px; }
+  .watch-export-card { grid-template-columns: 1fr; }
+  .watch-export-card > div { min-height: 118px; }
+  .source-card-grid .info-card { min-height: 0; }
+  .official-links { align-items: stretch; flex-direction: column; }
+  .official-links a { width: 100%; }
   .asset-promo-layout { gap: 30px; }
   .asset-placeholder { padding: 10px; border-radius: 20px; }
   .asset-placeholder-phone { width: min(100%,390px); }
