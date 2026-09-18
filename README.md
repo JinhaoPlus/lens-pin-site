@@ -28,7 +28,7 @@ The App Store URL is centralized in `scripts/site-config.mjs`. Replace the place
 
 Use `npm run build:production` for release builds. It fails early when `SITE_ORIGIN` is missing or the App Store placeholder is still present, preventing relative canonical URLs or a fake download destination from reaching production.
 
-The working site also contains six visible asset-capture slots. See `Docs/WEBSITE_ASSET_SLOTS.md` for the exact screen, crop, privacy, and export requirements. A production build fails while any `data-asset-placeholder` remains, so a temporary card cannot be mistaken for finished product imagery.
+The working site also contains ten visible asset-capture slots: eight real app screens and two instructional assets. See `Docs/WEBSITE_ASSET_SLOTS.md` for the exact screen, crop, privacy, and export requirements. A production build fails while any `data-asset-placeholder` remains, so a temporary card cannot be mistaken for finished product imagery.
 
 The official App Store badge appears once on each acquisition/product page. Support, formats, and privacy pages use a plain App Store text link in the footer instead of repeating the badge.
 

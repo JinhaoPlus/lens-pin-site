@@ -13,7 +13,7 @@
   <link rel="alternate" hreflang="en" href="/how-it-works/">
   <link rel="alternate" hreflang="x-default" href="/how-it-works/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/styles.css?v=9c03919c0e">
+  <link rel="stylesheet" href="/assets/styles.css?v=d6e4001b42">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"How LensPin Matches Photo Locations","description":"See how LensPin matches camera photo times to GPX tracks or nearby iPhone photos, explains each suggestion, and saves only what you approve.","datePublished":"2026-09-17","dateModified":"2026-09-17","author":{"@type":"Organization","name":"LensPin"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LensPin","item":"/"},{"@type":"ListItem","position":2,"name":"How it works","item":"/how-it-works/"}]}]}</script>
 </head>
 <body>
@@ -49,7 +49,7 @@
         <p class="page-lede">LensPin starts with camera photos already in Apple Photos. It compares each capture time with a continuous GPX track, nearby geotagged iPhone photos, or both—then presents a location suggestion you can verify.</p>
       </div>
       <figure class="asset-placeholder asset-placeholder-phone page-hero-visual" data-asset-placeholder data-asset-slot="workflow-select-screen">
-        <div class="asset-placeholder-stage" aria-hidden="true"><span class="asset-placeholder-kicker">APP SCREENSHOT 02</span><span class="asset-placeholder-shape">9:19 PORTRAIT</span></div>
+        <div class="asset-placeholder-stage" aria-hidden="true"><span class="asset-placeholder-kicker">APP SCREENSHOT 05</span><span class="asset-placeholder-shape">9:19 PORTRAIT</span></div>
         <figcaption><strong>Choose photos or start-scan screen</strong><span>Show the first useful LensPin action and real selection state. 1290 × 2796 px or equivalent @3x.</span></figcaption>
       </figure>
     </section>
@@ -64,6 +64,18 @@
         <li><div><strong>Review each suggestion</strong><span>See the location source, map point, time gap, nearby anchors, GPX continuity, and any agreement or conflict between sources.</span></div></li>
         <li><div><strong>Confirm and verify</strong><span>LensPin changes only approved photos, then groups successful updates in an album you can check in Apple Photos.</span></div></li>
       </ol>
+    </section>
+
+    <section class="content-section" aria-labelledby="inside-app-title">
+      <p class="eyebrow">Inside the app</p>
+      <h2 id="inside-app-title">Controls made for real photo libraries.</h2>
+      <p class="section-intro">A trip may contain thousands of phone photos, several cameras, a wrong camera clock, or originals stored in iCloud. LensPin narrows the job before it starts matching.</p>
+      <div class="card-grid two product-control-grid">
+        <article class="info-card"><span class="icon-tile indigo">▣</span><h3>Pick photos directly or scan a period</h3><p>Choose a specific batch from Apple Photos, or use shortcuts such as the last week, last month, previous month, or a custom date range.</p></article>
+        <article class="info-card"><span class="icon-tile mint">CAM</span><h3>Work with one exact camera</h3><p>LensPin reads EXIF make and model, groups eligible photos, and excludes screenshots, unknown-camera images, and photos that already have a location.</p></article>
+        <article class="info-card"><span class="icon-tile orange">±</span><h3>Correct the comparison, not the photo</h3><p>Apply a fixed camera-clock offset before filtering and matching. The original capture time and the time shown by Apple Photos are not rewritten.</p></article>
+        <article class="info-card"><span class="icon-tile">⌁</span><h3>Set how far the evidence may reach</h3><p>A maximum anchor interval limits both GPX point spacing and the distance in time to nearby iPhone photos, so LensPin does not quietly widen the search.</p></article>
+      </div>
     </section>
 
     <section class="content-section" aria-labelledby="priority-title">
@@ -93,6 +105,26 @@
       <div class="callout"><strong>A score is not a probability.</strong><p>LensPin uses points to compare evidence and choose safe defaults. A 92-point example does not mean a 92% chance that the suggested coordinate is correct.</p></div>
     </section>
 
+    <section class="content-section" aria-labelledby="after-save-title">
+      <div class="asset-promo-layout">
+        <div class="asset-promo-copy">
+          <p class="eyebrow">After you confirm</p>
+          <h2 id="after-save-title">Save to Photos, then verify the result.</h2>
+          <p class="section-intro">LensPin adds a Photos-library location only to the items you approve. It reads each asset again immediately before the change, so a photo that gained a location elsewhere is skipped instead of overwritten.</p>
+          <div class="product-fact-list">
+            <article><strong>Optional EXIF GPS</strong><p>Add GPS to the current non-destructive Photos edit when the format supports it. The original photo or RAW remains recoverable.</p></article>
+            <article><strong>A completion receipt</strong><p>Added, skipped, failed, album warnings, and EXIF fallbacks are reported as different outcomes.</p></article>
+            <article><strong>A LensPin album</strong><p>Successful updates appear together, with a map and coordinates you can inspect again after the batch is complete.</p></article>
+          </div>
+          <p><a class="text-link" href="/support/location-writeback/">Read exactly where the location is stored →</a></p>
+        </div>
+        <figure class="asset-placeholder asset-placeholder-phone" data-asset-placeholder data-asset-slot="album-verification-screen">
+          <div class="asset-placeholder-stage" aria-hidden="true"><span class="asset-placeholder-kicker">APP SCREENSHOT 06</span><span class="asset-placeholder-shape">9:19 PORTRAIT</span></div>
+          <figcaption><strong>LensPin album verification</strong><span>Show a successfully updated photo with the green location state, map, and coordinates. 1290 × 2796 px or equivalent @3x.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
     <section class="content-section" aria-labelledby="details-title">
       <div class="cta-band">
         <div><p class="eyebrow">Ready to review the trip?</p><h2 id="details-title">Use the evidence you already have.</h2><p>GPX and nearby iPhone photos lead to the same review-first workflow. For technical details, see <a class="text-link" href="/support/location-writeback/">location writeback</a> and <a class="text-link" href="/supported-formats/">supported formats</a>.</p></div>
@@ -109,6 +141,6 @@
     </div>
     <div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span class="apple-legal">Apple, the Apple logo, App Store, iPhone, and iPad are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</span></div>
   </footer>
-  <script src="/assets/site.js?v=9c03919c0e" defer></script>
+  <script src="/assets/site.js?v=d6e4001b42" defer></script>
 </body>
 </html>

@@ -1,15 +1,19 @@
 # LensPin 网站素材采集清单
 
-更新日期：2026-09-17
+更新日期：2026-09-18
 
-这 6 个位置是当前网站刻意保留的真实素材位。每个占位都带有 `data-asset-slot`，正式构建会在任何占位仍存在时失败。替换素材时，应把整个 `<figure data-asset-placeholder ...>` 换成正式的 `<figure>` 或 `<picture>`，并写准确的英文 `alt` 文本。
+这 10 个位置是当前网站刻意保留的真实素材位，包括 8 张 App 截图和 2 个教学素材。每个占位都带有 `data-asset-slot`，正式构建会在任何占位仍存在时失败。替换素材时，应把整个 `<figure data-asset-placeholder ...>` 换成正式的 `<figure>` 或 `<picture>`，并写准确的英文 `alt` 文本。
 
 ## 必须准备
 
 | 优先级 | Slot ID | 页面与位置 | 需要采集的画面 | 状态要求 | 比例与最低规格 |
 |---|---|---|---|---|---|
+| P0 | `home-source-selection-screen` | 首页，产品三步流程第 1 张 | LensPin 的照片范围与证据来源选择 | 同时看得到直接选择照片/日期范围，以及 iPhone photos、GPX 两种来源；不要使用空白欢迎页 | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
+| P0 | `home-match-list-screen` | 首页，产品三步流程第 2 张 | 批量匹配结果列表 | 同一屏至少出现 High confidence、Review、No suggestion 中的两类，并看得到默认勾选状态 | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
+| P0 | `home-completion-screen` | 首页，产品三步流程第 3 张 | 完成报告 | 使用合理的 Added、Skipped、Failed 数量；出现进入 LensPin album 的下一步，不要全为零 | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `home-review-screen` | 首页，“See why a place was suggested” | LensPin 的地点建议审查页：地图、照片、证据来源、置信状态同时可见 | 使用一条可信的 GPX 匹配；建议显示 High confidence，但不要把分数写成概率 | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `workflow-select-screen` | How it works 首屏右侧 | 进入工作流后的第一个有效界面，例如选择日期/照片或开始扫描 | 画面里要能看懂“从 Apple Photos 中选择相机照片”，不要用空白欢迎页 | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
+| P0 | `album-verification-screen` | How it works，“After you confirm” | LensPin 相册中的成功结果详情 | 使用已经写回的位置；需要看到绿色位置状态、地图和坐标，且和前面同一张样例照片对应 | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `gpx-review-screen` | GPX 页面底部转化区 | GPX 匹配审查页：路线、前后 track points、时间差、建议位置 | 使用连续且时间密集的 track segment；显示相机时钟已校准后的结果 | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `iphone-photo-evidence-screen` | 无 GPX 页面底部 | 附近 iPhone 照片作为证据的审查页 | 同时出现前后两个 anchor、各自时间差、建议点和解释；地点应彼此接近 | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P1 | `import-sd-reader-photo` | 相机照片导入页，四步说明旁 | 一张真实操作照片：iPhone、匹配接口的 SD 读卡器/存储卡，以及可辨认的 Photos Import 界面 | 连接关系必须真实；避免出现无关品牌包装、通知和个人图库 | 3:2 横图；至少 2400 × 1600 px |

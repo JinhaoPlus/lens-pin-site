@@ -13,8 +13,8 @@
   <link rel="alternate" hreflang="en" href="/">
   <link rel="alternate" hreflang="x-default" href="/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/styles.css?v=9c03919c0e">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LensPin","applicationCategory":"PhotographyApplication","operatingSystem":"iOS 17 or later","downloadUrl":"https://apps.apple.com/app/id0000000000","description":"LensPin suggests locations for imported camera photos using GPX tracks or nearby geotagged iPhone photos, with review before saving to Apple Photos.","featureList":["GPX track matching","Nearby iPhone photo evidence","Camera clock adjustment","Review before saving"]}</script>
+  <link rel="stylesheet" href="/assets/styles.css?v=d6e4001b42">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"LensPin","applicationCategory":"MultimediaApplication","operatingSystem":"iOS 17 or later","downloadUrl":"https://apps.apple.com/app/id0000000000","description":"LensPin suggests locations for imported camera photos using GPX tracks or nearby geotagged iPhone photos, with review before saving to Apple Photos.","featureList":["GPX track matching","Nearby iPhone photo evidence","Camera and date filtering","Camera clock adjustment","Source agreement and conflict review","Optional non-destructive EXIF GPS edit","LensPin album for result verification"]}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -137,6 +137,40 @@
         </div>
       </section>
 
+      <section class="content-section product-tour-section" aria-labelledby="product-tour-title">
+        <div class="product-tour-heading">
+          <div>
+            <p class="eyebrow">The LensPin app, step by step</p>
+            <h2 id="product-tour-title">From a camera-photo batch to locations you have checked.</h2>
+          </div>
+          <p>LensPin is not a camera importer or a one-pin editor. It is an iPhone and iPad workflow for camera photos already in Apple Photos: choose the exact batch, build a location timeline, inspect the evidence, and save only approved results.</p>
+        </div>
+        <div class="product-tour-grid">
+          <article class="product-tour-card">
+            <figure class="asset-placeholder asset-placeholder-phone asset-placeholder-compact" data-asset-placeholder data-asset-slot="home-source-selection-screen">
+              <div class="asset-placeholder-stage" aria-hidden="true"><span class="asset-placeholder-kicker">APP SCREENSHOT 01</span><span class="asset-placeholder-shape">9:19 PORTRAIT</span></div>
+              <figcaption><strong>Photo scope and evidence sources</strong><span>Show direct photo selection or a date range, with iPhone photos and GPX available as sources.</span></figcaption>
+            </figure>
+            <div class="product-tour-copy"><span class="product-tour-index">01 · CHOOSE</span><h3>Start with the photos you actually want.</h3><p>Pick a batch directly from Apple Photos or scan a date range. LensPin groups eligible images by camera make and model, then lets you use a GPX track, geotagged iPhone photos, or both.</p></div>
+          </article>
+          <article class="product-tour-card">
+            <figure class="asset-placeholder asset-placeholder-phone asset-placeholder-compact" data-asset-placeholder data-asset-slot="home-match-list-screen">
+              <div class="asset-placeholder-stage" aria-hidden="true"><span class="asset-placeholder-kicker">APP SCREENSHOT 02</span><span class="asset-placeholder-shape">9:19 PORTRAIT</span></div>
+              <figcaption><strong>Batch match list</strong><span>Show High confidence, Review and No suggestion together with selection states.</span></figcaption>
+            </figure>
+            <div class="product-tour-copy"><span class="product-tour-index">02 · REVIEW</span><h3>Triage the whole trip before editing it.</h3><p>Results are separated into High confidence, Review, and No suggestion. Only strong matches are selected by default; every photo can open into its map, timing, source agreement, and conflict details.</p></div>
+          </article>
+          <article class="product-tour-card">
+            <figure class="asset-placeholder asset-placeholder-phone asset-placeholder-compact" data-asset-placeholder data-asset-slot="home-completion-screen">
+              <div class="asset-placeholder-stage" aria-hidden="true"><span class="asset-placeholder-kicker">APP SCREENSHOT 03</span><span class="asset-placeholder-shape">9:19 PORTRAIT</span></div>
+              <figcaption><strong>Completion report</strong><span>Show realistic Added, Skipped and Failed counts plus the action that opens the LensPin album.</span></figcaption>
+            </figure>
+            <div class="product-tour-copy"><span class="product-tour-index">03 · VERIFY</span><h3>Finish with a result you can audit.</h3><p>LensPin rechecks each photo before saving, reports Added, Skipped, and Failed separately, and places successful updates in a LensPin album so the map and coordinates are easy to verify afterward.</p></div>
+          </article>
+        </div>
+        <div class="plan-strip" aria-label="LensPin launch plan"><div><span class="plan-strip-label">Free to start</span><strong>100 successful photo updates</strong></div><p>Skipped and failed items do not use the allowance. Unlock unlimited updates with a one-time in-app purchase.</p></div>
+      </section>
+
       <section class="content-section review-showcase" aria-labelledby="review-title">
         <div class="asset-promo-layout">
           <div class="asset-promo-copy">
@@ -150,7 +184,7 @@
             </div>
           </div>
           <figure class="asset-placeholder asset-placeholder-phone" data-asset-placeholder data-asset-slot="home-review-screen">
-            <div class="asset-placeholder-stage" aria-hidden="true"><span class="asset-placeholder-kicker">APP SCREENSHOT 01</span><span class="asset-placeholder-shape">9:19 PORTRAIT</span></div>
+            <div class="asset-placeholder-stage" aria-hidden="true"><span class="asset-placeholder-kicker">APP SCREENSHOT 04</span><span class="asset-placeholder-shape">9:19 PORTRAIT</span></div>
             <figcaption><strong>LensPin match review screen</strong><span>Capture the map, evidence source and confidence state. 1290 × 2796 px or equivalent @3x.</span></figcaption>
           </figure>
         </div>
@@ -173,6 +207,8 @@
           <details><summary>Do I need a GPX file?</summary><div class="faq-answer"><p>No. LensPin can use geotagged iPhone photos taken around the same time. A GPX track usually gives denser evidence, and you can combine both sources.</p></div></details>
           <details><summary>Does LensPin import photos from my camera?</summary><div class="faq-answer"><p>No. Import with Apple Photos, a compatible card reader, or the camera maker’s workflow first. LensPin begins after the camera photos are in Apple Photos.</p></div></details>
           <details><summary>What happens when LensPin is not confident?</summary><div class="faq-answer"><p>The photo moves to Review or No Suggestion with an explanation. Conflicting or low-confidence results are not selected as safe defaults.</p></div></details>
+          <details><summary>Does LensPin change the original capture time?</summary><div class="faq-answer"><p>No. A camera clock offset changes only how LensPin compares the photo with the evidence timeline. The capture time stored with the photo is left alone.</p></div></details>
+          <details><summary>How do I check the locations after saving?</summary><div class="faq-answer"><p>Successful updates are added to the LensPin album. Open a photo there to verify the Apple Photos location, map point, and coordinates.</p></div></details>
         </div>
       </section>
 
@@ -195,6 +231,6 @@
     <div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span class="apple-legal">Apple, the Apple logo, App Store, iPhone, and iPad are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</span></div>
   </footer>
 
-  <script src="/assets/site.js?v=9c03919c0e" defer></script>
+  <script src="/assets/site.js?v=d6e4001b42" defer></script>
 </body>
 </html>
