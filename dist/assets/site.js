@@ -30,6 +30,17 @@
     link.addEventListener('click', () => track('demo_open', { page: location.pathname, destination: link.getAttribute('href') }));
   });
 
+  document.querySelectorAll('[data-app-store-link]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const placement = link.closest('.site-header') ? 'header'
+        : link.closest('.site-footer') ? 'footer'
+          : link.closest('.hero') ? 'hero'
+            : link.closest('.cta-band') ? 'cta_band'
+              : 'content';
+      track('app_store_click', { page: location.pathname, placement, destination: link.getAttribute('href') });
+    });
+  });
+
   const evidenceTabs = [...document.querySelectorAll('[data-evidence-tab]')];
   const evidenceStage = document.querySelector('[data-evidence-stage]');
   const evidenceTitle = document.querySelector('[data-evidence-title]');
@@ -45,17 +56,36 @@
     }
   };
   if (evidenceTabs.length && evidenceStage) {
-    evidenceTabs.forEach((tab) => tab.addEventListener('click', () => {
+    const selectEvidence = (tab, focus = false) => {
       const source = tab.dataset.evidenceTab;
-      evidenceTabs.forEach((item) => item.setAttribute('aria-pressed', String(item === tab)));
+      evidenceTabs.forEach((item) => {
+        const isSelected = item === tab;
+        item.setAttribute('aria-selected', String(isSelected));
+        item.tabIndex = isSelected ? 0 : -1;
+      });
       evidenceStage.dataset.source = source;
+      evidenceStage.setAttribute('aria-labelledby', tab.id);
       evidenceStage.setAttribute('aria-label', source === 'gpx'
         ? 'A camera photo at 10:07 matched between GPX points recorded at 10:02 and 10:12'
         : 'A camera photo at 10:07 supported by geotagged iPhone photos recorded at 10:02 and 10:12');
       if (evidenceTitle) evidenceTitle.textContent = evidenceContent[source].title;
       if (evidenceCopy) evidenceCopy.textContent = evidenceContent[source].copy;
+      if (focus) tab.focus();
       track('demo_start', { demo: 'evidence_source', source });
-    }));
+    };
+    evidenceTabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectEvidence(tab));
+      tab.addEventListener('keydown', (event) => {
+        let nextIndex;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % evidenceTabs.length;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + evidenceTabs.length) % evidenceTabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = evidenceTabs.length - 1;
+        if (nextIndex === undefined) return;
+        event.preventDefault();
+        selectEvidence(evidenceTabs[nextIndex], true);
+      });
+    });
   }
 
   const taskContent = {

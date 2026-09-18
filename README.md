@@ -24,8 +24,12 @@ The repository supports either Cloudflare Pages or Workers Static Assets:
 
 Set SITE_ORIGIN to the final public origin, such as https://example.com, in the Cloudflare build environment. The build uses it to generate an absolute sitemap.xml and the Sitemap entry in robots.txt.
 
-Use `npm run build:production` for release builds. It fails early when `SITE_ORIGIN` is missing, preventing relative canonical URLs from reaching production.
+The App Store URL is centralized in `scripts/site-config.mjs`. Replace the placeholder URL there after App Store Connect provides the listing, or set `APP_STORE_URL` in the build environment. Every header, page CTA, footer link, download event, SoftwareApplication entry, and Smart App Banner uses that value. The same file references Apple's hosted, preferred black App Store badge; keep that artwork unmodified.
+
+Use `npm run build:production` for release builds. It fails early when `SITE_ORIGIN` is missing or the App Store placeholder is still present, preventing relative canonical URLs or a fake download destination from reaching production.
+
+The working site also contains six visible asset-capture slots. See `Docs/WEBSITE_ASSET_SLOTS.md` for the exact screen, crop, privacy, and export requirements. A production build fails while any `data-asset-placeholder` remains, so a temporary card cannot be mistaken for finished product imagery.
+
+The official App Store badge appears once on each acquisition/product page. Support, formats, and privacy pages use a plain App Store text link in the footer instead of repeating the badge.
 
 Cloudflare Pages reads security and cache policy from dist/_headers. wrangler.jsonc configures static asset routing, canonical trailing slashes, and the custom 404.html for Workers deployment.
-
-The App Store listing URL is intentionally not invented. Current product CTAs open the on-site matching example. Replace them with the attributed App Store campaign URL when the listing exists.

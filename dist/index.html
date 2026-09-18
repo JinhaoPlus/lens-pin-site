@@ -9,32 +9,33 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Geotag Camera Photos on iPhone | LensPin">
   <meta property="og:description" content="Match imported camera photos to GPX tracks or nearby iPhone photos. Review every suggestion before saving.">
-  <link rel="canonical" href="https://lenspin-photo-map-iphone.jinhaoplus.chatgpt.site/">
-  <link rel="alternate" hreflang="en" href="https://lenspin-photo-map-iphone.jinhaoplus.chatgpt.site/">
-  <link rel="alternate" hreflang="x-default" href="https://lenspin-photo-map-iphone.jinhaoplus.chatgpt.site/">
+  <link rel="canonical" href="/">
+  <link rel="alternate" hreflang="en" href="/">
+  <link rel="alternate" hreflang="x-default" href="/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/styles.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LensPin","applicationCategory":"PhotographyApplication","operatingSystem":"iOS 17 or later","description":"LensPin suggests locations for imported camera photos using GPX tracks or nearby geotagged iPhone photos, with review before saving to Apple Photos."}</script>
+  <link rel="stylesheet" href="/assets/styles.css?v=9c03919c0e">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LensPin","applicationCategory":"PhotographyApplication","operatingSystem":"iOS 17 or later","downloadUrl":"https://apps.apple.com/app/id0000000000","description":"LensPin suggests locations for imported camera photos using GPX tracks or nearby geotagged iPhone photos, with review before saving to Apple Photos.","featureList":["GPX track matching","Nearby iPhone photo evidence","Camera clock adjustment","Review before saving"]}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="nav-shell">
-      <a class="brand" href="/" aria-label="LensPin home">
-        <span class="brand-mark" aria-hidden="true"><img src="/favicon.svg" alt=""></span>
-        <span>LensPin</span>
-      </a>
+      <a class="brand" href="/" aria-label="LensPin home"><span class="brand-mark" aria-hidden="true"><img src="/favicon.svg" alt=""></span><span>LensPin</span></a>
       <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="/import-camera-photos-to-iphone/">Import photos</a>
+        <a href="/add-location-to-photos-iphone/">Add locations</a>
         <a href="/how-it-works/">How it works</a>
-        <a href="/gpx-photo-geotagging-iphone/">GPX</a>
-        <a href="/geotag-dslr-photos-with-iphone-photos/">Without GPX</a>
         <a href="/support/">Support</a>
-        <a class="button button-primary button-small" href="#match-example" data-demo-link>See LensPin</a>
+        <a class="button button-primary button-small" href="https://apps.apple.com/app/id0000000000" data-app-store-link target="_blank" rel="noopener">Get LensPin</a>
       </nav>
       <details class="mobile-nav">
         <summary aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
         <nav class="mobile-nav-panel" aria-label="Mobile navigation">
-          <a href="/how-it-works/">How it works</a><a href="/gpx-photo-geotagging-iphone/">GPX</a><a href="/geotag-dslr-photos-with-iphone-photos/">Without GPX</a><a href="/add-location-to-photos-iphone/">Guides</a><a href="/support/">Support</a>
+          <a href="/import-camera-photos-to-iphone/">Import photos</a>
+          <a href="/add-location-to-photos-iphone/">Add locations</a>
+          <a href="/how-it-works/">How it works</a>
+          <a href="/support/">Support</a>
+          <a class="mobile-download" href="https://apps.apple.com/app/id0000000000" data-app-store-link target="_blank" rel="noopener">Get LensPin</a>
         </nav>
       </details>
     </div>
@@ -45,14 +46,14 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy-panel">
-        <p class="eyebrow">For camera photos imported to iPhone</p>
-        <h1 id="hero-title">Put them back on the map.</h1>
-        <p class="hero-copy">LensPin matches missing photo locations from a GPX track or nearby iPhone photos. You see the evidence before anything is saved.</p>
+        <p class="eyebrow">For camera photos already in Apple Photos</p>
+        <h1 id="hero-title">Add locations to camera photos on iPhone.</h1>
+        <p class="hero-copy">LensPin matches DSLR and mirrorless photos already in Apple Photos to a GPX track or nearby geotagged iPhone photos. Review every suggested location before anything changes.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#match-example" data-demo-link>Try the example <span aria-hidden="true">↓</span></a>
-          <a class="button button-secondary" href="/how-it-works/">How it works</a>
+          <a class="app-store-badge-link" href="https://apps.apple.com/app/id0000000000" data-app-store-link data-app-store-badge target="_blank" rel="noopener" aria-label="Download LensPin on the App Store"><img class="app-store-badge-image" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" width="250" height="83" alt="Download on the App Store"></a>
+          <a class="button button-secondary" href="#match-example" data-demo-link>See how it matches <span aria-hidden="true">↓</span></a>
         </div>
-        <p class="availability-note"><span aria-hidden="true"></span>iOS 17+ · App Store release in preparation</p>
+        <p class="availability-note"><span aria-hidden="true"></span>Made for iPhone and iPad · Requires iOS 17 or later</p>
       </div>
 
       <div class="tool-card" id="match-example" aria-label="Interactive location matching example">
@@ -61,15 +62,15 @@
             <p class="tool-kicker">Location evidence</p>
             <h2 class="tool-title">Why this suggested location?</h2>
           </div>
-          <span class="example-badge">Interactive example</span>
+          <span class="example-badge">Product walkthrough</span>
         </div>
 
-        <div class="evidence-tabs" role="group" aria-label="Location evidence source">
-          <button class="evidence-tab" type="button" aria-pressed="true" data-evidence-tab="gpx">I have a GPX track</button>
-          <button class="evidence-tab" type="button" aria-pressed="false" data-evidence-tab="photos">I only have iPhone photos</button>
+        <div class="evidence-tabs" role="tablist" aria-label="Location evidence source">
+          <button class="evidence-tab" id="evidence-tab-gpx" type="button" role="tab" aria-selected="true" aria-controls="evidence-panel" tabindex="0" data-evidence-tab="gpx">I have a GPX track</button>
+          <button class="evidence-tab" id="evidence-tab-photos" type="button" role="tab" aria-selected="false" aria-controls="evidence-panel" tabindex="-1" data-evidence-tab="photos">I only have iPhone photos</button>
         </div>
 
-        <div class="map-stage" data-evidence-stage data-source="gpx" role="img" aria-label="A camera photo at 10:07 matched between location evidence recorded at 10:02 and 10:12">
+        <div class="map-stage" id="evidence-panel" data-evidence-stage data-source="gpx" role="tabpanel" aria-labelledby="evidence-tab-gpx" aria-label="A camera photo at 10:07 matched between location evidence recorded at 10:02 and 10:12">
           <svg class="map-art" viewBox="0 0 600 420" preserveAspectRatio="none" aria-hidden="true">
             <path d="M-20 40C86 18 120 79 218 59c111-22 135-83 252-38 51 20 82 26 149 9v127c-67 10-109-7-163 9-95 27-160 82-276 57C91 204 50 229-20 266Z" fill="#dcecf8"/>
             <path d="M-12 284c83-62 147-37 224-12 83 27 149 18 219-29 58-39 117-44 189-19v215H-12Z" fill="#e4e9d9"/>
@@ -137,48 +138,21 @@
       </section>
 
       <section class="content-section review-showcase" aria-labelledby="review-title">
-        <div class="review-layout">
-          <div class="review-copy">
+        <div class="asset-promo-layout">
+          <div class="asset-promo-copy">
             <p class="eyebrow">Evidence, not a black box</p>
-            <h2 id="review-title">See why this point was suggested.</h2>
-            <p class="section-intro">A match is never presented as recovered GPS. LensPin keeps the evidence visible—including source conflicts, long time gaps, and cases where no responsible suggestion can be made.</p>
-            <div class="evidence-legend" aria-label="Location evidence states">
-              <span><i class="legend-dot mint"></i>GPX track</span>
-              <span><i class="legend-dot indigo"></i>Nearby iPhone photo</span>
-              <span><i class="legend-dot orange"></i>Needs review</span>
+            <h2 id="review-title">See why a place was suggested before you save it.</h2>
+            <p class="section-intro">LensPin shows the source, time gap and confidence behind each suggestion. Weak or conflicting evidence is surfaced instead of turned into a guess.</p>
+            <div class="safety-list compact-safety-list">
+              <article><span class="safety-icon mint">✓</span><div><h3>Evidence stays visible</h3><p>Review the map and timing for every photo.</p></div></article>
+              <article><span class="safety-icon orange">—</span><div><h3>You make the change</h3><p>Nothing is saved until you confirm it.</p></div></article>
+              <article><span class="safety-icon indigo">⌁</span><div><h3>Existing locations stay protected</h3><p>Photos that already have a place are skipped.</p></div></article>
             </div>
           </div>
-          <article class="app-review-surface" aria-label="Example LensPin location review">
-            <div class="app-review-bar"><span>Location suggestion</span><strong>1 of 12</strong></div>
-            <div class="review-map" role="img" aria-label="The imported camera photo placed between two nearby points on a GPX route">
-              <svg viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true"><path d="M-20 50c108-38 169 33 265 5 99-29 145-72 246-30 46 19 84 22 129 7v95c-72 8-115-4-171 18-95 36-157 66-264 43C100 170 50 201-20 226Z" fill="#dcecf8"/><path d="M-10 218c93-48 160-23 236 7 80 31 153 23 225-22 55-34 103-37 169-14v131H-10Z" fill="#e4e9d9"/><path d="M35 204c86-64 163-59 230-14 61 41 126 34 189-8 55-37 100-39 137-21" fill="none" stroke="#fff" stroke-width="22" stroke-linecap="round"/><path d="M38 202c85-59 157-54 224-11 61 40 125 33 188-8 55-36 99-38 137-21" fill="none" stroke="#0a9c6e" stroke-width="7" stroke-linecap="round"/></svg>
-              <span class="review-photo-pin"><img src="/assets/coastal-journey.jpg" alt=""></span>
-              <span class="review-camera-pin" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 8.5h2l1.2-1.8h3.6L15 8.5h2a2 2 0 0 1 2 2V16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-5.5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="13" r="2.7" stroke="currentColor" stroke-width="1.7"/></svg></span>
-            </div>
-            <div class="review-sheet">
-              <div class="review-sheet-title"><div><strong>_DSC4821.JPG</strong><span>Aug 14 · 10:07:14</span></div><span class="status-label">✓ High confidence</span></div>
-              <div class="evidence-row"><span class="evidence-symbol mint">⌁</span><div><strong>Between two track points</strong><span>10:02 and 10:12 · continuous segment</span></div></div>
-              <div class="evidence-row"><span class="evidence-symbol indigo">▣</span><div><strong>Nearby iPhone photo agrees</strong><span>Same area · 3 minutes away</span></div></div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="content-section finish-section" aria-labelledby="finish-title">
-        <p class="eyebrow">Review first. Save once.</p>
-        <h2 id="finish-title">Nothing changes until you confirm.</h2>
-        <p class="section-intro">LensPin checks again before writing and reports every outcome instead of hiding skipped or unsupported work.</p>
-        <div class="completion-layout">
-          <article class="completion-card" aria-label="Example LensPin completion report">
-            <div class="completion-head"><div><span>Trip complete</span><strong>12 photos reviewed</strong></div><span class="completion-check">✓</span></div>
-            <div class="completion-metrics"><div><strong>11</strong><span>Added</span></div><div><strong>0</strong><span>Failed</span></div><div><strong>1</strong><span>Skipped</span></div></div>
-            <p>The skipped photo already had a location when LensPin checked again.</p>
-          </article>
-          <div class="safety-list">
-            <article><span class="safety-icon mint">✓</span><div><h3>Existing locations stay protected</h3><p>Only photos without a location enter the matching flow.</p></div></article>
-            <article><span class="safety-icon orange">—</span><div><h3>No suggestion is a valid result</h3><p>Weak or conflicting evidence is explained, not guessed.</p></div></article>
-            <article><span class="safety-icon indigo">⌁</span><div><h3>Photos and GPX stay on device</h3><p>Matching runs locally; your photos and track are not uploaded.</p></div></article>
-          </div>
+          <figure class="asset-placeholder asset-placeholder-phone" data-asset-placeholder data-asset-slot="home-review-screen">
+            <div class="asset-placeholder-stage" aria-hidden="true"><span class="asset-placeholder-kicker">APP SCREENSHOT 01</span><span class="asset-placeholder-shape">9:19 PORTRAIT</span></div>
+            <figcaption><strong>LensPin match review screen</strong><span>Capture the map, evidence source and confidence state. 1290 × 2796 px or equivalent @3x.</span></figcaption>
+          </figure>
         </div>
       </section>
 
@@ -198,15 +172,14 @@
         <div class="faq-list">
           <details><summary>Do I need a GPX file?</summary><div class="faq-answer"><p>No. LensPin can use geotagged iPhone photos taken around the same time. A GPX track usually gives denser evidence, and you can combine both sources.</p></div></details>
           <details><summary>Does LensPin import photos from my camera?</summary><div class="faq-answer"><p>No. Import with Apple Photos, a compatible card reader, or the camera maker’s workflow first. LensPin begins after the camera photos are in Apple Photos.</p></div></details>
-          <details><summary>What if my camera clock was wrong?</summary><div class="faq-answer"><p>Apply a camera clock offset for matching. It changes the time LensPin compares with the evidence, not the capture time stored on the photo.</p></div></details>
           <details><summary>What happens when LensPin is not confident?</summary><div class="faq-answer"><p>The photo moves to Review or No Suggestion with an explanation. Conflicting or low-confidence results are not selected as safe defaults.</p></div></details>
         </div>
       </section>
 
-      <section class="content-section" id="availability" aria-labelledby="availability-title">
+      <section class="content-section" id="download" aria-labelledby="download-title">
         <div class="cta-band release-band">
-          <div><p class="eyebrow">App Store availability</p><h2 id="availability-title">LensPin is in final preparation.</h2><p>The App Store listing is not live yet. In the meantime, explore the complete matching and review workflow.</p></div>
-          <a class="button button-secondary" href="/how-it-works/">Explore the workflow</a>
+          <div><p class="eyebrow">Ready when your photos are</p><h2 id="download-title">Put the whole trip back on the map.</h2><p>Choose the location evidence you already have, review every suggestion, and save only the results you approve.</p></div>
+          <a class="button button-primary" href="https://apps.apple.com/app/id0000000000" data-app-store-link target="_blank" rel="noopener">View LensPin on the App Store</a>
         </div>
       </section>
     </div>
@@ -214,14 +187,14 @@
 
   <footer class="site-footer">
     <div class="footer-shell">
-      <div class="footer-brand"><a class="brand" href="/"><span class="brand-mark"><img src="/favicon.svg" alt=""></span><span>LensPin</span></a><p>Put imported camera photos back on the map—with evidence you can review.</p></div>
-      <div><p class="footer-title">Product</p><nav class="footer-links"><a href="/how-it-works/">How it works</a><a href="/gpx-photo-geotagging-iphone/">GPX workflow</a><a href="/geotag-dslr-photos-with-iphone-photos/">Without GPX</a><a href="/supported-formats/">Formats &amp; limits</a></nav></div>
-      <div><p class="footer-title">Guides</p><nav class="footer-links"><a href="/add-location-to-photos-iphone/">Add photo locations</a><a href="/import-camera-photos-to-iphone/">Import camera photos</a><a href="/support/">Support</a></nav></div>
-      <div><p class="footer-title">About</p><nav class="footer-links"><a href="/privacy/">Privacy</a></nav></div>
+      <div class="footer-brand"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true"><img src="/favicon.svg" alt=""></span><span>LensPin</span></a><p>Add locations to camera photos already in Apple Photos—with evidence you can review.</p><a class="footer-store-link" href="https://apps.apple.com/app/id0000000000" data-app-store-link target="_blank" rel="noopener">View LensPin on the App Store →</a></div>
+      <div><p class="footer-title">Start here</p><nav class="footer-links"><a href="/import-camera-photos-to-iphone/">Import camera photos</a><a href="/add-location-to-photos-iphone/">Add photo locations</a><a href="/how-it-works/">How LensPin works</a></nav></div>
+      <div><p class="footer-title">Methods</p><nav class="footer-links"><a href="/gpx-photo-geotagging-iphone/">With a GPX track</a><a href="/geotag-dslr-photos-with-iphone-photos/">Without GPX</a><a href="/supported-formats/">Formats &amp; limits</a></nav></div>
+      <div><p class="footer-title">Help</p><nav class="footer-links"><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav></div>
     </div>
-    <div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span>LensPin is not affiliated with Apple Inc.</span></div>
+    <div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span class="apple-legal">Apple, the Apple logo, App Store, iPhone, and iPad are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</span></div>
   </footer>
 
-  <script src="/assets/site.js?v=20260917.2" defer></script>
+  <script src="/assets/site.js?v=9c03919c0e" defer></script>
 </body>
 </html>
