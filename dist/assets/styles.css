@@ -700,11 +700,15 @@ h1 {
 .app-screenshot { overflow: hidden; border: 1px solid var(--hairline); border-radius: 28px; background: #eaf0fb; box-shadow: 0 18px 45px rgba(24,32,56,.13); }
 .app-screenshot img { display: block; width: 100%; height: auto; }
 
-/* Deliberately visible capture slots. Production builds reject these placeholders. */
+/* Product imagery and deliberately visible capture slots. Production builds reject placeholders. */
 .asset-promo-layout { display: grid; grid-template-columns: minmax(300px,.88fr) minmax(320px,1.12fr); align-items: center; gap: clamp(34px,6vw,78px); }
 .asset-promo-layout-wide { grid-template-columns: minmax(420px,1.16fr) minmax(300px,.84fr); align-items: start; }
 .asset-promo-layout .step-list { margin-top: 0; }
 .asset-promo-copy .cta-actions { max-width: none; margin-top: 26px; justify-content: flex-start; }
+.asset-figure { margin: 0; overflow: hidden; border: 1px solid rgba(10,92,224,.14); border-radius: 24px; background: #eef4ff; box-shadow: 0 18px 45px rgba(24,32,56,.12); }
+.asset-figure picture, .asset-figure img { display: block; width: 100%; }
+.asset-figure img { height: auto; }
+.asset-figure-phone { width: min(100%,430px); justify-self: center; }
 .asset-placeholder { margin: 0; padding: 13px; border: 1px dashed rgba(10,92,224,.42); border-radius: 24px; background: linear-gradient(145deg,rgba(234,242,255,.9),rgba(255,255,255,.94)); box-shadow: 0 12px 32px rgba(24,32,56,.07); }
 .asset-placeholder-stage { position: relative; display: grid; min-height: 330px; overflow: hidden; place-items: center; border: 1px dashed rgba(10,92,224,.34); border-radius: 17px; background-color: #f4f7fc; background-image: linear-gradient(rgba(10,92,224,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(10,92,224,.055) 1px,transparent 1px); background-size: 28px 28px; color: var(--blue); text-align: center; }
 .asset-placeholder-stage::before { position: absolute; top: 14px; left: 14px; padding: 5px 8px; border-radius: 999px; background: #fff; color: var(--orange); content: "REPLACE BEFORE LAUNCH"; font-size: .62rem; font-weight: 850; letter-spacing: .08em; }
@@ -724,6 +728,8 @@ h1 {
 .product-tour-heading > p { max-width: 490px; margin: 0 0 4px; color: var(--muted); font-size: 1.03rem; }
 .product-tour-grid { display: grid; margin-top: 38px; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 17px; }
 .product-tour-card { display: grid; overflow: hidden; border: 1px solid var(--hairline); border-radius: 24px; background: var(--surface); box-shadow: var(--shadow-card); grid-template-rows: auto 1fr; }
+.product-tour-card .asset-figure { width: 100%; padding: 18px; border: 0; border-bottom: 1px solid var(--hairline); border-radius: 0; background: linear-gradient(150deg,#eef4ff 0%,#f8fafc 100%); box-shadow: none; }
+.product-tour-card .asset-figure picture { width: min(100%,205px); margin: 0 auto; overflow: hidden; border: 1px solid rgba(10,92,224,.13); border-radius: 17px; box-shadow: 0 12px 28px rgba(24,32,56,.1); }
 .product-tour-card .asset-placeholder { width: 100%; padding: 18px 18px 12px; border: 0; border-bottom: 1px solid var(--hairline); border-radius: 0; background: linear-gradient(150deg,#eef4ff 0%,#f8fafc 100%); box-shadow: none; }
 .product-tour-card .asset-placeholder-stage { width: min(100%,205px); }
 .product-tour-card .asset-placeholder figcaption { padding-top: 12px; }
@@ -877,7 +883,8 @@ h1 {
   .journey-grid, .review-layout, .completion-layout, .asset-promo-layout, .asset-promo-layout-wide { grid-template-columns: 1fr; }
   .journey-photo-card, .app-review-surface, .completion-card, .safety-list { width: min(100%,680px); }
   .journey-copy, .review-copy { max-width: 720px; }
-  .asset-placeholder { justify-self: start; width: min(100%,680px); }
+  .asset-figure, .asset-placeholder { justify-self: start; }
+  .asset-placeholder { width: min(100%,680px); }
   .footer-shell { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .answer-links { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .import-method-grid { grid-template-columns: 1fr; }
@@ -917,6 +924,7 @@ h1 {
   .official-links a { width: 100%; }
   .asset-promo-layout { gap: 30px; }
   .asset-placeholder { padding: 10px; border-radius: 20px; }
+  .asset-figure-phone { width: min(100%,390px); }
   .asset-placeholder-phone { width: min(100%,390px); }
   .journey-section { padding-top: 62px; }
   .journey-grid, .review-layout { gap: 32px; }
