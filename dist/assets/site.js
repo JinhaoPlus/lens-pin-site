@@ -92,7 +92,7 @@
     single: {
       label: 'Best built-in option',
       title: 'Use Apple Photos — no extra app needed',
-      copy: 'Open the photo, swipe up or tap the Info button, then choose Adjust beside the location.'
+      copy: 'Open the photo, swipe up or tap Info, then choose Add a location… for a photo without a place—or Adjust to change one.'
     },
     batch: {
       label: 'Best built-in option',

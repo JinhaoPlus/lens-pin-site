@@ -2,7 +2,7 @@
 
 更新日期：2026-09-19
 
-网站原本规划了 10 个真实素材位，包括 8 张 App 截图和 2 个教学素材。2026-09-19 已从 `appstore_materials` 目录根部的 9 张手动截屏中选取 8 张原图，接入全部 App 素材位；`generated_en_6.9` 中的宣传版没有使用。页面优先加载由原图压缩出的 AVIF，并保留原尺寸 PNG 回退。现在只剩 2 个教学素材继续显示占位。正式构建会在任何 `data-asset-placeholder` 仍存在时失败，避免误把占位内容发布上线。
+网站原本规划了 10 个真实素材位，包括 8 张 App 截图和 2 个教学素材。2026-09-19 已从 `appstore_materials` 目录根部的手动截屏中接入全部 App 素材位和 Apple Photos 教学图；`generated_en_6.9` 中的宣传版没有使用。页面优先加载由原图压缩出的 AVIF，并保留原尺寸 PNG 回退。现在只剩 SD 读卡器实拍继续显示占位。正式构建会在任何 `data-asset-placeholder` 仍存在时失败，避免误把占位内容发布上线。
 
 ## 必须准备
 
@@ -10,14 +10,14 @@
 |---|---|---|---|---|---|
 | P0 | `home-source-selection-screen` | 首页，产品三步流程第 1 张 | LensPin 的照片范围与证据来源选择 | 已就位：`lenspin-location-source-selection.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `home-match-list-screen` | 首页，产品三步流程第 2 张 | 批量匹配结果列表 | 已就位：`lenspin-batch-review-suggestions.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
-| P0 | `home-completion-screen` | 首页，产品三步流程第 3 张 | 完成后的可核查结果 | 已就位：`lenspin-geotagged-photo-album.*`；当前用结果相册承接“完成后验证”，以后若补拍 Added / Skipped / Failed 完成报告可再升级 | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
+| P0 | `home-completion-screen` | 首页，产品三步流程第 3 张 | Added、Failed、Skipped 分列的完成报告 | 已就位：`lenspin-completion-report.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `home-review-screen` | 首页，“See why a place was suggested” | LensPin 的地点建议原理与证据 | 已就位：`lenspin-location-matching-explained.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `workflow-evidence-screen` | How it works 首屏右侧 | GPX 轨迹与附近 iPhone 照片共同支持建议位置 | 已就位：`lenspin-gpx-iphone-location-suggestion.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `album-verification-screen` | How it works，“After you confirm” | LensPin 相册中的成功结果详情 | 已就位：`lenspin-saved-location-details.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `gpx-review-screen` | GPX 页面底部转化区 | GPX 与 iPhone 照片共同建议的位置 | 已就位：`lenspin-gpx-iphone-location-suggestion.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `iphone-photo-evidence-screen` | 无 GPX 页面底部 | 仅基于附近 iPhone 照片的位置建议 | 已就位：`lenspin-iphone-photo-location-suggestion.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P1 | `import-sd-reader-photo` | 相机照片导入页，四步说明旁 | 一张真实操作照片：iPhone、匹配接口的 SD 读卡器/存储卡，以及可辨认的 Photos Import 界面 | 待采集；页面仍显示明确占位 | 3:2 横图；至少 2400 × 1600 px |
-| P1 | `apple-photos-adjust-location` | 添加照片地点页，Method 1 旁 | Apple Photos 的 Info 面板，能够看到 Adjust Location 操作 | 待采集；页面仍显示明确占位 | 9:19 竖屏；1290 × 2796 px 或同等分辨率 |
+| P1 | `apple-photos-add-location` | 添加照片地点页，Method 1 旁 | Apple Photos 的 Info 面板，能够看到 Add a location… 操作 | 已就位：`apple-photos-add-location.*` | 9:19 竖屏；1290 × 2796 px 或同等分辨率 |
 
 ## 统一采集规范
 
