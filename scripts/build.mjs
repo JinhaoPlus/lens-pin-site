@@ -22,6 +22,23 @@ if (isProduction && !siteOrigin) {
   process.exit(1);
 }
 
+if (siteOrigin) {
+  try {
+    const parsedSiteOrigin = new URL(siteOrigin);
+    const isHttpsRootOrigin = parsedSiteOrigin.protocol === "https:"
+      && !parsedSiteOrigin.username
+      && !parsedSiteOrigin.password
+      && parsedSiteOrigin.pathname === "/"
+      && !parsedSiteOrigin.search
+      && !parsedSiteOrigin.hash
+      && parsedSiteOrigin.origin === siteOrigin;
+    if (!isHttpsRootOrigin) throw new Error();
+  } catch {
+    console.error("SITE_ORIGIN must be a bare HTTPS origin such as https://example.com, without a path, query, or fragment.");
+    process.exit(1);
+  }
+}
+
 if (!/^https:\/\/apps\.apple\.com\//.test(appStoreUrl)) {
   console.error("APP_STORE_URL must be an https://apps.apple.com/ URL.");
   process.exit(1);
@@ -29,6 +46,13 @@ if (!/^https:\/\/apps\.apple\.com\//.test(appStoreUrl)) {
 
 if (!/^https:\/\/tools\.applemediaservices\.com\/api\/badges\//.test(siteConfig.appStoreBadgeUrl)) {
   console.error("The App Store badge must use Apple-hosted artwork from App Store Marketing Tools.");
+  process.exit(1);
+}
+
+const headersSource = readFileSync(new URL("_headers", dist), "utf8");
+const appStoreBadgeOrigin = new URL(siteConfig.appStoreBadgeUrl).origin;
+if (!headersSource.includes(appStoreBadgeOrigin)) {
+  console.error("dist/_headers must allow " + appStoreBadgeOrigin + " in the Content-Security-Policy img-src directive.");
   process.exit(1);
 }
 
@@ -195,6 +219,7 @@ if (!isCheckOnly) {
     source = source.replace(/(<link rel="canonical" href=")[^"]+("\s*>)/, (_, before, after) => before + pageUrl + after);
     source = source.replace(/(<link rel="alternate" hreflang="(?:en|x-default)" href=")[^"]+("\s*>)/g, (_, before, after) => before + pageUrl + after);
     source = source.replace(/"item":"(?:https?:\/\/[^"/]+)?(\/[^"\s]*)"/g, (_, itemPath) => `"item":"${siteOrigin}${itemPath}"`);
+    source = source.replace(/"url":"(?:https?:\/\/[^"/]+)?(\/[^"\s]*)"/g, (_, itemPath) => `"url":"${siteOrigin}${itemPath}"`);
     writeFileSync(file, source);
   }
 
