@@ -12,7 +12,7 @@
 | P0 | `home-match-list-screen` | 首页，产品三步流程第 2 张 | 批量匹配结果列表 | 已就位：`lenspin-batch-review-suggestions.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `home-completion-screen` | 首页，产品三步流程第 3 张 | 完成后的可核查结果 | 已就位：`lenspin-geotagged-photo-album.*`；当前用结果相册承接“完成后验证”，以后若补拍 Added / Skipped / Failed 完成报告可再升级 | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `home-review-screen` | 首页，“See why a place was suggested” | LensPin 的地点建议原理与证据 | 已就位：`lenspin-location-matching-explained.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
-| P0 | `workflow-select-screen` | How it works 首屏右侧 | 进入工作流后的扫描状态 | 已就位：`lenspin-private-photo-library-scan.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
+| P0 | `workflow-evidence-screen` | How it works 首屏右侧 | GPX 轨迹与附近 iPhone 照片共同支持建议位置 | 已就位：`lenspin-gpx-iphone-location-suggestion.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `album-verification-screen` | How it works，“After you confirm” | LensPin 相册中的成功结果详情 | 已就位：`lenspin-saved-location-details.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `gpx-review-screen` | GPX 页面底部转化区 | GPX 与 iPhone 照片共同建议的位置 | 已就位：`lenspin-gpx-iphone-location-suggestion.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
 | P0 | `iphone-photo-evidence-screen` | 无 GPX 页面底部 | 仅基于附近 iPhone 照片的位置建议 | 已就位：`lenspin-iphone-photo-location-suggestion.*` | 9:19 竖屏；1290 × 2796 px 或同等 @3x |
