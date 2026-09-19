@@ -22,13 +22,13 @@ The repository supports either Cloudflare Pages or Workers Static Assets:
 - Pages: build command npm run build, output directory dist
 - Workers Static Assets: npx wrangler deploy
 
-Set SITE_ORIGIN to the final public origin, such as https://example.com, in the Cloudflare build environment. The build uses it to generate an absolute sitemap.xml and the Sitemap entry in robots.txt.
+The canonical public origin is centralized as `https://getlenspin.com` in `scripts/site-config.mjs`. `SITE_ORIGIN` may override it for a different deployment. The build uses the origin to generate absolute canonical URLs, `sitemap.xml`, and the Sitemap entry in `robots.txt`.
 
 The App Store URL is centralized in `scripts/site-config.mjs`. Replace the placeholder URL there after App Store Connect provides the listing, or set `APP_STORE_URL` in the build environment. Every header, page CTA, footer link, download event, SoftwareApplication entry, and Smart App Banner uses that value. The same file references Apple's hosted, preferred black App Store badge; keep that artwork unmodified.
 
-Use `npm run build:production` for release builds. It fails early when `SITE_ORIGIN` is missing or the App Store placeholder is still present, preventing relative canonical URLs or a fake download destination from reaching production.
+Use `npm run build:production` for release builds. It fails early when a valid HTTPS origin is unavailable or the App Store placeholder is still present, preventing relative canonical URLs or a fake download destination from reaching production.
 
-The working site now uses supplied original screenshots in every LensPin product-image slot and in the Apple Photos single-photo tutorial. One visible instructional placeholder remains: an iPhone/SD-card-reader import photo. See `Docs/WEBSITE_ASSET_SLOTS.md` for its exact crop, privacy, and export requirements. A production build fails while any `data-asset-placeholder` remains, so a temporary card cannot be mistaken for finished product imagery.
+The working site uses supplied original screenshots in every LensPin product-image slot and in the Apple Photos single-photo tutorial. There are no remaining visible asset placeholders. A production build still fails if a future `data-asset-placeholder` is introduced, so temporary cards cannot be mistaken for finished product imagery.
 
 The official App Store badge appears once on each acquisition/product page. Support, formats, and privacy pages use a plain App Store text link in the footer instead of repeating the badge.
 

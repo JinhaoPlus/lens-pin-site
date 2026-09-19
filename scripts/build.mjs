@@ -6,7 +6,7 @@ import { renderAppStoreBadge, renderFooter, renderHeader } from "./site-shell.mj
 
 const dist = new URL("../dist/", import.meta.url);
 const distPath = dist.pathname;
-const siteOrigin = (process.env.SITE_ORIGIN || "").replace(/\/+$/, "");
+const siteOrigin = (process.env.SITE_ORIGIN || siteConfig.siteOrigin || "").replace(/\/+$/, "");
 const appStoreUrl = (process.env.APP_STORE_URL || siteConfig.appStoreUrl).trim();
 const isCheckOnly = process.argv.includes("--check");
 const isProduction = process.argv.includes("--production");
