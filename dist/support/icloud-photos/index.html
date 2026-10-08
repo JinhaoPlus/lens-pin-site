@@ -35,14 +35,14 @@
   </header>
   <main id="main" class="page-shell">
     <ol class="breadcrumb" aria-label="Breadcrumb"><li><a href="/">LensPin</a></li><li><a href="/support/">Support</a></li><li aria-current="page">iCloud Photos</li></ol>
-    <section class="page-hero"><div class="page-hero-copy"><p class="eyebrow">Support · iCloud Photos</p><h1>When the photo is in your library—but not yet on the device.</h1><p class="page-lede">LensPin can ask Apple Photos to download an iCloud-only asset when it needs original metadata or an editable current version. Connection speed, file size, storage, and iOS background rules affect how long that takes.</p><p class="page-date">Reviewed <time datetime="2026-09-17">September 17, 2026</time></p></div><div class="page-hero-visual info-card"><span class="icon-tile indigo">☁</span><h2>iCloud is part of the Photos request</h2><p>LensPin does not connect to an independent photo cloud. Apple's Photos framework retrieves the asset under your iCloud configuration.</p></div></section>
+    <section class="page-hero"><div class="page-hero-copy"><p class="eyebrow">Support · iCloud Photos</p><h1>When the photo is in your library—but not yet on the device.</h1><p class="page-lede">LensPin can ask Apple Photos to download an iCloud-only asset when it needs original metadata for matching. Connection speed, file size, storage, and iOS background rules affect how long that takes.</p><p class="page-date">Reviewed <time datetime="2026-10-08">October 8, 2026</time></p></div><div class="page-hero-visual info-card"><span class="icon-tile indigo">☁</span><h2>iCloud is part of the Photos request</h2><p>LensPin does not connect to an independent photo cloud. Apple's Photos framework retrieves the asset under your iCloud configuration.</p></div></section>
     <section class="content-section"><div class="prose">
       <h2>What may need to download</h2>
-      <p>A thumbnail can be visible in Photos while the original file is stored only in iCloud. LensPin may need the local original to read camera metadata that is not available from the Photos item alone. Optional EXIF GPS editing also needs source image data.</p>
+      <p>A thumbnail can be visible in Photos while the original file is stored only in iCloud. LensPin may need the local original to read camera and capture-time metadata that is not available from the Photos item alone.</p>
       <h2>What progress means</h2>
       <p>The scan tracks completed items and can report how many assets required iCloud retrieval. A slow item does not mean the matching engine is uploading the photo; it usually means Photos is obtaining the original.</p>
       <h2>Keep enough local space</h2>
-      <p>Large RAW files and optional non-destructive edits can require temporary local storage. If storage is low, finish other downloads, free space, or use the default Photos-library location without EXIF editing.</p>
+      <p>Large RAW files and iCloud downloads can require temporary local storage. If storage is low, finish other downloads, free space, or try a smaller batch. LensPin does not create an EXIF edit.</p>
       <h2>Background behavior by iOS version</h2>
       <ul><li><strong>iOS 26 and later:</strong> LensPin can use the system continued-processing task for a user-started scan, with system progress while the app is backgrounded or the device locks.</li><li><strong>iOS 17–25:</strong> background time is limited. LensPin keeps the screen awake on the scan view; a long absence can pause work until you return.</li></ul>
       <h2>If a scan appears stuck</h2>
