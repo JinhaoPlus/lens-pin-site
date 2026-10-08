@@ -24,7 +24,7 @@ The repository supports either Cloudflare Pages or Workers Static Assets:
 
 The canonical public origin is centralized as `https://getlenspin.com` in `scripts/site-config.mjs`. `SITE_ORIGIN` may override it for a different deployment. The build uses the origin to generate absolute canonical URLs, `sitemap.xml`, and the Sitemap entry in `robots.txt`.
 
-The App Store URL is centralized in `scripts/site-config.mjs`. Replace the placeholder URL there after App Store Connect provides the listing, or set `APP_STORE_URL` in the build environment. Every header, page CTA, footer link, download event, SoftwareApplication entry, and Smart App Banner uses that value. The same file references Apple's hosted, preferred black App Store badge; keep that artwork unmodified.
+The App Store URL is centralized in `scripts/site-config.mjs`. It points to the public LensPin listing (`6812626038`); set `APP_STORE_URL` in the build environment only to override it. Every header, page CTA, footer link, download event, SoftwareApplication entry, and Smart App Banner uses that value. The same file references Apple's hosted, preferred black App Store badge; keep that artwork unmodified.
 
 Use `npm run build:production` for release builds. It fails early when a valid HTTPS origin is unavailable or the App Store placeholder is still present, preventing relative canonical URLs or a fake download destination from reaching production.
 
