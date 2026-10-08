@@ -44,15 +44,18 @@ if (!/^https:\/\/apps\.apple\.com\//.test(appStoreUrl)) {
   process.exit(1);
 }
 
-if (!/^https:\/\/tools\.applemediaservices\.com\/api\/badges\//.test(siteConfig.appStoreBadgeUrl)) {
-  console.error("The App Store badge must use Apple-hosted artwork from App Store Marketing Tools.");
+if (siteConfig.appStoreBadgeUrl !== "/assets/download-on-the-app-store.svg") {
+  console.error("The App Store badge must use the local, unmodified official Apple artwork.");
   process.exit(1);
 }
-
+const badgePath = join(distPath, siteConfig.appStoreBadgeUrl.slice(1));
+if (!existsSync(badgePath) || !readFileSync(badgePath, "utf8").includes("<svg")) {
+  console.error("The official App Store SVG badge is missing or invalid.");
+  process.exit(1);
+}
 const headersSource = readFileSync(new URL("_headers", dist), "utf8");
-const appStoreBadgeOrigin = new URL(siteConfig.appStoreBadgeUrl).origin;
-if (!headersSource.includes(appStoreBadgeOrigin)) {
-  console.error("dist/_headers must allow " + appStoreBadgeOrigin + " in the Content-Security-Policy img-src directive.");
+if (!/img-src[^;]*'self'/.test(headersSource)) {
+  console.error("dist/_headers must allow same-origin badge images in img-src.");
   process.exit(1);
 }
 
