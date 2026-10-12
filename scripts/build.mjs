@@ -134,7 +134,13 @@ function prepareSource(file) {
   source = source.replace(/\n?\s*<meta name="apple-itunes-app" content="[^"]+">/g, "");
   const appId = appStoreUrl.match(/\/id(\d+)/)?.[1];
   if (appId && appId !== siteConfig.appStorePlaceholderId && label !== "404.html") {
-    source = source.replace(/(<meta name="viewport"[^>]*>)/, `$1\n  <meta name="apple-itunes-app" content="app-id=${appId}">`);
+    const campaignParameters = new URL(appStoreUrl).searchParams;
+    const affiliateData = new URLSearchParams();
+    for (const parameter of ["pt", "ct", "mt"]) {
+      if (campaignParameters.has(parameter)) affiliateData.set(parameter, campaignParameters.get(parameter));
+    }
+    const campaignAttribute = affiliateData.size ? `, affiliate-data=${affiliateData.toString().replaceAll("&", "&amp;")}` : "";
+    source = source.replace(/(<meta name="viewport"[^>]*>)/, `$1\n  <meta name="apple-itunes-app" content="app-id=${appId}${campaignAttribute}">`);
   }
   return source;
 }

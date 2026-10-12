@@ -26,6 +26,8 @@ The canonical public origin is centralized as `https://getlenspin.com` in `scrip
 
 The App Store URL is centralized in `scripts/site-config.mjs`. It points to the public LensPin listing (`6812626038`); set `APP_STORE_URL` in the build environment only to override it. Every header, page CTA, footer link, download event, SoftwareApplication entry, and Smart App Banner uses that value. The same file references the locally served official black App Store badge at `dist/assets/download-on-the-app-store.svg`; keep that artwork unmodified. Its source is Apple's Marketing Tools endpoint, documented in the configuration. Serving it locally avoids external redirects and CSP failures.
 
+Website downloads use the App Store Connect campaign token `getlenspin_website` (`ct`), with provider token `129459678` (`pt`) and media type `8` (`mt`). Safari Smart App Banners receive these parameters through `affiliate-data` as well. This identifies downloads attributed to the website link; it does not distinguish how visitors originally reached the website. Campaign statistics become visible only after Apple's reporting thresholds are met.
+
 Use `npm run build:production` for release builds. It fails early when a valid HTTPS origin is unavailable or the App Store placeholder is still present, preventing relative canonical URLs or a fake download destination from reaching production.
 
 The working site uses supplied original screenshots in every LensPin product-image slot and in the Apple Photos single-photo tutorial. There are no remaining visible asset placeholders. A production build still fails if a future `data-asset-placeholder` is introduced, so temporary cards cannot be mistaken for finished product imagery.
