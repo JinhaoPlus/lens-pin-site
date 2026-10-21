@@ -2,7 +2,8 @@ import { existsSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync 
 import { createHash } from "node:crypto";
 import { join, relative, sep } from "node:path";
 import { siteConfig } from "./site-config.mjs";
-import { renderAppStoreBadge, renderFooter, renderHeader } from "./site-shell.mjs";
+import { contentPath, localizedPath, renderAppStoreBadge, renderFooter, renderHeader } from "./site-shell.mjs";
+import { defaultLanguage, localeFor, siteLocales } from "./site-locales.mjs";
 
 const dist = new URL("../dist/", import.meta.url);
 const distPath = dist.pathname;
@@ -44,14 +45,13 @@ if (!/^https:\/\/apps\.apple\.com\//.test(appStoreUrl)) {
   process.exit(1);
 }
 
-if (siteConfig.appStoreBadgeUrl !== "/assets/download-on-the-app-store.svg") {
-  console.error("The App Store badge must use the local, unmodified official Apple artwork.");
-  process.exit(1);
-}
-const badgePath = join(distPath, siteConfig.appStoreBadgeUrl.slice(1));
-if (!existsSync(badgePath) || !readFileSync(badgePath, "utf8").includes("<svg")) {
-  console.error("The official App Store SVG badge is missing or invalid.");
-  process.exit(1);
+for (const badgeUrl of new Set(siteLocales.map((locale) => locale.badgeUrl))) {
+  if (!/^\/assets\/[^/]+\.svg$/.test(badgeUrl)) throw new Error('Use local, unmodified official App Store artwork.');
+  const badgePath = join(distPath, badgeUrl.slice(1));
+  if (!existsSync(badgePath) || !readFileSync(badgePath, "utf8").includes("<svg")) {
+    console.error("The official App Store SVG badge is missing or invalid: " + badgeUrl);
+    process.exit(1);
+  }
 }
 const headersSource = readFileSync(new URL("_headers", dist), "utf8");
 if (!/img-src[^;]*'self'/.test(headersSource)) {
@@ -98,15 +98,20 @@ function routeFor(file) {
   return path === "index.html" ? "/" : "/" + path.replace(/index\.html$/, "");
 }
 
+function availableLocales(path) {
+  return siteLocales.filter((locale) => existsSync(localTarget(localizedPath(locale.code, path))));
+}
+
 function prepareSource(file) {
   const label = relative(distPath, file).split(sep).join("/");
   const path = routeFor(file);
+  const locale = localeFor(path);
   let source = readFileSync(file, "utf8");
   if (label !== "404.html") {
-    source = source.replace(/<header class="site-header">[\s\S]*?<\/header>/, renderHeader(path, appStoreUrl));
+    source = source.replace(/<header class="site-header">[\s\S]*?<\/header>/, renderHeader(path, appStoreUrl, availableLocales(path)));
     source = source.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, "<!-- SITE_FOOTER -->");
 
-    if (marketingRoutes.has(path) && !/data-app-store-badge/.test(source)) {
+    if (marketingRoutes.has(contentPath(path)) && !/data-app-store-badge/.test(source)) {
       source = source.replace(
         /<a class="button button-primary" href="[^"]*" data-app-store-link target="_blank" rel="noopener">Download on the App Store<\/a>/,
         renderAppStoreBadge(appStoreUrl, siteConfig.appStoreBadgeUrl)
@@ -120,14 +125,16 @@ function prepareSource(file) {
 
     source = source.replace(
       "<!-- SITE_FOOTER -->",
-      renderFooter(appStoreUrl)
+      renderFooter(appStoreUrl, path)
     );
   }
   source = source.replace(/href="[^"]*"\s+data-app-store-link/g, `href="${appStoreUrl}" data-app-store-link`);
   source = source.replace(
     /(<img class="app-store-badge-image" src=")[^"]+("[^>]*>)/g,
-    `$1${siteConfig.appStoreBadgeUrl}$2`
+    `$1${locale.badgeUrl}$2`
   );
+  source = source.replace(/(data-app-store-badge[^>]*aria-label=")[^"]+"/g, `$1${locale.ui.badgeLabel}"`)
+    .replace(/(<img class="app-store-badge-image"[^>]*alt=")[^"]+"/g, `$1${locale.ui.badgeAlt}"`);
   source = source.replace(/"downloadUrl":"[^"]+"/g, `"downloadUrl":"${appStoreUrl}"`);
   source = source.replace(/\/assets\/styles\.css(?:\?v=[^"]*)?/g, `/assets/styles.css?v=${assetVersion}`);
   source = source.replace(/\/assets\/site\.js(?:\?v=[^"]*)?/g, `/assets/site.js?v=${assetVersion}`);
@@ -161,7 +168,8 @@ for (const file of htmlFiles) {
   if (!title) errors.push(label + ": missing title");
   if (!description) errors.push(label + ": missing meta description");
   if (h1Count !== 1) errors.push(label + ": expected one h1, found " + h1Count);
-  if (!/<html lang="en">/.test(source)) errors.push(label + ": expected html lang=en");
+  const expectedLanguage = localeFor(routeFor(file)).htmlLang;
+  if (!source.includes(`<html lang="${expectedLanguage}">`)) errors.push(label + ": expected html lang=" + expectedLanguage);
   if (!/<meta name="viewport"/.test(source)) errors.push(label + ": missing viewport meta tag");
   if (!canonical && !isNotFoundPage) errors.push(label + ": missing canonical");
   if (!isNotFoundPage && !/<meta property="og:type"/.test(source)) errors.push(label + ": missing og:type");
@@ -169,10 +177,10 @@ for (const file of htmlFiles) {
   if (!isNotFoundPage && !/<meta property="og:description"/.test(source)) errors.push(label + ": missing og:description");
   if (!isNotFoundPage && !/<script type="application\/ld\+json">/.test(source)) errors.push(label + ": missing JSON-LD");
   if (!isNotFoundPage && !/data-app-store-link/.test(source)) errors.push(label + ": missing App Store download link");
-  if (!isNotFoundPage && marketingRoutes.has(routeFor(file)) && appStoreBadgeCount !== 1) {
+  if (!isNotFoundPage && marketingRoutes.has(contentPath(routeFor(file))) && appStoreBadgeCount !== 1) {
     errors.push(label + ": expected one official App Store badge, found " + appStoreBadgeCount);
   }
-  if (!isNotFoundPage && !marketingRoutes.has(routeFor(file)) && appStoreBadgeCount !== 0) {
+  if (!isNotFoundPage && !marketingRoutes.has(contentPath(routeFor(file))) && appStoreBadgeCount !== 0) {
     errors.push(label + ": utility pages must not contain an official App Store badge");
   }
   if (isProduction && assetPlaceholderCount > 0) {
@@ -198,6 +206,7 @@ for (const file of htmlFiles) {
     titles.set(title, label);
   }
   if (canonical) {
+    if (!isNotFoundPage && canonical !== siteOrigin + routeFor(file)) errors.push(label + ": canonical must use its own language URL");
     if (canonicals.has(canonical)) errors.push(label + ": duplicate canonical with " + canonicals.get(canonical));
     canonicals.set(canonical, label);
   }
@@ -207,6 +216,17 @@ for (const file of htmlFiles) {
     if (/^(?:https?:|mailto:|tel:|data:|#)/.test(href)) continue;
     const target = localTarget(href);
     if (target && !existsSync(target)) errors.push(label + ": missing local target " + href);
+    if (!isNotFoundPage && href.startsWith('/') && !href.startsWith('/assets/') && href !== '/favicon.svg') {
+      const currentLocale = localeFor(routeFor(file)).code;
+      const destinationLocale = siteLocales.find((locale) => href.startsWith(`/${locale.code}/`))?.code;
+      if (!destinationLocale) errors.push(label + ": unlocalized internal link " + href);
+      if (destinationLocale && destinationLocale !== currentLocale && href !== localizedPath(destinationLocale, routeFor(file))) errors.push(label + ": language switch must preserve the page " + href);
+    }
+  }
+  if (!isNotFoundPage) {
+    if (!siteLocales.some((locale) => routeFor(file).startsWith(`/${locale.code}/`))) errors.push(label + ": unregistered language URL");
+    if (!existsSync(localTarget(localizedPath(defaultLanguage, routeFor(file))))) errors.push(label + ": missing default-language counterpart");
+    if ((source.match(/data-language-picker/g) || []).length !== 1) errors.push(label + ": expected one standalone language picker");
   }
 }
 
@@ -226,10 +246,15 @@ if (!isCheckOnly) {
     const pageUrl = siteOrigin ? siteOrigin + pagePath : pagePath;
     let source = preparedSources.get(file);
     source = source.replace(/(<link rel="canonical" href=")[^"]+("\s*>)/, (_, before, after) => before + pageUrl + after);
-    source = source.replace(/(<link rel="alternate" hreflang="(?:en|x-default)" href=")[^"]+("\s*>)/g, (_, before, after) => before + pageUrl + after);
+    source = source.replace(/<link rel="alternate" hreflang="[^"]+" href="[^"]+"\s*>/g, "");
+    const locales = availableLocales(pagePath);
+    const alternates = [...locales.map((locale) => [locale.htmlLang, localizedPath(locale.code, pagePath)]), ["x-default", localizedPath(defaultLanguage, pagePath)]];
+    source = source.replace(/(<link rel="canonical" href="[^"]+"\s*>)/, "$1" + alternates.map(([language, route]) => `<link rel="alternate" hreflang="${language}" href="${siteOrigin}${route}">`).join(""));
+    source = source.replace(/<meta property="og:url"[^>]*>/g, "").replace(/<meta property="og:locale(?::alternate)?"[^>]*>/g, "");
+    source = source.replace('</head>', `  <meta property="og:url" content="${pageUrl}"><meta property="og:locale" content="${localeFor(pagePath).ogLocale}">${locales.filter((locale) => locale.code !== localeFor(pagePath).code).map((locale) => `<meta property="og:locale:alternate" content="${locale.ogLocale}">`).join('')}\n</head>`);
     source = source.replace(/"item":"(?:https?:\/\/[^"/]+)?(\/[^"\s]*)"/g, (_, itemPath) => `"item":"${siteOrigin}${itemPath}"`);
     source = source.replace(/"url":"(?:https?:\/\/[^"/]+)?(\/[^"\s]*)"/g, (_, itemPath) => `"url":"${siteOrigin}${itemPath}"`);
-    writeFileSync(file, source);
+    writeFileSync(file, source.replace(/[\t ]+\n/g, "\n"));
   }
 
   const notFound = htmlFiles.find((file) => relative(distPath, file).split(sep).join("/") === "404.html");

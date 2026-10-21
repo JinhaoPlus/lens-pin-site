@@ -962,3 +962,51 @@ h1 {
   .page-hero, .content-section { padding: 24px 0; }
   .info-card, .comparison-card, .callout { box-shadow: none; break-inside: avoid; }
 }
+
+/* Chinese scenario guide and sourced public feedback. */
+.guide-toc { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; }
+.guide-toc a { color: var(--blue); text-underline-offset: 4px; }
+.feedback-detail { max-width: 780px; margin-top: 28px; }
+.feedback-detail > p { color: #505158; }
+.feedback-detail blockquote { margin: 0 0 18px; padding: 4px 0 4px 24px; border-left: 3px solid var(--blue); }
+.feedback-detail blockquote p { margin: 0; color: var(--ink); font-size: clamp(1.3rem, 3vw, 1.75rem); line-height: 1.5; }
+.feedback-source { font-size: .9rem; }
+.feedback-source a { color: var(--blue); text-underline-offset: 3px; }
+.feedback-card .text-link { display: inline-block; margin-top: 10px; }
+.guide-screen figcaption { padding: 14px 8px; color: var(--muted); font-size: .85rem; text-align: center; }
+html[lang="zh-Hans"] h1 { font-size: clamp(2rem, 4.6vw, 3.8rem); line-height: 1.35; letter-spacing: -.025em; }
+html[lang="zh-Hans"] h2 { line-height: 1.4; letter-spacing: -.02em; }
+html[lang="zh-Hans"] h3 { line-height: 1.5; letter-spacing: 0; }
+html[lang="zh-Hans"] .page-lede, html[lang="zh-Hans"] .section-intro { line-height: 1.9; }
+html[lang="zh-Hans"] .info-card p, html[lang="zh-Hans"] .prose p, html[lang="zh-Hans"] .prose li, html[lang="zh-Hans"] .step-list span, html[lang="zh-Hans"] .callout p { line-height: 1.9; }
+html[lang="zh-Hans"] .content-section[id] { scroll-margin-top: 96px; }
+
+/* Language navigation is independent of the primary and mobile navigation. */
+.desktop-nav { margin-left: auto; }
+.header-actions { display: flex; flex-shrink: 0; align-items: center; gap: 12px; }
+.header-download { white-space: nowrap; }
+.language-picker { position: relative; flex-shrink: 0; font-size: .86rem; }
+.language-picker summary { display: flex; min-height: 42px; padding: 0 12px; align-items: center; gap: 8px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--surface); color: #404047; cursor: pointer; list-style: none; font-weight: 600; white-space: nowrap; }
+.language-picker summary::-webkit-details-marker { display: none; }
+.language-picker summary:hover, .language-picker[open] summary { border-color: rgba(10,92,224,.3); color: var(--blue); }
+.language-globe { width: 17px; height: 17px; flex-shrink: 0; }
+.language-chevron { width: 14px; height: 14px; flex-shrink: 0; }
+.language-picker[open] .language-chevron { transform: rotate(180deg); }
+.language-short { display: none; }
+.language-options { position: absolute; top: calc(100% + 8px); right: 0; z-index: 40; display: grid; width: max-content; min-width: 192px; max-width: min(280px, calc(100vw - 32px)); max-height: min(360px, 65vh); padding: 6px; overflow-y: auto; overscroll-behavior: contain; border: 1px solid var(--hairline); border-radius: 14px; background: var(--surface); box-shadow: 0 14px 40px rgba(24,32,56,.16); }
+.language-option { display: flex; min-height: 44px; padding: 10px 12px; align-items: center; justify-content: space-between; gap: 24px; border-radius: 8px; text-decoration: none; }
+.language-option:hover { background: var(--surface-soft); color: var(--blue); }
+.language-option[aria-current] { background: #edf4ff; color: var(--blue); }
+.language-check { font-weight: 700; }
+@media (max-width: 900px) {
+  .desktop-nav { display: none; }
+  .header-actions { margin-left: auto; }
+}
+@media (max-width: 560px) {
+  .nav-shell { gap: 8px; }
+  .header-actions { gap: 8px; }
+  .header-download { display: none; }
+  .language-name { display: none; }
+  .language-short { display: inline; }
+  .language-picker summary { min-height: 42px; padding: 0 10px; gap: 6px; }
+}
