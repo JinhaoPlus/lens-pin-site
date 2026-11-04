@@ -36,10 +36,15 @@ for (const lang of ['en','zh']) {
 }
 console.log(`Verified copy across ${pages.length} HTML files: pricing, navigation, source choices, categories, contact paths and forbidden legacy wording.`);
 
-for (const route of ['en', 'zh', 'en/add-location-to-photos-mac', 'en/geotag-photos-gpx-mac']) {
+const macBadgeRoutes = ['en', 'zh', 'en/add-location-to-photos-mac', 'en/geotag-photos-gpx-mac'];
+for (const file of pages) {
+  const route = file.slice(dist.length).replace(/\/index\.html$/, '');
+  if (!macBadgeRoutes.includes(route)) assert.doesNotMatch(readFileSync(file, 'utf8'), /data-mac-app-store-badge/, file);
+}
+for (const route of macBadgeRoutes) {
   const source = read(route), home = !route.includes('/'), zh = route === 'zh';
   const badges = [...source.matchAll(/<a\b[^>]*data-mac-app-store-badge[^>]*>[\s\S]*?<\/a>/g)];
-  assert.equal(badges.length, home ? 2 : 1, route);
+  assert.equal(badges.length, 1, route);
   for (const [badge] of badges) {
     assert.match(badge, /href="https:\/\/apps.apple.com\/app\/id6812626038\?pt=129459678&ct=website_mac&mt=12"/);
     assert.ok(badge.includes(`/assets/download-on-the-mac-app-store${zh ? '-zh' : ''}.svg`));
@@ -49,7 +54,19 @@ for (const route of ['en', 'zh', 'en/add-location-to-photos-mac', 'en/geotag-pho
   if (home) for (const section of ['<div class="hero-actions">', 'id="pricing"']) {
     const region = source.slice(source.indexOf(section)).split('</section>')[0];
     assert.match(region, /data-app-store-badge/);
-    assert.match(region, /data-mac-app-store-badge/);
+    assert.equal((region.match(/data-app-store-badge/g) || []).length, 1, route);
+    assert.doesNotMatch(region, /data-mac-app-store-badge|download-badges/);
   }
+  if (home) {
+    const macSection = source.match(/<section\b[^>]*id="mac-app"[^>]*>[\s\S]*?<\/section>/)?.[0];
+    assert.ok(macSection, route);
+    assert.match(macSection, /data-mac-app-store-badge/);
+    assert.doesNotMatch(macSection, /data-app-store-badge/);
+  } else {
+    const downloadSection = source.match(/<section\b[^>]*><div class="prose"><h2>Get LensPin<\/h2>[\s\S]*?<\/section>/)?.[0];
+    assert.ok(downloadSection, route);
+    assert.match(downloadSection, /data-mac-app-store-badge/);
+  }
+  assert.doesNotMatch(source, /<div class="download-badges">\s*<\/div>/);
 }
-console.log('Verified localized Mac badges in both home hero/pricing sections and both Mac guides, with independent download URLs.');
+console.log('Verified localized Mac badges only in home Mac introductions and Mac guide download sections; home hero/pricing retain single App Store badges.');

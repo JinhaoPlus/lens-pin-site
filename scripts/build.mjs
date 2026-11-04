@@ -137,16 +137,12 @@ function prepareSource(file) {
       renderFooter(pageAppStoreUrl, path)
     );
   }
-  const isHome = contentPath(path) === '/';
   const isMacGuide = /\/(?:add-location-to-photos-mac|geotag-photos-gpx-mac)\/$/.test(path);
-  if ((isHome || isMacGuide) && !source.includes('data-mac-app-store-badge')) {
-    const badges = renderDownloadBadges(pageAppStoreUrl, path);
-    if (isHome) {
-      source = source.replace(/<a\b[^>]*data-app-store-badge[^>]*>[\s\S]*?<\/a>/, badges);
-      source = source.replace(/(<section\b[^>]*id="pricing"[^>]*>[\s\S]*?)(<\/section>)/, `$1${badges}$2`);
-    } else {
-      source = source.replace(/<a\b[^>]*data-app-store-link[^>]*>View LensPin on the App Store<\/a>/, badges);
-    }
+  if (isMacGuide && !source.includes('data-mac-app-store-badge')) {
+    source = source.replace(
+      /<a\b[^>]*data-app-store-link[^>]*>View LensPin on the App Store<\/a>/,
+      renderDownloadBadges(pageAppStoreUrl, path)
+    );
   }
   source = source.replace(/href="[^"]*"\s+data-app-store-link/g, `href="${pageAppStoreUrl}" data-app-store-link`);
   source = source.replace(

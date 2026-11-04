@@ -1,7 +1,7 @@
 {
   "html_pages": 42,
   "internal_links_checked": 1295,
-  "image_references": 215,
+  "image_references": 213,
   "unique_img_source_files": 41,
   "provenance_outputs_verified": 39,
   "missing_images": [],
@@ -639,15 +639,6 @@
     },
     {
       "page": "/en/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/download-on-the-mac-app-store.svg",
-      "exists": true,
-      "source": "Official Apple App Store badge (exception)",
-      "source_sha256": null
-    },
-    {
-      "page": "/en/",
       "tag": "source",
       "attribute": "srcset",
       "src": "/assets/lenspin-store-search-principle-en.avif",
@@ -663,6 +654,15 @@
       "exists": true,
       "source": "搜索结果_四语_2026-10-26_v6/en-US/search-principle-en-US-5244x2950.png",
       "source_sha256": "370f80324b39de2c3c50de3e4b6a6970525a38543897e39ce8f034abb2b3127d"
+    },
+    {
+      "page": "/en/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-mac-app-store.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
     },
     {
       "page": "/en/",
@@ -705,15 +705,6 @@
       "tag": "img",
       "attribute": "src",
       "src": "/assets/download-on-the-app-store.svg",
-      "exists": true,
-      "source": "Official Apple App Store badge (exception)",
-      "source_sha256": null
-    },
-    {
-      "page": "/en/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/download-on-the-mac-app-store.svg",
       "exists": true,
       "source": "Official Apple App Store badge (exception)",
       "source_sha256": null
@@ -1476,15 +1467,6 @@
     },
     {
       "page": "/zh/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/download-on-the-mac-app-store-zh.svg",
-      "exists": true,
-      "source": "Official Apple App Store badge (exception)",
-      "source_sha256": null
-    },
-    {
-      "page": "/zh/",
       "tag": "source",
       "attribute": "srcset",
       "src": "/assets/lenspin-store-search-principle-zh.avif",
@@ -1500,6 +1482,15 @@
       "exists": true,
       "source": "搜索结果_四语_2026-10-26_v6/zh-Hans/search-principle-zh-Hans-5244x2950.png",
       "source_sha256": "57b6b3a9514ce37e494c2a1fee175150d3d59df9094b1ae6834a0f2f14bbf4fc"
+    },
+    {
+      "page": "/zh/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-mac-app-store-zh.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
     },
     {
       "page": "/zh/",
@@ -1542,15 +1533,6 @@
       "tag": "img",
       "attribute": "src",
       "src": "/assets/download-on-the-app-store-zh.svg",
-      "exists": true,
-      "source": "Official Apple App Store badge (exception)",
-      "source_sha256": null
-    },
-    {
-      "page": "/zh/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/download-on-the-mac-app-store-zh.svg",
       "exists": true,
       "source": "Official Apple App Store badge (exception)",
       "source_sha256": null
