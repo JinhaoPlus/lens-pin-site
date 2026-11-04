@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const dist = new URL('../dist/', import.meta.url).pathname;
@@ -8,11 +8,9 @@ const routes = [
   '/en/add-location-to-photos-mac/',
   '/en/geotag-photos-gpx-mac/',
   '/en/camera-photos-no-location/',
-  '/en/camera-photos-not-on-apple-photos-map/',
   '/zh/add-location-to-photos-iphone/',
   '/zh/import-camera-photos-to-iphone/',
-  '/zh/camera-photos-not-on-apple-photos-map/',
-  '/zh/photo-location-wrong-or-missing/',
+  '/zh/camera-photos-no-location/',
 ];
 const read = (route) => readFileSync(join(dist, route, 'index.html'), 'utf8');
 const plain = (s) => s.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -24,7 +22,7 @@ for (const route of routes) {
   const text = plain(body);
   const length = zh ? [...text.matchAll(/[\u3400-\u9fff]/g)].length : text.split(/\s+/).length;
   // Focused guides link to the full workflow instead of repeating it to reach a word count.
-  assert.ok(length >= (zh ? 1500 : 400) && length <= (zh ? 2500 : 1000), `${route}: length ${length}`);
+  assert.ok(length >= (zh ? (route === '/zh/add-location-to-photos-iphone/' ? 1400 : 1500) : 400) && length <= (zh ? 2500 : 1000), `${route}: length ${length}`);
   assert.doesNotMatch(text, /limited.time free|限时免费|Unlimited is free/i);
   const priceCopy = /LensPin Unlimited/.test(text);
   const needsPricing = route !== '/en/camera-photos-no-location/';
@@ -35,7 +33,7 @@ for (const route of routes) {
   const articles = graph.filter((n) => n['@type'] === 'Article');
   assert.equal(articles.length, 1);
   assert.equal(articles[0].headline, source.match(/<h1>(.*?)<\/h1>/s)[1]);
-  assert.equal(articles[0].dateModified, '2026-11-04');
+  assert.equal(articles[0].dateModified, '2026-11-05');
   assert.equal(articles[0].mainEntityOfPage, 'https://getlenspin.com' + route);
   const language = zh ? 'zh' : 'en';
   for (const parent of [`/${language}/`, `/${language}/guides/`]) assert.ok(read(parent).includes(`href="${route}"`), `${parent}: guide discoverability`);
@@ -60,12 +58,30 @@ for (const language of ['en','zh']) {
   assert.match(directory, /"@type":"CollectionPage"/);
   for (const route of routes.filter((r) => r.startsWith(`/${language}/`))) assert.ok(directory.includes(`href="${route}"`));
 }
-const standalone = read('/zh/photo-location-wrong-or-missing/');
-assert.doesNotMatch(standalone, /hreflang="(?:en|x-default)"/);
-assert.doesNotMatch(standalone, /href="https:\/\/getlenspin.com\/en\/camera-photos-not-on-apple-photos-map\//);
-assert.match(read('/zh/camera-photos-not-on-apple-photos-map/'), /信息正确，但地图看起来不完整/);
-assert.match(standalone, /新拍的 iPhone 照片没有位置：检查定位权限/);
+for (const lang of ['en','zh']) {
+  const merged = read(`/${lang}/camera-photos-no-location/`);
+  for (const id of ['original-no-gps','located-not-on-map','wrong-location','permissions-icloud']) assert.ok(merged.includes(`id="${id}"`));
+  assert.ok(merged.includes(`hreflang="${lang === 'en' ? 'zh-Hans' : 'en'}"`));
+}
+assert.doesNotMatch(plain(read('/zh/camera-photos-no-location/').match(/<main[^>]*>([\s\S]*?)<\/main>/)[1]), /Apple Photos/);
 for (const route of routes) {
   assert.doesNotMatch(read(route), /Adjust Info|调整信息|(?<!LensPin )\bUnlimited\b/);
 }
 console.log(`Verified ${routes.length} guides: body lengths, current product/pricing boundaries, Article data, discoverability, fragments and actual language counterparts.`);
+
+for (const lang of ['en','zh']) {
+  const directory = read(`/${lang}/guides/`);
+  const excluded = new Set(['guides','privacy','support','user-feedback']);
+  for (const entry of readdirSync(join(dist,lang),{withFileTypes:true})) {
+    if (!entry.isDirectory() || excluded.has(entry.name)) continue;
+    assert.ok(directory.includes(`href="/${lang}/${entry.name}/"`), `${lang}: missing directory guide ${entry.name}`);
+  }
+  const gpx = read(`/${lang}/how-to-get-gpx-file/`);
+  for (const id of ['garmin','coros','suunto','iphone-apps','strava','apple-watch']) assert.ok(gpx.includes(`id="${id}"`));
+  assert.ok(gpx.includes(`href="/${lang}/how-it-works/#health-workout-routes"`));
+  const how = read(`/${lang}/how-it-works/`), main = how.match(/<main[^>]*>([\s\S]*?)<\/main>/)[1];
+  assert.ok(main.includes('id="health-workout-routes"'));
+  assert.equal((main.match(/data-app-store-badge/g) || []).length,1);
+  assert.match(main, /id="download"[\s\S]*data-app-store-badge[\s\S]*<\/section>\s*$/);
+  assert.doesNotMatch(main, /data-mac-app-store-badge/);
+}

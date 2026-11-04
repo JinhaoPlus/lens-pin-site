@@ -88,6 +88,8 @@ const htmlFiles = walk(distPath).filter((file) => file.endsWith(".html"));
 const titles = new Map();
 const canonicals = new Map();
 const preparedSources = new Map();
+const redirectSources = new Set(readFileSync(new URL('_redirects', dist), 'utf8').split('\n').filter(line => !line.startsWith('#')).map(line => line.trim().split(/\s+/)).filter(parts => parts[2] === '301').map(parts => parts[0]));
+const previousLastmods = new Map([...readFileSync(new URL('sitemap.xml', dist), 'utf8').matchAll(/<loc>[^<]*?(\/(?:en|zh)\/[^<]*)<\/loc><lastmod>([^<]+)<\/lastmod>/g)].map(([,path,date]) => [path,date]));
 const marketingRoutes = new Set([
   "/",
   "/import-camera-photos-to-iphone/",
@@ -149,6 +151,7 @@ function prepareSource(file) {
       renderFooter(pageAppStoreUrl, path)
     );
   }
+  source = source.replace('<!-- MATCHING_DOWNLOAD_BADGE -->', renderAppStoreBadge(pageAppStoreUrl, locale.badgeUrl));
   // Page bodies live in dist; normalize paired secondary navigation on rebuild.
   source = source.replace(
     /(<div class="(?:hero-actions|cta-actions)">[\s\S]*?<\/div>)/g,
@@ -248,6 +251,8 @@ for (const file of htmlFiles) {
 
   for (const match of source.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const href = match[1];
+    const internalPath = href.startsWith(siteOrigin + '/') ? new URL(href).pathname : href.split(/[?#]/)[0];
+    if (redirectSources.has(internalPath)) errors.push(label + ': link points to redirected URL ' + href);
     if (/^(?:https?:|mailto:|tel:|data:|#)/.test(href)) continue;
     const target = localTarget(href);
     if (target && !existsSync(target)) errors.push(label + ": missing local target " + href);
@@ -255,7 +260,7 @@ for (const file of htmlFiles) {
       const currentLocale = localeFor(routeFor(file)).code;
       const destinationLocale = siteLocales.find((locale) => href.startsWith(`/${locale.code}/`))?.code;
       if (!destinationLocale) errors.push(label + ": unlocalized internal link " + href);
-      if (destinationLocale && destinationLocale !== currentLocale && href !== localizedPath(destinationLocale, routeFor(file))) errors.push(label + ": language switch must preserve the page " + href);
+      if (destinationLocale && destinationLocale !== currentLocale && href !== localizedPath(destinationLocale, routeFor(file)) && !(currentLocale === "zh" && href === "/en/add-location-to-camera-photos-apple-photos/" && source.includes(`href="${href}" lang="en"`))) errors.push(label + ": language switch must preserve the page " + href);
     }
   }
   if (!isNotFoundPage) {
@@ -297,7 +302,10 @@ if (!isCheckOnly) {
   if (siteOrigin) {
     const urls = pages.map((path) => {
       const alternates = alternatesFor(path);
-      return `  <url><loc>${siteOrigin}${path}</loc><lastmod>2026-11-04</lastmod>${alternates.map(([language, route]) => `<xhtml:link rel="alternate" hreflang="${language}" href="${siteOrigin}${route}"/>`).join('')}</url>`;
+      const pageSource = readFileSync(localTarget(path), 'utf8');
+      const lastmod = pageSource.match(/<meta name="last-modified" content="([^"]+)"/)?.[1] || previousLastmods.get(path);
+      if (!lastmod) throw new Error('Set a page-specific last-modified date for ' + path);
+      return `  <url><loc>${siteOrigin}${path}</loc><lastmod>${lastmod}</lastmod>${alternates.map(([language, route]) => `<xhtml:link rel="alternate" hreflang="${language}" href="${siteOrigin}${route}"/>`).join('')}</url>`;
     }).join("\n");
     writeFileSync(new URL("sitemap.xml", dist), "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">\n" + urls + "\n</urlset>\n");
     writeFileSync(new URL("robots.txt", dist), "User-agent: *\nAllow: /\n\nSitemap: " + siteOrigin + "/sitemap.xml\n");

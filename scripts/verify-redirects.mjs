@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { request as httpRequest } from 'node:http';
 import { request as httpsRequest } from 'node:https';
@@ -37,3 +38,14 @@ const query = await fetch(base + '/?ref=language-test', { headers: { 'Accept-Lan
 assert.equal(new URL(query.headers.get('location')).search, '?ref=language-test');
 console.log(JSON.stringify(results, null, 2));
 console.log('Passed quality ordering, q=0, invalid q, fallback, ties, query retention and static delegation.');
+
+const entries = readFileSync(new URL('../dist/_redirects', import.meta.url),'utf8').split('\n').map(line => line.trim()).filter(line => line && !line.startsWith('#')).map(line => line.split(/\s+/)).filter(parts => parts[2] === '301');
+for (const [source,target] of entries) {
+  const response = await read(base + source, {});
+  assert.equal(response.status,301,source);
+  const location = new URL(response.headers.get('location'),base);
+  assert.equal(location.href,new URL(target,base).href,source + ': direct target');
+  const final = await read(location.href, {});
+  assert.equal(final.status,200,source + ': target must return 200 without another redirect');
+}
+console.log(`Verified all ${entries.length} permanent redirects and their direct 200 targets.`);

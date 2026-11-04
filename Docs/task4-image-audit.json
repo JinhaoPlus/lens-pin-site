@@ -1,7 +1,7 @@
 {
-  "html_pages": 42,
-  "internal_links_checked": 1295,
-  "image_references": 213,
+  "html_pages": 36,
+  "internal_links_checked": 1129,
+  "image_references": 186,
   "unique_img_source_files": 41,
   "provenance_outputs_verified": 39,
   "missing_images": [],
@@ -180,78 +180,6 @@
     },
     {
       "page": "/en/camera-photos-no-location/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/en/camera-photos-not-on-apple-photos-map/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/en/camera-photos-not-on-apple-photos-map/",
-      "tag": "source",
-      "attribute": "srcset",
-      "src": "/assets/lenspin-store-iphone-09-apple-photos-en.avif",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/en-US/iphone/09-apple-photos.png",
-      "source_sha256": "be08d3ff35d731d715dd597d1e96dc2be166d7c994fbf83e72023d5ebb84eace"
-    },
-    {
-      "page": "/en/camera-photos-not-on-apple-photos-map/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-store-iphone-09-apple-photos-en.webp",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/en-US/iphone/09-apple-photos.png",
-      "source_sha256": "be08d3ff35d731d715dd597d1e96dc2be166d7c994fbf83e72023d5ebb84eace"
-    },
-    {
-      "page": "/en/camera-photos-not-on-apple-photos-map/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/en/export-gpx-from-garmin-coros-suunto/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/en/export-gpx-from-garmin-coros-suunto/",
-      "tag": "source",
-      "attribute": "srcset",
-      "src": "/assets/lenspin-store-iphone-02-suggestion-evidence-en.avif",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/en-US/iphone/02-suggestion-evidence.png",
-      "source_sha256": "b5c407a62f3d4aa02efc5c6a90cb4bc289b62d15c2d57614932a85a6e9adefbc"
-    },
-    {
-      "page": "/en/export-gpx-from-garmin-coros-suunto/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-store-iphone-02-suggestion-evidence-en.webp",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/en-US/iphone/02-suggestion-evidence.png",
-      "source_sha256": "b5c407a62f3d4aa02efc5c6a90cb4bc289b62d15c2d57614932a85a6e9adefbc"
-    },
-    {
-      "page": "/en/export-gpx-from-garmin-coros-suunto/",
       "tag": "img",
       "attribute": "src",
       "src": "/assets/lenspin-app-icon.png",
@@ -468,12 +396,21 @@
     },
     {
       "page": "/en/how-it-works/",
+      "tag": "source",
+      "attribute": "srcset",
+      "src": "/assets/lenspin-store-ipad-01-how-it-works-en.avif",
+      "exists": true,
+      "source": "完整素材_2026-10-24_v5/en-US/ipad/01-how-it-works.png",
+      "source_sha256": "f9e4be3a3ead8cf9f25050fcbe9d5ba382f46c35a3071ae1c728a652cb4a1fad"
+    },
+    {
+      "page": "/en/how-it-works/",
       "tag": "img",
       "attribute": "src",
-      "src": "/assets/download-on-the-app-store.svg",
+      "src": "/assets/lenspin-store-ipad-01-how-it-works-en.webp",
       "exists": true,
-      "source": "Official Apple App Store badge (exception)",
-      "source_sha256": null
+      "source": "完整素材_2026-10-24_v5/en-US/ipad/01-how-it-works.png",
+      "source_sha256": "f9e4be3a3ead8cf9f25050fcbe9d5ba382f46c35a3071ae1c728a652cb4a1fad"
     },
     {
       "page": "/en/how-it-works/",
@@ -513,21 +450,12 @@
     },
     {
       "page": "/en/how-it-works/",
-      "tag": "source",
-      "attribute": "srcset",
-      "src": "/assets/lenspin-store-ipad-01-how-it-works-en.avif",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/en-US/ipad/01-how-it-works.png",
-      "source_sha256": "f9e4be3a3ead8cf9f25050fcbe9d5ba382f46c35a3071ae1c728a652cb4a1fad"
-    },
-    {
-      "page": "/en/how-it-works/",
       "tag": "img",
       "attribute": "src",
-      "src": "/assets/lenspin-store-ipad-01-how-it-works-en.webp",
+      "src": "/assets/download-on-the-app-store.svg",
       "exists": true,
-      "source": "完整素材_2026-10-24_v5/en-US/ipad/01-how-it-works.png",
-      "source_sha256": "f9e4be3a3ead8cf9f25050fcbe9d5ba382f46c35a3071ae1c728a652cb4a1fad"
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
     },
     {
       "page": "/en/how-it-works/",
@@ -746,42 +674,6 @@
       "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
     },
     {
-      "page": "/en/record-gpx-on-iphone-apple-watch/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/en/record-gpx-on-iphone-apple-watch/",
-      "tag": "source",
-      "attribute": "srcset",
-      "src": "/assets/lenspin-store-iphone-02-suggestion-evidence-en.avif",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/en-US/iphone/02-suggestion-evidence.png",
-      "source_sha256": "b5c407a62f3d4aa02efc5c6a90cb4bc289b62d15c2d57614932a85a6e9adefbc"
-    },
-    {
-      "page": "/en/record-gpx-on-iphone-apple-watch/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-store-iphone-02-suggestion-evidence-en.webp",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/en-US/iphone/02-suggestion-evidence.png",
-      "source_sha256": "b5c407a62f3d4aa02efc5c6a90cb4bc289b62d15c2d57614932a85a6e9adefbc"
-    },
-    {
-      "page": "/en/record-gpx-on-iphone-apple-watch/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
       "page": "/en/support/gpx-requirements/",
       "tag": "img",
       "attribute": "src",
@@ -1052,7 +944,7 @@
       "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
     },
     {
-      "page": "/zh/camera-photos-not-on-apple-photos-map/",
+      "page": "/zh/camera-photos-no-location/",
       "tag": "img",
       "attribute": "src",
       "src": "/assets/lenspin-app-icon.png",
@@ -1061,70 +953,25 @@
       "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
     },
     {
-      "page": "/zh/camera-photos-not-on-apple-photos-map/",
+      "page": "/zh/camera-photos-no-location/",
       "tag": "source",
       "attribute": "srcset",
-      "src": "/assets/lenspin-store-iphone-09-apple-photos-zh.avif",
+      "src": "/assets/lenspin-store-ipad-01-how-it-works-zh.avif",
       "exists": true,
-      "source": "完整素材_2026-10-24_v5/zh-Hans/iphone/09-apple-photos.png",
-      "source_sha256": "c0ca2aad452fd532a36fb614ab45e8d94ad824b313051ffe47405eedbdf11016"
+      "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/01-how-it-works.png",
+      "source_sha256": "d40d3fb6186a626d9b0231cac47eddbb526b730b14c4101ee0a1e1aaf2000811"
     },
     {
-      "page": "/zh/camera-photos-not-on-apple-photos-map/",
+      "page": "/zh/camera-photos-no-location/",
       "tag": "img",
       "attribute": "src",
-      "src": "/assets/lenspin-store-iphone-09-apple-photos-zh.webp",
+      "src": "/assets/lenspin-store-ipad-01-how-it-works-zh.webp",
       "exists": true,
-      "source": "完整素材_2026-10-24_v5/zh-Hans/iphone/09-apple-photos.png",
-      "source_sha256": "c0ca2aad452fd532a36fb614ab45e8d94ad824b313051ffe47405eedbdf11016"
+      "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/01-how-it-works.png",
+      "source_sha256": "d40d3fb6186a626d9b0231cac47eddbb526b730b14c4101ee0a1e1aaf2000811"
     },
     {
-      "page": "/zh/camera-photos-not-on-apple-photos-map/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/zh/export-gpx-from-garmin-coros-suunto/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/zh/export-gpx-from-garmin-coros-suunto/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/zh/export-gpx-from-garmin-coros-suunto/",
-      "tag": "source",
-      "attribute": "srcset",
-      "src": "/assets/lenspin-store-iphone-02-suggestion-evidence-zh.avif",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/zh-Hans/iphone/02-suggestion-evidence.png",
-      "source_sha256": "7ecaef99d2f3d289c0ed2a84f3166a42f89d5c0e691284fa9f3dd6f888daf5b1"
-    },
-    {
-      "page": "/zh/export-gpx-from-garmin-coros-suunto/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-store-iphone-02-suggestion-evidence-zh.webp",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/zh-Hans/iphone/02-suggestion-evidence.png",
-      "source_sha256": "7ecaef99d2f3d289c0ed2a84f3166a42f89d5c0e691284fa9f3dd6f888daf5b1"
-    },
-    {
-      "page": "/zh/export-gpx-from-garmin-coros-suunto/",
+      "page": "/zh/camera-photos-no-location/",
       "tag": "img",
       "attribute": "src",
       "src": "/assets/lenspin-app-icon.png",
@@ -1269,12 +1116,21 @@
     },
     {
       "page": "/zh/how-it-works/",
+      "tag": "source",
+      "attribute": "srcset",
+      "src": "/assets/lenspin-store-ipad-01-how-it-works-zh.avif",
+      "exists": true,
+      "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/01-how-it-works.png",
+      "source_sha256": "d40d3fb6186a626d9b0231cac47eddbb526b730b14c4101ee0a1e1aaf2000811"
+    },
+    {
+      "page": "/zh/how-it-works/",
       "tag": "img",
       "attribute": "src",
-      "src": "/assets/download-on-the-app-store-zh.svg",
+      "src": "/assets/lenspin-store-ipad-01-how-it-works-zh.webp",
       "exists": true,
-      "source": "Official Apple App Store badge (exception)",
-      "source_sha256": null
+      "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/01-how-it-works.png",
+      "source_sha256": "d40d3fb6186a626d9b0231cac47eddbb526b730b14c4101ee0a1e1aaf2000811"
     },
     {
       "page": "/zh/how-it-works/",
@@ -1316,24 +1172,6 @@
       "page": "/zh/how-it-works/",
       "tag": "source",
       "attribute": "srcset",
-      "src": "/assets/lenspin-store-ipad-01-how-it-works-zh.avif",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/01-how-it-works.png",
-      "source_sha256": "d40d3fb6186a626d9b0231cac47eddbb526b730b14c4101ee0a1e1aaf2000811"
-    },
-    {
-      "page": "/zh/how-it-works/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-store-ipad-01-how-it-works-zh.webp",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/01-how-it-works.png",
-      "source_sha256": "d40d3fb6186a626d9b0231cac47eddbb526b730b14c4101ee0a1e1aaf2000811"
-    },
-    {
-      "page": "/zh/how-it-works/",
-      "tag": "source",
-      "attribute": "srcset",
       "src": "/assets/lenspin-store-mac-03-review-evidence-zh.avif",
       "exists": true,
       "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/03-review-evidence.png",
@@ -1352,13 +1190,13 @@
       "page": "/zh/how-it-works/",
       "tag": "img",
       "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
+      "src": "/assets/download-on-the-app-store-zh.svg",
       "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
     },
     {
-      "page": "/zh/how-to-get-gpx-file/",
+      "page": "/zh/how-it-works/",
       "tag": "img",
       "attribute": "src",
       "src": "/assets/lenspin-app-icon.png",
@@ -1547,42 +1385,6 @@
       "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
     },
     {
-      "page": "/zh/photo-location-wrong-or-missing/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/zh/photo-location-wrong-or-missing/",
-      "tag": "source",
-      "attribute": "srcset",
-      "src": "/assets/lenspin-store-ipad-01-how-it-works-zh.avif",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/01-how-it-works.png",
-      "source_sha256": "d40d3fb6186a626d9b0231cac47eddbb526b730b14c4101ee0a1e1aaf2000811"
-    },
-    {
-      "page": "/zh/photo-location-wrong-or-missing/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-store-ipad-01-how-it-works-zh.webp",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/01-how-it-works.png",
-      "source_sha256": "d40d3fb6186a626d9b0231cac47eddbb526b730b14c4101ee0a1e1aaf2000811"
-    },
-    {
-      "page": "/zh/photo-location-wrong-or-missing/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
       "page": "/zh/privacy/",
       "tag": "img",
       "attribute": "src",
@@ -1602,51 +1404,6 @@
     },
     {
       "page": "/zh/privacy/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/zh/record-gpx-on-iphone-apple-watch/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/zh/record-gpx-on-iphone-apple-watch/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-app-icon.png",
-      "exists": true,
-      "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
-      "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6"
-    },
-    {
-      "page": "/zh/record-gpx-on-iphone-apple-watch/",
-      "tag": "source",
-      "attribute": "srcset",
-      "src": "/assets/lenspin-store-iphone-02-suggestion-evidence-zh.avif",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/zh-Hans/iphone/02-suggestion-evidence.png",
-      "source_sha256": "7ecaef99d2f3d289c0ed2a84f3166a42f89d5c0e691284fa9f3dd6f888daf5b1"
-    },
-    {
-      "page": "/zh/record-gpx-on-iphone-apple-watch/",
-      "tag": "img",
-      "attribute": "src",
-      "src": "/assets/lenspin-store-iphone-02-suggestion-evidence-zh.webp",
-      "exists": true,
-      "source": "完整素材_2026-10-24_v5/zh-Hans/iphone/02-suggestion-evidence.png",
-      "source_sha256": "7ecaef99d2f3d289c0ed2a84f3166a42f89d5c0e691284fa9f3dd6f888daf5b1"
-    },
-    {
-      "page": "/zh/record-gpx-on-iphone-apple-watch/",
       "tag": "img",
       "attribute": "src",
       "src": "/assets/lenspin-app-icon.png",

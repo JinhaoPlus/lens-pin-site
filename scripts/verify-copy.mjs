@@ -72,3 +72,10 @@ for (const route of macBadgeRoutes) {
   assert.doesNotMatch(source, /<div class="download-badges">\s*<\/div>/);
 }
 console.log('Verified localized Mac badges only in home Mac introductions and Mac guide download sections; home hero/pricing retain single App Store badges.');
+
+// Strava is only a GPX export source for other watches/apps; Apple Watch uses Health.
+for (const file of pages) {
+  const source = readFileSync(file,'utf8');
+  if (!file.includes('/how-to-get-gpx-file/')) assert.doesNotMatch(source,/Strava|WorkOutDoors|OsmAnd|Gaia GPS|Guru Maps/i,file);
+  assert.doesNotMatch(source,/15402024-apple-health-and-strava|15401820-strava-apple-watch-app|Apple Workout → Strava|Workouts & Routes/,file);
+}

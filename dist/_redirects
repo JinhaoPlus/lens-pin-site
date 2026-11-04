@@ -1,8 +1,8 @@
 # Legacy English URLs: one permanent hop to the matching language URL.
 /add-location-to-photos-iphone/ /en/add-location-to-photos-iphone/ 301
 /add-location-to-photos-iphone /en/add-location-to-photos-iphone/ 301
-/export-gpx-from-garmin-coros-suunto/ /en/export-gpx-from-garmin-coros-suunto/ 301
-/export-gpx-from-garmin-coros-suunto /en/export-gpx-from-garmin-coros-suunto/ 301
+/export-gpx-from-garmin-coros-suunto/ /en/how-to-get-gpx-file/ 301
+/export-gpx-from-garmin-coros-suunto /en/how-to-get-gpx-file/ 301
 /geotag-dslr-photos-with-iphone-photos/ /en/geotag-dslr-photos-with-iphone-photos/ 301
 /geotag-dslr-photos-with-iphone-photos /en/geotag-dslr-photos-with-iphone-photos/ 301
 /gpx-photo-geotagging-iphone/ /en/gpx-photo-geotagging-iphone/ 301
@@ -15,8 +15,8 @@
 /import-camera-photos-to-iphone /en/import-camera-photos-to-iphone/ 301
 /privacy/ /en/privacy/ 301
 /privacy /en/privacy/ 301
-/record-gpx-on-iphone-apple-watch/ /en/record-gpx-on-iphone-apple-watch/ 301
-/record-gpx-on-iphone-apple-watch /en/record-gpx-on-iphone-apple-watch/ 301
+/record-gpx-on-iphone-apple-watch/ /en/how-to-get-gpx-file/ 301
+/record-gpx-on-iphone-apple-watch /en/how-to-get-gpx-file/ 301
 /support/ /en/support/ 301
 /support /en/support/ 301
 /support/gpx-requirements/ /en/support/gpx-requirements/ 301
@@ -32,3 +32,19 @@
 /home /en/ 301
 /support/gpx /en/support/gpx-requirements/ 301
 /support/icloud /en/support/icloud-photos/ 301
+
+# Merged guide URLs: direct permanent redirects, both slash forms.
+/en/record-gpx-on-iphone-apple-watch/ /en/how-to-get-gpx-file/ 301
+/en/record-gpx-on-iphone-apple-watch /en/how-to-get-gpx-file/ 301
+/en/export-gpx-from-garmin-coros-suunto/ /en/how-to-get-gpx-file/ 301
+/en/export-gpx-from-garmin-coros-suunto /en/how-to-get-gpx-file/ 301
+/zh/record-gpx-on-iphone-apple-watch/ /zh/how-to-get-gpx-file/ 301
+/zh/record-gpx-on-iphone-apple-watch /zh/how-to-get-gpx-file/ 301
+/zh/export-gpx-from-garmin-coros-suunto/ /zh/how-to-get-gpx-file/ 301
+/zh/export-gpx-from-garmin-coros-suunto /zh/how-to-get-gpx-file/ 301
+/en/camera-photos-not-on-apple-photos-map/ /en/camera-photos-no-location/ 301
+/en/camera-photos-not-on-apple-photos-map /en/camera-photos-no-location/ 301
+/zh/camera-photos-not-on-apple-photos-map/ /zh/camera-photos-no-location/ 301
+/zh/camera-photos-not-on-apple-photos-map /zh/camera-photos-no-location/ 301
+/zh/photo-location-wrong-or-missing/ /zh/camera-photos-no-location/ 301
+/zh/photo-location-wrong-or-missing /zh/camera-photos-no-location/ 301

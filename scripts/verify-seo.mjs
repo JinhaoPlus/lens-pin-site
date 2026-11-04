@@ -92,5 +92,16 @@ const csp = readFileSync(join(dist,'_headers'),'utf8').match(/Content-Security-P
 assert.equal(csp, "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://tools.applemediaservices.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; font-src 'self'; form-action 'none'");
 for (const locale of ['en','zh']) assert.ok(readFileSync(join(dist, `assets/lenspin-social-${locale}.jpg`)).length < 300000);
 assert.ok(readFileSync(join(dist, 'assets/lenspin-app-icon.png')).length < 12000);
-assert.equal([...sitemap.matchAll(/<lastmod>2026-11-04<\/lastmod>/g)].length, urls.length);
+for (const [,url,entry] of urls) {
+  const source = readFileSync(join(dist,new URL(url).pathname,'index.html'),'utf8');
+  const date = source.match(/<meta name="last-modified" content="([^"]+)"/)?.[1];
+  assert.match(entry, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
+  if (date) {
+    assert.ok(entry.includes(`<lastmod>${date}</lastmod>`), url);
+    assert.ok(source.includes(`<time datetime="${date}">`), url + ': visible update date');
+    for (const [,raw] of source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+      for (const node of JSON.parse(raw)['@graph'] || []) if (['Article','WebPage','CollectionPage'].includes(node['@type'])) assert.equal(node.dateModified,date,url);
+    }
+  }
+}
 console.log(`Verified ${pages.length} HTML files, ${campaigns.size} unique campaigns, ${faqCount} FAQ answers, ${appCount} application entities, ${urls.length} sitemap alternate sets, social image and CSP.`);
