@@ -1123,6 +1123,11 @@ html[lang^="zh"] main p:where(:not(.ui-h2):not(.ui-h3)) { line-height: 1.8; }
   align-items: center;
   gap: 12px;
 }
+/* Give badges room when they follow a CTA heading directly. */
+h2 + .app-store-badge-link,
+h2 + .download-badges {
+  margin-top: 20px;
+}
 .hero-actions:has(.app-store-badge-link),
 .cta-actions:has(.app-store-badge-link) {
   display: flex;
