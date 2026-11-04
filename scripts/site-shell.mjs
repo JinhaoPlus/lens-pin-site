@@ -27,9 +27,8 @@ export function renderHeader(path, appStoreUrl, availableLocales = siteLocales) 
   const { code, ui } = localeFor(path);
   const local = (route) => localizedPath(code, route);
   const links = [
-    ['/import-camera-photos-to-iphone/', ui.importPhotos],
-    ['/add-location-to-photos-iphone/', ui.addLocations],
     ['/how-it-works/', ui.howItWorks],
+    ['/#pricing', ui.pricing],
     ['/guides/', ui.guides],
     ['/support/', ui.support],
   ].map(([route, label]) => navLink(path, local(route), label)).join('\n        ');

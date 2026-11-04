@@ -61,9 +61,9 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
       if (isHome && node['@type'] === 'WebPage') { node.name = title; node.description = description; }
       if (['MobileApplication', 'SoftwareApplication'].includes(node['@type'])) {
         node['@type'] = 'SoftwareApplication';
-        node.operatingSystem = ['iOS 17+', 'iPadOS 17+', 'macOS 14+'];
+        node.operatingSystem = ['iOS 17+', 'iPadOS 17+', 'macOS 14+', 'visionOS 1+'];
         node.downloadUrl = appStoreUrl;
-        node.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: 'Free download. First 100 successful location additions free; optional LensPin Unlimited one-time in-app purchase (US $3.99 / CN ¥12). Not a subscription.' };
+        node.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: 'Free download. First 100 photos/videos located are free. One photo or video saved counts as one use. Optional LensPin Unlimited one-time purchase. Not a subscription. See the App Store for the price in your region.' };
         delete node.aggregateRating;
       }
       graph.push(node);
@@ -79,8 +79,8 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
     });
     if (!graph.some((node) => node['@type'] === 'SoftwareApplication')) graph.push({
       '@type': 'SoftwareApplication', name: 'LensPin', applicationCategory: 'MultimediaApplication',
-      operatingSystem: ['iOS 17+', 'iPadOS 17+', 'macOS 14+'], downloadUrl: appStoreUrl,
-      offers: { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: 'Free download. First 100 successful location additions free; optional LensPin Unlimited one-time in-app purchase (US $3.99 / CN ¥12). Not a subscription.' },
+      operatingSystem: ['iOS 17+', 'iPadOS 17+', 'macOS 14+', 'visionOS 1+'], downloadUrl: appStoreUrl,
+      offers: { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: 'Free download. First 100 photos/videos located are free. One photo or video saved counts as one use. Optional LensPin Unlimited one-time purchase. Not a subscription. See the App Store for the price in your region.' },
     });
     const identity = {
       name: 'LensPin', alternateName: ['LensPin: Photo Geotagger', 'LensPin：相机照片补定位'],

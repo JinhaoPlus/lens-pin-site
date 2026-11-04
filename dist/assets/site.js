@@ -16,22 +16,22 @@
   "Select the photos in Apple Photos and adjust their location together. Every selected photo receives the same place.": "在 Apple Photos 中多选照片，再统一调整位置。所选照片都会获得同一个地点。",
   "When a timeline helps": "需要时间线的场景",
   "Match each photo to a different point on the trip": "把每张照片匹配到行程中不同的位置",
-  "LensPin uses capture time plus a GPX track or nearby iPhone photos, then lets you review every suggestion.": "LensPin 结合拍摄时间、GPX 或附近 iPhone 照片，让你逐张审核位置建议。",
+  "LensPin matches capture time to iPhone or GPS camera photos, GPX, or Apple Health workout routes. Review each suggestion.": "LensPin 将拍摄时间与 iPhone 或 GPS 相机照片、GPX、健康训练路线匹配，再由你审核。",
   "Camera connection": "连接相机",
   "Connect a supported camera or adapter, open Photos, choose Import, then select the photos you want.": "连接兼容相机或转接器，打开“照片”并进入导入，选择需要的照片。",
   "SD card reader": "SD 卡读卡器",
   "Insert the card into a compatible reader, connect it to the iPhone or iPad, and import from the Photos app.": "把卡插入兼容读卡器，连接 iPhone 或 iPad，在“照片”中导入。",
   "Already in Apple Photos": "已经在 Apple Photos 中",
   "Open a camera photo, swipe up or tap Info, and check whether a map or location name appears.": "打开相机照片，向上轻扫或点信息按钮，检查是否有地图或地点名称。",
-  "High confidence — track points are close in time.": "高可信：轨迹点时间接近。",
-  "Review — the adjusted time is farther from nearby evidence.": "待检查：调整后的时间距离附近依据较远。",
-  "No suggestion — the nearest evidence is beyond this example’s limit.": "无建议：最近的依据超出了本示例的限制。",
-  "High confidence — both nearby iPhone photos point to the same small area.": "高可信：前后两张 iPhone 照片指向同一个小范围。",
-  "Review — the two photos show movement, so LensPin favors the closer time instead of drawing a straight line.": "待检查：两张照片说明期间有移动，优先参考时间较近的一张，不在两点之间假定路线。",
-  "No safe default — the evidence is too far apart or conflicts, so nothing is selected automatically.": "不默认选中：依据相距过远或存在冲突。",
+  "High Confidence — track points are close in time.": "高可信：轨迹点时间接近。",
+  "Review — the adjusted time is farther from nearby clues.": "需检查：调整后的时间距离附近依据较远。",
+  "No Clear Suggestion — the nearest clues is beyond this example’s limit.": "无明确建议：最近的依据超出了本示例的限制。",
+  "High Confidence — both nearby iPhone photos point to the same small area.": "高可信：前后两张 iPhone 照片指向同一个小范围。",
+  "Review — the two photos show movement, so LensPin favors the closer time instead of drawing a straight line.": "需检查：两张照片说明期间有移动，优先参考时间较近的一张，不在两点之间假定路线。",
+  "No safe default — the clues is too far apart or conflicts, so nothing is selected automatically.": "不默认选中：依据相距过远或存在冲突。",
   "Two nearby iPhone photo locations agree around the camera photo time": "相机拍摄时刻前后的两张 iPhone 照片位置一致",
   "The iPhone photo locations show movement, so the closer time is favored": "iPhone 参考位置显示有移动，优先使用时间较近的依据",
-  "The iPhone photo evidence is too far apart or too late for a safe default": "iPhone 参考位置相距过远或时间太晚，不作为安全默认选项"
+  "The iPhone photo clues is too far apart or too late for a safe default": "iPhone 参考位置相距过远或时间太晚，不作为安全默认选项"
 };
   const t = (value) => isChinese ? (translations[value] || value) : value;
   const track = (event, props = {}) => {
@@ -98,6 +98,14 @@
   const evidenceTitle = document.querySelector('[data-evidence-title]');
   const evidenceCopy = document.querySelector('[data-evidence-copy]');
   const evidenceContent = {
+    camera: {
+      title: isChinese ? '其他 GPS 相机照片' : 'Photos from another GPS camera',
+      copy: isChinese ? '同期另一台带 GPS 相机拍摄的定位照片，为相机照片提供位置参考。' : 'Geotagged photos from another GPS-equipped camera provide location clues from the same trip.'
+    },
+    workout: {
+      title: isChinese ? 'Apple Watch／健身体能训练路线' : 'Apple Watch / Fitness workout route',
+      copy: isChinese ? '通过 HealthKit 从 Apple 健康直接只读获取训练路线，无需导出。' : 'Read a recorded workout route directly from Apple Health through read-only HealthKit access. No export needed.'
+    },
     gpx: {
       title: t("GPX track"),
       copy: t("The camera photo falls between two nearby points on a continuous track.")
@@ -117,9 +125,7 @@
       });
       evidenceStage.dataset.source = source;
       evidenceStage.setAttribute('aria-labelledby', tab.id);
-      evidenceStage.setAttribute('aria-label', source === 'gpx'
-        ? t("A camera photo at 10:07 matched between GPX points recorded at 10:02 and 10:12")
-        : t("A camera photo at 10:07 supported by geotagged iPhone photos recorded at 10:02 and 10:12"));
+      evidenceStage.setAttribute('aria-label', `${evidenceContent[source].title}: ${evidenceContent[source].copy}`);
       if (evidenceTitle) evidenceTitle.textContent = evidenceContent[source].title;
       if (evidenceCopy) evidenceCopy.textContent = evidenceContent[source].copy;
       if (focus) tab.focus();
@@ -154,7 +160,7 @@
     trip: {
       label: t("When a timeline helps"),
       title: t("Match each photo to a different point on the trip"),
-      copy: t("LensPin uses capture time plus a GPX track or nearby iPhone photos, then lets you review every suggestion.")
+      copy: t("LensPin matches capture time to iPhone or GPS camera photos, GPX, or Apple Health workout routes. Review each suggestion.")
     }
   };
   document.querySelectorAll('[data-task-switcher]').forEach((widget) => {
@@ -210,7 +216,7 @@
       const abs = Math.abs(minutes);
       const level = abs <= 8 ? 'high' : abs <= 20 ? 'review' : 'none';
       status.dataset.level = level;
-      statusText.textContent = level === 'high' ? t("High confidence — track points are close in time.") : level === 'review' ? t("Review — the adjusted time is farther from nearby evidence.") : t("No suggestion — the nearest evidence is beyond this example’s limit.");
+      statusText.textContent = level === 'high' ? t("High Confidence — track points are close in time.") : level === 'review' ? t("Review — the adjusted time is farther from nearby clues.") : t("No Clear Suggestion — the nearest clues is beyond this example’s limit.");
     };
     slider.addEventListener('input', render);
     slider.addEventListener('change', () => track('demo_complete', { demo: 'clock_offset', offset_minutes: Number(slider.value) }));
@@ -218,9 +224,9 @@
   });
 
   const scenarioContent = {
-    agree: { level: 'high', text: t("High confidence — both nearby iPhone photos point to the same small area.") },
+    agree: { level: 'high', text: t("High Confidence — both nearby iPhone photos point to the same small area.") },
     moving: { level: 'review', text: t("Review — the two photos show movement, so LensPin favors the closer time instead of drawing a straight line.") },
-    conflict: { level: 'none', text: t("No safe default — the evidence is too far apart or conflicts, so nothing is selected automatically.") }
+    conflict: { level: 'none', text: t("No safe default — the clues is too far apart or conflicts, so nothing is selected automatically.") }
   };
   document.querySelectorAll('[data-photo-evidence]').forEach((widget) => {
     const buttons = [...widget.querySelectorAll('[data-scenario]')];
@@ -234,7 +240,7 @@
         ? t("Two nearby iPhone photo locations agree around the camera photo time")
         : value === 'moving'
           ? t("The iPhone photo locations show movement, so the closer time is favored")
-          : t("The iPhone photo evidence is too far apart or too late for a safe default"));
+          : t("The iPhone photo clues is too far apart or too late for a safe default"));
       result.dataset.level = scenarioContent[value].level;
       result.textContent = scenarioContent[value].text;
       track('demo_complete', { demo: 'photo_evidence', scenario: value });

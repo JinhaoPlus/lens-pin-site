@@ -25,7 +25,7 @@ for (const route of routes) {
   const length = zh ? [...text.matchAll(/[\u3400-\u9fff]/g)].length : text.split(/\s+/).length;
   assert.ok(length >= (zh ? 1500 : 600) && length <= (zh ? 2500 : 1000), `${route}: length ${length}`);
   assert.doesNotMatch(text, /limited.time free|限时免费|Unlimited is free/i);
-  for (const fact of [zh ? /100 次成功/ : /100 successful/, /US \$3\.99/, /¥12/, /GPX/]) assert.match(text, fact);
+  for (const fact of [zh ? /前 100/ : /first 100/i, /LensPin Unlimited/, zh ? /以 App Store 页面价格为准/ : /App Store for the price in your region/, /GPX/]) assert.match(text, fact);
   assert.doesNotMatch(body.match(/<ol>([\s\S]*?)<\/ol>/)?.[1] || '', /LensPin/, `${route}: built-in checks before batch option`);
   const graph = [...source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap((m) => JSON.parse(m[1])['@graph']);
   const articles = graph.filter((n) => n['@type'] === 'Article');
@@ -64,4 +64,4 @@ assert.match(standalone, /新拍的 iPhone 照片没有位置：检查定位权�
 for (const route of routes) {
   assert.doesNotMatch(read(route), /Adjust Info|调整信息|(?<!LensPin )\bUnlimited\b/);
 }
-console.log(`Verified ${routes.length} guides: body lengths, product/pricing boundaries, Article data, discoverability, fragments and actual language counterparts.`);
+console.log(`Verified ${routes.length} guides: body lengths, current product/pricing boundaries, Article data, discoverability, fragments and actual language counterparts.`);

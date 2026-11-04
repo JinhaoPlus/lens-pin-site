@@ -1,11 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-itunes-app" content="app-id=6812626038, affiliate-data=pt=129459678&amp;ct=web_support_writeback_en&amp;mt=8">
-  <title>Apple Photos Location vs EXIF GPS | LensPin Support</title>
-  <meta name="description" content="See how LensPin updates Apple Photos library locations without modifying the original file or its EXIF GPS, and how to verify each result.">
-  <meta property="og:type" content="article"><meta name="theme-color" content="#f4f4f1"><link rel="canonical" href="https://getlenspin.com/en/support/location-writeback/"><link rel="alternate" hreflang="en" href="https://getlenspin.com/en/support/location-writeback/"><link rel="alternate" hreflang="zh-Hans" href="https://getlenspin.com/zh/support/location-writeback/"><link rel="alternate" hreflang="x-default" href="https://getlenspin.com/en/support/location-writeback/"><link rel="icon" href="/assets/lenspin-app-icon.png" type="image/png"><link rel="stylesheet" href="/assets/styles.css?v=72950482ce">
+<title>Apple Photos Location vs EXIF GPS | LensPin Support</title>
+<meta name="description" content="See how LensPin updates Apple Photos library locations without modifying the original file or its EXIF GPS, and how to verify each result.">
+<meta property="og:type" content="article"><meta name="theme-color" content="#f4f4f1"><link rel="canonical" href="https://getlenspin.com/en/support/location-writeback/"><link rel="alternate" hreflang="en" href="https://getlenspin.com/en/support/location-writeback/"><link rel="alternate" hreflang="zh-Hans" href="https://getlenspin.com/zh/support/location-writeback/"><link rel="alternate" hreflang="x-default" href="https://getlenspin.com/en/support/location-writeback/"><link rel="icon" href="/assets/lenspin-app-icon.png" type="image/png"><link rel="stylesheet" href="/assets/styles.css?v=bf9a518f0b">
   <meta property="og:title" content="Apple Photos Location vs EXIF GPS | LensPin Support">
   <meta property="og:description" content="See how LensPin updates Apple Photos library locations without modifying the original file or its EXIF GPS, and how to verify each result.">
   <meta property="og:site_name" content="LensPin">
@@ -19,63 +19,61 @@
   <meta name="twitter:description" content="See how LensPin updates Apple Photos library locations without modifying the original file or its EXIF GPS, and how to verify each result.">
   <meta name="twitter:image" content="https://getlenspin.com/assets/lenspin-social.png">
   <meta name="twitter:image:alt" content="LensPin brand name and app icon above the Earth">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LensPin","item":"https://getlenspin.com/en/"},{"@type":"ListItem","position":2,"name":"Support","item":"https://getlenspin.com/en/support/"},{"@type":"ListItem","position":3,"name":"Location writeback","item":"https://getlenspin.com/en/support/location-writeback/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LensPin","item":"https://getlenspin.com/en/"},{"@type":"ListItem","position":2,"name":"Support","item":"https://getlenspin.com/en/support/"},{"@type":"ListItem","position":3,"name":"saving locations to Apple Photos","item":"https://getlenspin.com/en/support/location-writeback/"}]}]}</script>
   <meta property="og:url" content="https://getlenspin.com/en/support/location-writeback/"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="zh_CN">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header"><div class="nav-shell">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="nav-shell">
     <a class="brand" href="/en/" aria-label="LensPin home"><span class="brand-mark" aria-hidden="true"><img src="/assets/lenspin-app-icon.png" width="256" height="256" alt=""></span><span>LensPin</span></a>
-    <nav class="desktop-nav" aria-label="Primary navigation"><a href="/en/import-camera-photos-to-iphone/">Import photos</a>
-        <a href="/en/add-location-to-photos-iphone/">Add locations</a>
-        <a href="/en/how-it-works/">How it works</a>
+    <nav class="desktop-nav" aria-label="Primary navigation"><a href="/en/how-it-works/">How it works</a>
+        <a href="/en/#pricing">Pricing</a>
         <a href="/en/guides/">Guides</a>
         <a href="/en/support/" aria-current="page">Support</a></nav>
     <div class="header-actions">
       <details class="language-picker" data-language-picker><summary aria-label="Choose language: English"><svg class="language-globe" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21c-2.4-2.5-3.6-5.5-3.6-9S9.6 5.5 12 3Z" stroke="currentColor" stroke-width="1.6"/></svg><span class="language-name">English</span><span class="language-short" aria-hidden="true">EN</span><svg class="language-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><nav class="language-options" aria-label="Available languages"><a class="language-option" href="/en/support/location-writeback/" lang="en" hreflang="en" aria-current="true"><span>English</span><span class="language-check" aria-hidden="true">✓</span><span class="visually-hidden">Current language</span></a>
 <a class="language-option" href="/zh/support/location-writeback/" lang="zh-Hans" hreflang="zh-Hans"><span>简体中文</span></a></nav></details>
       <a class="button button-primary button-small header-download" href="https://apps.apple.com/app/id6812626038?pt=129459678&ct=web_support_writeback_en&mt=8" data-app-store-link target="_blank" rel="noopener">Get LensPin</a>
-      <details class="mobile-nav"><summary aria-label="Open navigation" data-open-label="Open navigation" data-close-label="Close navigation"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><nav class="mobile-nav-panel" aria-label="Mobile navigation"><a href="/en/import-camera-photos-to-iphone/">Import photos</a>
-        <a href="/en/add-location-to-photos-iphone/">Add locations</a>
-        <a href="/en/how-it-works/">How it works</a>
+      <details class="mobile-nav"><summary aria-label="Open navigation" data-open-label="Open navigation" data-close-label="Close navigation"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><nav class="mobile-nav-panel" aria-label="Mobile navigation"><a href="/en/how-it-works/">How it works</a>
+        <a href="/en/#pricing">Pricing</a>
         <a href="/en/guides/">Guides</a>
         <a href="/en/support/" aria-current="page">Support</a><a class="mobile-download" href="https://apps.apple.com/app/id6812626038?pt=129459678&ct=web_support_writeback_en&mt=8" data-app-store-link target="_blank" rel="noopener">Get LensPin</a></nav></details>
     </div>
   </div></header>
-  <main id="main" class="page-shell">
-    <ol class="breadcrumb" aria-label="Breadcrumb"><li><a href="/en/">LensPin</a></li><li><a href="/en/support/">Support</a></li><li aria-current="page">Location writeback</li></ol>
-    <section class="page-hero"><div class="page-hero-copy"><p class="eyebrow">Support · Saving locations</p><h1>Photos location and EXIF GPS are related—but not the same.</h1><p class="page-lede">Saving an approved point updates the item’s location in Apple Photos without rewriting the original photo, RAW file, or video. If you need a photo file with GPS embedded, use the separate Export JPG option with Include Location enabled.</p><p class="page-date">Reviewed <time datetime="2026-10-21">October 21, 2026</time></p></div><div class="page-hero-visual result-card"><div class="result-card-head"><div><h2 class="filename">Completed</h2><p class="timestamp">12 selected photos</p></div><span class="status-label">✓ Finished</span></div><p class="result-reason"><strong>11 Added</strong> · 0 Failed · 1 Skipped<br>The skipped item already had a location when LensPin checked again.</p></div></section>
-<figure class="store-desktop-art store-phone-art"><picture><source srcset="/assets/lenspin-store-iphone-09-apple-photos-en.avif" type="image/avif"><img src="/assets/lenspin-store-iphone-09-apple-photos-en.webp" width="736" height="1600" loading="eager" fetchpriority="high" decoding="async" alt="Apple Photos showing the LensPin album of saved photos"></picture><figcaption>LensPin store artwork with demonstration content.</figcaption></figure>
-    <section class="content-section"><div class="prose">
-      <h2>Apple Photos library location</h2>
-      <p>This is the location Apple Photos associates with the asset. It powers the Info map and location-based browsing. LensPin adds this location only after you confirm the selection.</p>
-      <h2>Original files stay unchanged when you save</h2>
-      <p>Saving a library location does not rewrite original-file EXIF GPS, replace the original photo or video, or create an XMP sidecar. Camera, capture-time, and original-GPS fields can be read as evidence without being changed.</p>
-      <div class="callout"><strong>Exports can vary.</strong><p>Whether Apple Photos includes its library location in a shared or exported derivative depends on the export path and Photos settings. Use LensPin’s separate JPG export when you need a photo copy with GPS, then verify that copy in the destination app.</p></div>
-      <h2>Writeback outcome</h2>
-      <p>Each item is reported as Added, Failed, or Skipped based on the Apple Photos library-location update. JPG export is a separate action; it does not happen automatically when you save a library location.</p>
-      <h2>Why a photo is skipped</h2>
-      <p>LensPin reads the Photos item immediately before writing. If another app, device, or sync operation added a location after the preview was created, LensPin skips that photo rather than overwriting it.</p>
-      <h2>Completion statuses</h2>
-      <div class="card-grid">
-        <article class="info-card"><span class="icon-tile mint">✓</span><h3>Added</h3><p>The Photos-library location was successfully written.</p></article>
-        <article class="info-card"><span class="icon-tile orange">×</span><h3>Failed</h3><p>The location write did not complete. Keep the displayed per-item reason for support.</p></article>
-        <article class="info-card"><span class="icon-tile">↷</span><h3>Skipped</h3><p>The item was intentionally left alone, commonly because it already had a location.</p></article>
-      </div>
-      <h2>LensPin album</h2>
-      <p>Photos and videos whose locations were successfully added are collected in the LensPin album. If album collection fails, the completion screen shows a separate warning; it does not undo or hide a successful location write.</p>
-      <h2>Export a photo copy with GPS</h2><ol><li>Open the photo or select photos in the LensPin album.</li><li>Choose Export JPG and enable Include Location.</li><li>Export the JPG copies, then inspect the location in the destination app or a metadata viewer.</li></ol><p>The current Apple Photos library location is used for export. Non-JPG photos, including supported RAW photos, are converted to JPG. Original files stay unchanged. This is not original-format or RAW-preserving GPS export, and video GPS export is not supported.</p>
-      <h2>How to verify</h2>
-      <ol><li>Open the LensPin album after the batch.</li><li>Open a photo in Apple Photos and inspect the Info map and coordinates.</li><li>Compare the point with the route and surrounding photos.</li><li>If embedded file GPS is required elsewhere, export a JPG with Include Location enabled and inspect a sample. Check the destination app’s handling of GPS metadata.</li></ol>
-      <p><a class="text-link" href="/en/supported-formats/">Check supported formats and current limits →</a></p>
-    </div></section>
-  </main>
-  <footer class="site-footer"><div class="footer-shell">
-    <div class="footer-brand"><a class="brand" href="/en/"><span class="brand-mark" aria-hidden="true"><img src="/assets/lenspin-app-icon.png" width="256" height="256" alt=""></span><span>LensPin</span></a><p>Native on iPhone (iOS 17+), iPad (iPadOS 17+), and Mac (macOS 14+). Add locations in Apple Photos on device; original files stay unchanged and existing locations are never overwritten.</p><a class="footer-store-link" href="https://apps.apple.com/app/id6812626038?pt=129459678&ct=web_support_writeback_en&mt=8" data-app-store-link target="_blank" rel="noopener">View LensPin on the App Store →</a></div>
+<main class="page-shell" id="main">
+<ol aria-label="Breadcrumb" class="breadcrumb"><li><a href="/en/">LensPin</a></li><li><a href="/en/support/">Support</a></li><li aria-current="page">saving locations to Apple Photos</li></ol>
+<section class="page-hero"><div class="page-hero-copy"><p class="eyebrow">Support · Saving locations</p><h1>Photos location and EXIF GPS are related—but not the same.</h1><p class="page-lede">Saving an approved point updates the item’s location in Apple Photos without rewriting the original photo, RAW file, or video. If you need a photo file with GPS embedded, use the separate Export JPG option with Include Location enabled.</p><p class="page-date">Reviewed <time datetime="2026-10-21">October 21, 2026</time></p></div><div class="page-hero-visual result-card"><div class="result-card-head"><div><h2 class="filename">Completed</h2><p class="timestamp">12 selected photos</p></div><span class="status-label">✓ Finished</span></div><p class="result-reason"><strong>11 Added</strong> · 0 Failed · 1 Skipped<br>The skipped item already had a location when LensPin checked again.</p></div></section>
+<figure class="store-desktop-art store-phone-art"><picture><source srcset="/assets/lenspin-store-iphone-09-apple-photos-en.avif" type="image/avif"><img alt="Apple Photos showing the LensPin album of saved photos" decoding="async" fetchpriority="high" height="1600" loading="eager" src="/assets/lenspin-store-iphone-09-apple-photos-en.webp" width="736"></picture><figcaption>LensPin store artwork with demonstration content.</figcaption></figure>
+<section class="content-section"><div class="prose">
+<h2>Apple Photos library location</h2>
+<p>This is the location Apple Photos associates with the asset. It powers the Info map and location-based browsing. LensPin adds this location only after you confirm the selection.</p>
+<h2>Original files stay unchanged when you save</h2>
+<p>Saving a library location does not rewrite original-file EXIF GPS, replace the original photo or video, or create an XMP sidecar. Camera, capture-time, and original-GPS fields can be read as clues without being changed.</p>
+<div class="callout"><strong>Exports can vary.</strong><p>Whether Apple Photos includes its library location in a shared or exported derivative depends on the export path and Photos settings. Use LensPin’s separate JPG export when you need a photo copy with GPS, then verify that copy in the destination app.</p></div>
+<h2>Writeback outcome</h2>
+<p>Each item is reported as Added, Failed, or Skipped based on the Apple Photos library-location update. JPG export is a separate action; it does not happen automatically when you save a library location.</p>
+<h2>Why a photo is skipped</h2>
+<p>LensPin reads the Photos item immediately before writing. If another app, device, or sync operation added a location after the preview was created, LensPin skips that photo rather than overwriting it.</p>
+<h2>Completion statuses</h2>
+<div class="card-grid">
+<article class="info-card"><span class="icon-tile mint">✓</span><h3>Added</h3><p>The Photos-library location was successfully written.</p></article>
+<article class="info-card"><span class="icon-tile orange">×</span><h3>Failed</h3><p>The location write did not complete. Keep the displayed per-item reason for support.</p></article>
+<article class="info-card"><span class="icon-tile">↷</span><h3>Skipped</h3><p>The item was intentionally left alone, commonly because it already had a location.</p></article>
+</div>
+<h2>LensPin album</h2>
+<p>Photos and videos whose locations were successfully added are collected in the LensPin album. If album collection fails, the completion screen shows a separate warning; it does not undo or hide a successful location write.</p>
+<h2>Export a photo copy with GPS</h2><ol><li>Open the photo or select photos in the LensPin album.</li><li>Choose Export JPG and enable Include Location.</li><li>Export the JPG copies, then inspect the location in the destination app or a metadata viewer.</li></ol><p>The current Apple Photos library location is used for export. Non-JPG photos, including supported RAW photos, are converted to JPG. Original files stay unchanged. This is not original-format or RAW-preserving GPS export, and video GPS export is not supported.</p>
+<h2>How to verify</h2>
+<ol><li>Open the LensPin album after the batch.</li><li>Open a photo in Apple Photos and inspect the Info map and coordinates.</li><li>Compare the point with the route and surrounding photos.</li><li>If embedded file GPS is required elsewhere, export a JPG with Include Location enabled and inspect a sample. Check the destination app’s handling of GPS metadata.</li></ol>
+<p><a class="text-link" href="/en/supported-formats/">Check supported formats and current limits →</a></p>
+</div></section>
+<section class="content-section page-shell"><h2>Contact LensPin</h2><p><a href="https://www.reddit.com/r/LensPin/" rel="noopener" target="_blank">Ask in the LensPin community</a> or use the support contact on the <a data-app-store-link href="https://apps.apple.com/app/id6812626038" rel="noopener" target="_blank">App Store</a> page.</p></section></main>
+<footer class="site-footer"><div class="footer-shell">
+    <div class="footer-brand"><a class="brand" href="/en/"><span class="brand-mark" aria-hidden="true"><img src="/assets/lenspin-app-icon.png" width="256" height="256" alt=""></span><span>LensPin</span></a><p>Native on iPhone and iPad (iOS/iPadOS 17+) and Mac (macOS 14+). Also available on Apple Vision (visionOS 1+). Available in all App Store markets, including China.</p><a class="footer-store-link" href="https://apps.apple.com/app/id6812626038?pt=129459678&ct=web_support_writeback_en&mt=8" data-app-store-link target="_blank" rel="noopener">View LensPin on the App Store →</a></div>
     <div><p class="footer-title">Start here</p><nav class="footer-links"><a href="/en/guides/">Guides</a><a href="/en/import-camera-photos-to-iphone/">Import camera photos</a><a href="/en/add-location-to-photos-iphone/">Add photo locations</a><a href="/en/how-it-works/">How LensPin works</a></nav></div>
 <div><p class="footer-title">Methods</p><nav class="footer-links"><a href="/en/how-to-get-gpx-file/">Get a GPX file</a><a href="/en/gpx-photo-geotagging-iphone/">With a GPX track</a><a href="/en/geotag-dslr-photos-with-iphone-photos/">Without GPX</a><a href="/en/supported-formats/">Formats &amp; limits</a></nav></div>
 <div><p class="footer-title">Help</p><nav class="footer-links"><a href="/en/user-feedback/">User feedback</a><a href="/en/support/">Support</a><a href="/en/privacy/">Privacy</a></nav></div>
     </div><div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span class="apple-legal">Apple, the Apple logo, App Store, iPhone, iPad, and Mac are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</span></div></footer>
-  <script src="/assets/site.js?v=72950482ce" defer></script>
+<script defer="" src="/assets/site.js?v=bf9a518f0b"></script>
 </body>
 </html>
