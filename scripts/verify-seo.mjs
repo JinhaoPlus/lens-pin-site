@@ -39,7 +39,7 @@ for (const file of pages) {
     assert.equal(node.aggregateRating, undefined);
     if (['SoftwareApplication', 'MobileApplication'].includes(node['@type'])) {
       appCount++;
-      for (const fact of [/iPhone/, /GPS/, /GPX/, /Apple Health|Apple 健康/, /without export|无需导出/]) assert.match(node.description, fact);
+      for (const fact of [/iPhone/, /GPS/, /GPX/, /Apple Health|Apple 健康|“健康”App/, /without export|无需导出/]) assert.match(node.description, fact);
       assert.ok(Array.isArray(node.featureList) && node.featureList.length >= 4);
       assert.doesNotMatch(node.featureList.join(' '), /writeback|interpolation|evidence fusion/i);
       assert.equal(node.screenshot.length, 2);

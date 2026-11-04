@@ -16,6 +16,7 @@ for (const file of walk(dist).filter(p => /\.(html|css|js|xml|txt|json|svg|md|we
 for (const file of pages) {
   if (file.endsWith('/404.html')) continue;
   const s = readFileSync(file, 'utf8'), zh = file.includes('/zh/');
+  assert.doesNotMatch(plain(s), /Writeback outcome|Completion statuses|XMP sidecar|XMP 附属|\bderivative\b|\bassets?\b|Photos framework|ImageIO|continued-processing task|interpolat|receives a penalty|衍生|资源|框架|插值|惩罚|续行任务/i, file);
   const nav = s.match(/<nav class="desktop-nav"[^>]*>([\s\S]*?)<\/nav>/)[1];
   const labels = [...nav.matchAll(/<a[^>]*>(.*?)<\/a>/g)].map(m => m[1]);
   assert.deepEqual(labels, zh ? ['工作原理', '价格', '教程', '帮助'] : ['How it works', 'Pricing', 'Guides', 'Support']);
@@ -32,11 +33,18 @@ for (const lang of ['en','zh']) {
   assert.match(main, /LensPin Unlimited/);
   assert.match(main, lang === 'en' ? /one photo or video counts as one use/ : /每成功为一张照片或一个视频保存位置计一次/);
   if (lang === 'en') assert.doesNotMatch(plain(main), /\bevidence\b/i);
-  for (const route of ['support','privacy']) assert.match(read(`${lang}/${route}`), /href="https:\/\/www\.reddit\.com\/r\/LensPin\/"/);
+  for (const route of ['support', 'privacy']) {
+    const page = plain(read(`${lang}/${route}`));
+    assert.doesNotMatch(page, /Contact LensPin|Privacy questions|support contact|联系 LensPin|需要联系开发者|支持联系方式|mailto:/i);
+  }
+  const support = read(`${lang}/support`);
+  assert.equal((support.match(/<details><summary>/g) || []).length, 6);
+  for (const phrase of lang === 'en' ? ['GoPro', 'Insta360', 'videos', '100', 'Remove Location', 'Apple Health workout routes'] : ['GoPro', 'Insta360', '视频', '100', '移除位置', '体能训练路线']) assert.ok(support.includes(phrase));
+  assert.ok(read(`${lang}/privacy`).includes(lang === 'en' ? 'Share Usage Statistics' : '分享使用统计'));
   const how = plain(read(`${lang}/how-it-works`));
   for (const label of lang === 'en' ? ['High Confidence','Review','No Clear Suggestion'] : ['高可信','需检查','无明确建议']) assert.ok(how.includes(label));
 }
-console.log(`Verified copy across ${pages.length} HTML files: pricing, navigation, source choices, categories, contact paths and forbidden legacy wording.`);
+console.log(`Verified copy across ${pages.length} HTML files: pricing, navigation, source choices, categories, support FAQs, contact removal and forbidden legacy wording.`);
 
 const macBadgeRoutes = ['en', 'zh', 'en/add-location-to-photos-mac', 'en/geotag-photos-gpx-mac'];
 for (const file of pages) {

@@ -52,7 +52,7 @@
 <h2>What does not work</h2>
 <ul><li>A route drawn without timestamps.</li><li>Waypoints alone when no timed track points exist.</li><li>A malformed XML file or unsupported text encoding.</li><li>A file whose points all have missing or invalid coordinates or times.</li></ul>
 <h2>Segment boundaries matter</h2>
-<p>LensPin preserves the GPX file's original track segments. It also splits a segment at an implausible jump faster than 350 m/s. It never interpolates a photo across either kind of boundary.</p>
+<p>LensPin preserves the GPX file's original track segments. It also splits a segment at an implausible jump faster than 350 m/s. It does not estimate a photo’s location across either kind of break.</p>
 <h2>Maximum point interval</h2>
 <p>Your matching setting controls how far apart surrounding GPX points may be and still support a suggestion. A visually connected line with a large time gap is treated as sparse or unavailable clues, not as proof of continuous travel.</p>
 <h2>Common messages</h2>
@@ -66,7 +66,6 @@
 <ol><li>Check whether the camera clock, not the GPX time, needs an offset.</li><li>Confirm the trip date and time zone with one photo whose place you remember.</li><li>Inspect original segment boundaries in the recording app.</li><li>Avoid merging unrelated segments simply to force a match.</li></ol>
 <p><a class="text-link" href="/en/how-to-get-gpx-file/">How to get a timestamped GPX file →</a><br><a class="text-link" href="/en/gpx-photo-geotagging-iphone/">Return to the complete GPX workflow →</a></p>
 </div></section>
-<section class="content-section page-shell"><h2>Contact LensPin</h2><p><a href="https://www.reddit.com/r/LensPin/" rel="noopener" target="_blank">Ask in the LensPin community</a> or use the support contact on the <a data-app-store-link href="https://apps.apple.com/app/id6812626038" rel="noopener" target="_blank">App Store</a> page.</p></section>
 <section class="content-section" id="related-gpx"><div class="prose"><h2>Related GPX guides</h2><p><a href="/en/how-to-get-gpx-file/">Get a timed GPX file</a> · <a href="/en/gpx-photo-geotagging-iphone/">Match on iPhone</a> · <a href="/en/geotag-photos-gpx-mac/">Match GPX on Mac</a></p><p><a href="/en/how-it-works/#health-workout-routes">Apple Watch needs no GPX: Health workout routes</a></p></div></section></main>
 <footer class="site-footer"><div class="footer-shell">
     <div class="footer-brand"><a class="brand" href="/en/"><span class="brand-mark" aria-hidden="true"><img src="/assets/lenspin-app-icon.png" width="64" height="64" alt=""></span><span>LensPin</span></a><p>For iPhone, iPad and Mac. Available worldwide on the App Store, including China.</p><a class="footer-store-link" href="https://apps.apple.com/app/id6812626038?pt=129459678&ct=web_support_gpx_en&mt=8" data-app-store-link target="_blank" rel="noopener">View LensPin on the App Store →</a></div>

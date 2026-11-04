@@ -94,16 +94,16 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
   for (const node of graph.filter(n => n['@type'] === 'SoftwareApplication')) {
     node.name = 'LensPin: Photo Geotagger';
     node.description = zh
-      ? '为 Apple Photos 中缺少位置的相机照片补定位。按拍摄时间匹配 iPhone 定位照片、其他 GPS 相机照片、GPX 轨迹，或通过 Apple 健康直接读取的 Apple Watch／健身体能训练路线，无需导出。审核建议后保存到图库。'
-      : 'Add missing locations to camera photos in Apple Photos by matching capture times with geotagged iPhone photos, photos from another GPS camera, GPX tracks, or Apple Watch/Fitness workout routes read directly from Apple Health without export. Review suggested places before saving.';
+      ? '为 Apple Photos 中缺少位置的相机照片补定位。按拍摄时间匹配同一趟出行用 iPhone 拍的带定位照片、其他带 GPS 的相机拍的照片、GPX 轨迹，或“健康”App 里的体能训练路线。健康路线可在 iPhone 和 iPad 上直接读取，无需导出。审核建议后保存到图库。'
+      : 'Add missing locations to camera photos in Apple Photos by matching capture times with geotagged iPhone photos from the same trip, geotagged photos from other GPS-equipped cameras, GPX tracks, or Apple Health workout routes. Read Health workout routes directly on iPhone and iPad without export. Review suggested places before saving.';
     node.featureList = zh ? [
-      '参考 iPhone 定位照片或其他 GPS 相机照片', '使用带时间的 GPX 轨迹',
-      '从 Apple 健康直接读取 Apple Watch／健身训练路线，无需导出',
+      '参考同一趟出行用 iPhone 拍的带定位照片', '参考其他带 GPS 的相机拍的照片', '使用带时间的 GPX 轨迹',
+      '在 iPhone 和 iPad 上从健康直接读取体能训练路线，无需导出',
       '预览相机时钟偏移，不改拍摄时间', '审核地图和参考照片，再保存位置到 Apple Photos',
       '可选导出包含 GPS 的 JPG 副本',
     ] : [
-      'Use geotagged iPhone photos or photos from another GPS camera', 'Match photos to timed GPX tracks',
-      'Read Apple Watch/Fitness workout routes directly from Apple Health without export',
+      'Use geotagged iPhone photos from the same trip', 'Use geotagged photos from other GPS-equipped cameras', 'Match photos to timed GPX tracks',
+      'Read Apple Health workout routes directly on iPhone and iPad without export',
       'Preview camera clock differences without changing capture dates',
       'Review maps and reference photos before saving locations to Apple Photos',
       'Optionally export JPG copies with GPS',
