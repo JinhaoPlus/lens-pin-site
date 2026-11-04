@@ -1102,3 +1102,56 @@ html[lang^="zh"] main p:where(:not(.ui-h2):not(.ui-h3)) { line-height: 1.8; }
 /* Demo/callout titles retain the heading font weight after semantic cleanup. */
 .home-language-switch { display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 12px; border: 1px solid rgba(10,92,224,.3); border-radius: 12px; color: var(--blue); font-size: .9rem; font-weight: 600; white-space: nowrap; }
 .home-language-switch:hover { background: #eef4ff; }
+
+/* BEGIN GENERATED CTA STYLES */
+/* Shared badge geometry: preserve official artwork at its natural aspect ratio. */
+.app-store-badge-link {
+  box-sizing: border-box;
+  height: 46px;
+  min-height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  flex: 0 0 auto;
+  vertical-align: middle;
+}
+.app-store-badge-image,
+.mac-app-store-badge-image {
+  box-sizing: border-box;
+  height: 46px;
+  width: auto;
+  max-width: none;
+}
+.hero-actions,
+.cta-actions,
+.download-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.hero-actions:has(.app-store-badge-link) > .button,
+.cta-actions:has(.app-store-badge-link) > .button,
+.download-badges > .button {
+  box-sizing: border-box;
+  height: 46px;
+  min-height: 46px;
+  width: auto;
+  padding: 0 16px;
+  border-radius: 7px;
+  flex: 0 0 auto;
+}
+@media (max-width: 560px) {
+  .hero-actions:has(.app-store-badge-link),
+  .cta-actions:has(.app-store-badge-link) {
+    flex-wrap: nowrap;
+  }
+  .hero-actions:has(.app-store-badge-link) > .button,
+  .cta-actions:has(.app-store-badge-link) > .button {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-inline: 12px;
+    line-height: 1.2;
+  }
+}
+/* END GENERATED CTA STYLES */

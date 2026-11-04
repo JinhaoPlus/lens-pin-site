@@ -1,6 +1,6 @@
 # LensPin website
 
-Static bilingual product and SEO site for LensPin: English under `/en/` and Simplified Chinese under `/zh/`. There are 40 canonical pages: 18 topics with both languages, plus four English-only guides. The deployable output lives in dist/. HTML bodies and static assets in `dist/` are also the maintained source: there is no separate content directory. Edit page-specific copy there; edit shared navigation/footer in `scripts/site-locales.mjs` / `scripts/site-shell.mjs` and generated SEO in `scripts/site-seo.mjs`, then rebuild. The linked lenspin-app directory is read-only product reference and must not be modified.
+Static bilingual product and SEO site for LensPin: English under `/en/` and Simplified Chinese under `/zh/`. There are 40 canonical pages: 18 topics with both languages, plus four English-only guides. The deployable output lives in dist/. HTML bodies and static assets in `dist/` are also the maintained source: there is no separate content directory. Edit page-specific copy there; edit shared navigation/footer in `scripts/site-locales.mjs` / `scripts/site-shell.mjs` and generated SEO in `scripts/site-seo.mjs`, then rebuild. Shared badge/button sizing is maintained in `scripts/cta-styles.css`; the builder writes its marked block into `dist/assets/styles.css` before generating asset versions. The linked lenspin-app directory is read-only product reference and must not be modified.
 
 ## Local preview
 

@@ -13,6 +13,18 @@ const appStoreUrl = (process.env.APP_STORE_URL || siteConfig.appStoreUrl).trim()
 const isCheckOnly = process.argv.includes("--check");
 const isProduction = process.argv.includes("--production");
 const errors = [];
+// Keep generated CTA rules reproducible; edit scripts/cta-styles.css, then rebuild.
+const stylesPath = new URL("assets/styles.css", dist);
+const ctaStart = "/* BEGIN GENERATED CTA STYLES */";
+const ctaEnd = "/* END GENERATED CTA STYLES */";
+const stylesSource = readFileSync(stylesPath, "utf8");
+const baseStyles = stylesSource.replace(/\n*\/\* BEGIN GENERATED CTA STYLES \*\/[\s\S]*?\/\* END GENERATED CTA STYLES \*\/\n*/g, "").trimEnd();
+const generatedStyles = `${baseStyles}\n\n${ctaStart}\n${readFileSync(new URL("./cta-styles.css", import.meta.url), "utf8").trimEnd()}\n${ctaEnd}\n`;
+if (isCheckOnly) {
+  if (stylesSource !== generatedStyles) errors.push("CTA styles are stale; run npm run build:production.");
+} else {
+  writeFileSync(stylesPath, generatedStyles);
+}
 const assetVersion = createHash("sha256")
   .update(readFileSync(new URL("assets/styles.css", dist)))
   .update(readFileSync(new URL("assets/site.js", dist)))
