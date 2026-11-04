@@ -27,7 +27,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 87px; }
 
 body {
   margin: 0;
@@ -177,7 +177,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.11em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 h1, h2, h3, p { text-wrap: pretty; }
@@ -467,7 +467,8 @@ h1 {
   .nav-shell { width: min(calc(100% - 32px), var(--content)); min-height: 64px; }
   .desktop-nav { gap: 0; }
   .button-small { min-height: 40px; padding: 0 13px; font-size: 0.82rem; }
-  .hero { width: min(calc(100% - 32px), var(--content)); padding: 28px 0 38px; gap: 22px; }
+  html { scroll-padding-top: 81px; }
+  .hero { width: min(calc(100% - 32px), var(--content)); padding: 36px 0 38px; gap: 22px; }
   .hero .eyebrow { margin-bottom: 12px; }
   h1 { font-size: clamp(2.7rem, 12.3vw, 3.35rem); line-height: .96; }
   .hero-copy { margin-top: 16px; font-size: 1rem; line-height: 1.5; }

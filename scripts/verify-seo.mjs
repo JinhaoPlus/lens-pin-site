@@ -31,6 +31,7 @@ for (const file of pages) {
   assert.equal(meta.get('og:image:height'), '630');
   assert.equal(meta.get('twitter:card'), 'summary_large_image');
   assert.equal(meta.get('og:title'), text(source.match(/<title>(.*?)<\/title>/s)[1]));
+  assert.equal(meta.get('twitter:title'), meta.get('og:title'));
   assert.equal(meta.get('og:description'), meta.get('description'));
   for (const image of source.matchAll(/<img\b[^>]*>/g)) assert.match(image[0], / alt="[^"]*"/, `${label}: alt`);
   assert.ok([...meta.get('description')].length <= (locale === 'zh' ? 80 : 160), `${label}: description too long`);
@@ -41,16 +42,17 @@ for (const file of pages) {
   assert.doesNotMatch(h1s[0], /[.。]$/, `${label}: h1 terminal punctuation`);
   assert.equal((title.match(/ \| /g) || []).length, 1, `${label}: one title separator`);
   assert.doesNotMatch(title, /[｜·]/, `${label}: title separator`);
-  const matchingTitle = locale === 'zh' ? 'LensPin 如何按拍摄时间匹配相机照片位置 | LensPin' : 'How LensPin matches camera photos by time | LensPin';
+  const matchingTitle = locale === 'zh' ? '相机照片如何按拍摄时间匹配位置 | LensPin' : 'How LensPin matches camera photos by time | LensPin';
   const isMatchingPage = parts.join('/') === 'how-it-works';
   if (isMatchingPage) assert.equal(title, matchingTitle, `${label}: required matching title`);
-  else assert.equal((title.match(/LensPin/g) || []).length, 1, `${label}: brand once`);
+  if (!(isMatchingPage && locale === 'en')) assert.equal((title.match(/LensPin/g) || []).length, 1, `${label}: brand once`);
   assert.ok(parts.length === 0 && !notFound ? title.startsWith('LensPin | ') : title.endsWith(' | LensPin'), `${label}: title brand placement`);
-  assert.ok([...title].length <= (locale === 'zh' ? (isMatchingPage ? [...matchingTitle].length : 30) : 60), `${label}: title length`);
+  assert.ok([...title].length <= (locale === 'zh' ? 30 : 60), `${label}: title length`);
   if (locale === 'en' && parts.join('/') === 'privacy') assert.ok([...meta.get('description')].length >= 110, `${label}: privacy description too short`);
   if (locale === 'zh' && parts.join('/') === 'guides') assert.ok([...meta.get('description')].length >= 50, `${label}: guide description too short`);
   const graph = [...source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap((m) => { const json = JSON.parse(m[1]); return json['@graph'] || [json]; });
   for (const node of graph) {
+    if (node['@type'] === 'Article') assert.equal(node.headline, h1s[0], `${label}: headline follows visible H1`);
     assert.equal(node.aggregateRating, undefined);
     if (['SoftwareApplication', 'MobileApplication'].includes(node['@type'])) {
       appCount++;

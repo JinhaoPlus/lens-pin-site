@@ -27,6 +27,11 @@ for (const file of pages) {
 }
 for (const lang of ['en','zh']) {
   const s = read(lang), main = s.match(/<main[^>]*>([\s\S]*?)<\/main>/)[1];
+  const storeName = lang === 'en' ? 'LensPin: Photo Geotagger' : 'LensPin：相机照片补定位';
+  const hero = main.match(/<section\b[^>]*class="hero"[^>]*>[\s\S]*?<\/section>/)[0];
+  assert.ok(!plain(hero).includes(storeName), 'Store name stays below the hero');
+  assert.equal(plain(main).split(storeName).length - 1, 1, 'Store name visible once on home');
+  assert.ok(main.match(/<section\b[^>]*id="pricing"[\s\S]*?<\/section>/)[0].includes(`<p class="store-search">${lang === 'en' ? 'Search the App Store for “LensPin: Photo Geotagger”.' : '在 App Store 搜索「LensPin：相机照片补定位」。'}</p>`));
   assert.equal((main.match(/<section\b/g) || []).length, 8);
   for (const key of ['photos','camera','gpx','workout']) assert.ok(main.includes(`data-evidence-tab="${key}"`));
   assert.equal((main.match(/id="pricing"/g) || []).length, 1);

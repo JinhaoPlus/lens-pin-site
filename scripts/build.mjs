@@ -131,6 +131,18 @@ function prepareSource(file) {
   const locale = localeFor(path);
   const pageAppStoreUrl = campaignUrl(appStoreUrl, label === "404.html" ? "/en/404/" : path);
   let source = readFileSync(file, "utf8");
+  if (path === '/en/' || path === '/zh/') {
+    const zh = locale.code === 'zh';
+    const eyebrow = zh ? '索尼、富士、佳能、GoPro、Insta360 等相机照片没有位置？' : 'Sony, Fujifilm, Canon, GoPro, Insta360 and more';
+    const storeSearch = zh ? '在 App Store 搜索「LensPin：相机照片补定位」。' : 'Search the App Store for “LensPin: Photo Geotagger”.';
+    source = source.replace(/(<div class="hero-copy-panel">\s*<p class="eyebrow">)[\s\S]*?(<\/p>)/, `$1${eyebrow}$2`)
+      .replace(/<p>App Store (?:name: LensPin: Photo Geotagger\.|名称：LensPin：相机照片补定位。)<\/p>/g, '')
+      .replace(/<p class="store-search">[\s\S]*?<\/p>/g, '')
+      .replace(/(<section\b[^>]*id="pricing"[\s\S]*?)(<a class="app-store-badge-link")/, `$1<p class="store-search">${storeSearch}</p>$2`);
+  }
+  if (path === '/zh/how-it-works/') {
+    source = source.replace(/<title>[\s\S]*?<\/title>/, '<title>相机照片如何按拍摄时间匹配位置 | LensPin</title>');
+  }
   if (label !== "404.html") {
     source = source.replace(/<header class="site-header">[\s\S]*?<\/header>/, renderHeader(path, pageAppStoreUrl, availableLocales(path)));
     source = source.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, "<!-- SITE_FOOTER -->");
