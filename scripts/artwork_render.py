@@ -1,5 +1,32 @@
 """Shared deterministic transforms for approved store artwork."""
+import hashlib
+import io
+import os
+from pathlib import Path
+import subprocess
 from PIL import Image, ImageOps
+
+
+def load_source(root, entry):
+    source = root / entry['source']
+    assert hashlib.sha256(source.read_bytes()).hexdigest() == entry['source_sha256'], source
+    if entry.get('layout') != 'hero-transparent':
+        return Image.open(source).convert('RGB')
+    # The approved PNG is opaque. Its editable SVG preserves white photo frames,
+    # phone screens and shadows without the damage caused by color-keying pixels.
+    svg = root / entry['editable_source']
+    assert hashlib.sha256(svg.read_bytes()).hexdigest() == entry['editable_source_sha256'], svg
+    markup = svg.read_text()
+    backdrop = '<rect width="1920" height="1080" fill="url(#bg)"/>'
+    halo = '<ellipse cx="960" cy="620" rx="960" ry="650" fill="url(#halo)"/>'
+    assert markup.count(backdrop) == markup.count(halo) == 1
+    markup = markup.replace(backdrop, '').replace(halo, '')
+    # Reuse the source-material toolchain read-only; never write into that folder.
+    sharp = os.environ.get('SHARP_MODULE', str(Path(__file__).resolve().parents[2] / 'appstore_materials/lenspin-template-studio/node_modules/sharp'))
+    output = subprocess.run(['node', '-e',
+        "const sharp=require(process.argv[1]); const fs=require('fs'); sharp(fs.readFileSync(0)).resize(+process.argv[2],+process.argv[3]).png().toBuffer().then(b=>process.stdout.write(b)).catch(e=>{console.error(e);process.exit(1)});",
+        sharp, str(entry['width']), str(entry['height'])], input=markup.encode(), capture_output=True, check=True)
+    return Image.open(io.BytesIO(output.stdout)).convert('RGBA')
 
 def render(image, entry):
     size = (entry['width'], entry['height'])

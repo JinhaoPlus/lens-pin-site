@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 from PIL import Image
-from artwork_render import render
+from artwork_render import render, load_source
 
 repo = Path(__file__).resolve().parent.parent
 dist = repo / 'dist'
@@ -16,7 +16,7 @@ provenance = {}
 for entry in entries:
     source = root / entry['source']
     assert hashlib.sha256(source.read_bytes()).hexdigest() == entry['source_sha256'], source
-    im = Image.open(source).convert('RGB')
+    im = load_source(root, entry)
     im, formats = render(im, entry)
     for ext, options in formats:
         path = '/assets/' + entry['asset'] + '.' + ('jpg' if ext == 'jpeg' else ext)
@@ -24,6 +24,11 @@ for entry in entries:
         expected = io.BytesIO()
         im.save(expected, format=ext, **options)
         assert expected.getvalue() == output.read_bytes(), f'Output differs from declared source: {path}'
+        if entry.get('layout') == 'hero-transparent':
+            decoded = Image.open(output).convert('RGBA')
+            for point in [(0, 0), (decoded.width-1, 0), (0, decoded.height-1), (decoded.width-1, decoded.height-1)]:
+                assert decoded.getpixel(point)[3] == 0, (path, point)
+            assert decoded.getpixel((decoded.width//2, decoded.height//2))[3] == 255, path
         if entry['asset'].startswith('lenspin-social-'):
             assert im.size == (1200, 630), path
             assert output.stat().st_size < 300000, path

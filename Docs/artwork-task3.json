@@ -53,7 +53,10 @@
     "source": "搜索结果_四语_2026-10-26_v6/en-US/search-principle-en-US-5244x2950.png",
     "source_sha256": "370f80324b39de2c3c50de3e4b6a6970525a38543897e39ce8f034abb2b3127d",
     "width": 1600,
-    "height": 900
+    "height": 900,
+    "layout": "hero-transparent",
+    "editable_source": "搜索结果_四语_2026-10-26_v6/en-US/search-principle-en-US.svg",
+    "editable_source_sha256": "ecbd90437aabfc7b1ab71442785c10e9c0837130e9bc8678b19f7693ac0e8fd0"
   },
   {
     "asset": "lenspin-store-iphone-02-suggestion-evidence-zh",
@@ -102,6 +105,9 @@
     "source": "搜索结果_四语_2026-10-26_v6/zh-Hans/search-principle-zh-Hans-5244x2950.png",
     "source_sha256": "57b6b3a9514ce37e494c2a1fee175150d3d59df9094b1ae6834a0f2f14bbf4fc",
     "width": 1600,
-    "height": 900
+    "height": 900,
+    "layout": "hero-transparent",
+    "editable_source": "搜索结果_四语_2026-10-26_v6/zh-Hans/search-principle-zh-Hans.svg",
+    "editable_source_sha256": "44e4ff63dfbc9bd6691deb1a92c7acb63d7064bc111550e0fca1ed91b88ac822"
   }
 ]

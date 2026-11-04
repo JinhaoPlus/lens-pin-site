@@ -1037,7 +1037,9 @@ html[lang="zh-Hans"] .content-section[id] { scroll-margin-top: 96px; }
 
 /* Store artwork retains the full composition, including native map attribution. */
 .hero-store-art { margin: 0; min-width: 0; align-self: center; }
-.hero-store-art img, .store-desktop-art img { display: block; width: 100%; height: auto; border-radius: 16px; }
+.hero-store-art, .hero-store-art picture, .hero-store-art img { background: transparent; border: 0; border-radius: 0; box-shadow: none; }
+.hero-store-art img, .store-desktop-art img { display: block; width: 100%; height: auto; }
+.store-desktop-art img { border-radius: 16px; }
 .hero-store-art figcaption, .store-desktop-art figcaption { margin-top: 12px; color: var(--muted); font-size: .85rem; line-height: 1.6; }
 .store-desktop-art { margin: 28px 0 0; }
 .matching-example .tool-card { max-width: 760px; margin: 0 auto; }
