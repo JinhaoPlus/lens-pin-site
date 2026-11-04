@@ -21,6 +21,7 @@ for (const file of pages) {
     'add-location-to-camera-photos-apple-photos': 'camera_photo_location',
     'add-location-to-photos-mac': 'photo_location_mac', 'geotag-photos-gpx-mac': 'gpx_mac',
     'camera-photos-no-location': 'camera_no_location', 'camera-photos-not-on-apple-photos-map': 'photos_map_fix',
+    'photo-location-wrong-or-missing': 'photo_location_fix',
   };
   const topic = parts.join('_') || 'home';
   const expectedCampaign = `web_${aliases[topic] || topic}_${locale}`;
@@ -62,7 +63,7 @@ for (const file of pages) {
       assert.deepEqual(entities[0].alternateName,['LensPin: Photo Geotagger','LensPin：相机照片补定位']);
       assert.deepEqual(entities[0].sameAs,['https://apps.apple.com/us/app/lenspin-photo-geotagger/id6812626038','https://www.reddit.com/r/LensPin/']);
     }
-    assert.ok(graph.some((n) => n['@type'] === 'SoftwareApplication'));
+    for (const type of ['SoftwareApplication', 'WebPage', 'BreadcrumbList']) assert.equal(graph.filter((n) => n['@type'] === type).length, 1);
     assert.match(text(source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), /^LensPin.*Mac/);
   }
 }

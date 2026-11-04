@@ -1,0 +1,114 @@
+[
+  {
+    "asset": "lenspin-store-iphone-02-suggestion-evidence-en",
+    "source": "完整素材_2026-10-24_v5/en-US/iphone/02-suggestion-evidence.png",
+    "source_sha256": "b5c407a62f3d4aa02efc5c6a90cb4bc289b62d15c2d57614932a85a6e9adefbc",
+    "width": 736,
+    "height": 1600
+  },
+  {
+    "asset": "lenspin-store-iphone-05-prepare-references-en",
+    "source": "完整素材_2026-10-24_v5/en-US/iphone/05-prepare-references.png",
+    "source_sha256": "30ba78b87876035884658378a5f2d6e6fc9f056d127937639eda4d912f470054",
+    "width": 736,
+    "height": 1600
+  },
+  {
+    "asset": "lenspin-store-iphone-06-review-suggestions-en",
+    "source": "完整素材_2026-10-24_v5/en-US/iphone/06-review-suggestions.png",
+    "source_sha256": "bd4de13e9c4f117d80918e99f5958b646a95ac13517d3cce9b804415220526e7",
+    "width": 736,
+    "height": 1600
+  },
+  {
+    "asset": "lenspin-store-iphone-09-apple-photos-en",
+    "source": "完整素材_2026-10-24_v5/en-US/iphone/09-apple-photos.png",
+    "source_sha256": "be08d3ff35d731d715dd597d1e96dc2be166d7c994fbf83e72023d5ebb84eace",
+    "width": 736,
+    "height": 1600
+  },
+  {
+    "asset": "lenspin-store-ipad-01-how-it-works-en",
+    "source": "完整素材_2026-10-24_v5/en-US/ipad/01-how-it-works.png",
+    "source_sha256": "f9e4be3a3ead8cf9f25050fcbe9d5ba382f46c35a3071ae1c728a652cb4a1fad",
+    "width": 1600,
+    "height": 1200
+  },
+  {
+    "asset": "lenspin-store-mac-01-add-locations-en",
+    "source": "Mac_2.1_四语_2026-10-29_v2/en-US/01-add-locations.png",
+    "source_sha256": "149c36bd3cb9ff06ae25b490d10c2d8a50bf0d1d0cd95eeb598dca0d145d282b",
+    "width": 1600,
+    "height": 1000
+  },
+  {
+    "asset": "lenspin-store-mac-03-review-evidence-en",
+    "source": "Mac_2.1_四语_2026-10-29_v2/en-US/03-review-evidence.png",
+    "source_sha256": "8ce354d6563b1085f856e2ba14ee9637efac95ae6cc59400b2a2e2b7058d2c8b",
+    "width": 1600,
+    "height": 1000
+  },
+  {
+    "asset": "lenspin-store-search-principle-en",
+    "source": "搜索结果_四语_2026-10-26_v6/en-US/search-principle-en-US-5244x2950.png",
+    "source_sha256": "370f80324b39de2c3c50de3e4b6a6970525a38543897e39ce8f034abb2b3127d",
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "asset": "lenspin-store-iphone-02-suggestion-evidence-zh",
+    "source": "完整素材_2026-10-24_v5/zh-Hans/iphone/02-suggestion-evidence.png",
+    "source_sha256": "7ecaef99d2f3d289c0ed2a84f3166a42f89d5c0e691284fa9f3dd6f888daf5b1",
+    "width": 736,
+    "height": 1600
+  },
+  {
+    "asset": "lenspin-store-iphone-05-prepare-references-zh",
+    "source": "完整素材_2026-10-24_v5/zh-Hans/iphone/05-prepare-references.png",
+    "source_sha256": "6220c6e2d9bd695bdd514df1eaa699ac68deab99a7ea39e2634399ea5245eee8",
+    "width": 736,
+    "height": 1600
+  },
+  {
+    "asset": "lenspin-store-iphone-06-review-suggestions-zh",
+    "source": "完整素材_2026-10-24_v5/zh-Hans/iphone/06-review-suggestions.png",
+    "source_sha256": "0ef82abae04ff8f5140255137930229e50589647230403c94038bef2f6daa984",
+    "width": 736,
+    "height": 1600
+  },
+  {
+    "asset": "lenspin-store-iphone-09-apple-photos-zh",
+    "source": "完整素材_2026-10-24_v5/zh-Hans/iphone/09-apple-photos.png",
+    "source_sha256": "c0ca2aad452fd532a36fb614ab45e8d94ad824b313051ffe47405eedbdf11016",
+    "width": 736,
+    "height": 1600
+  },
+  {
+    "asset": "lenspin-store-ipad-01-how-it-works-zh",
+    "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/01-how-it-works.png",
+    "source_sha256": "d40d3fb6186a626d9b0231cac47eddbb526b730b14c4101ee0a1e1aaf2000811",
+    "width": 1600,
+    "height": 1200
+  },
+  {
+    "asset": "lenspin-store-mac-03-review-evidence-zh",
+    "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/03-review-evidence.png",
+    "source_sha256": "a55a4b788db49f9cbbefc608b9baa1403ca9e9b5f5d4cd38cb7d1dc162930e3c",
+    "width": 1600,
+    "height": 1000
+  },
+  {
+    "asset": "lenspin-store-search-principle-zh",
+    "source": "搜索结果_四语_2026-10-26_v6/zh-Hans/search-principle-zh-Hans-5244x2950.png",
+    "source_sha256": "57b6b3a9514ce37e494c2a1fee175150d3d59df9094b1ae6834a0f2f14bbf4fc",
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "asset": "lenspin-social",
+    "source": "标题品牌图_2026-10-26_v3/lenspin-brand-header-3840x1646.png",
+    "source_sha256": "a1d452c9a6ba543d2cb068724efeed6f99acc3224a7c5e725a75b3d2427a155c",
+    "width": 1200,
+    "height": 630
+  }
+]

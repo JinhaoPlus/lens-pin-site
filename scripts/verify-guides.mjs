@@ -12,6 +12,7 @@ const routes = [
   '/zh/add-location-to-photos-iphone/',
   '/zh/import-camera-photos-to-iphone/',
   '/zh/camera-photos-not-on-apple-photos-map/',
+  '/zh/photo-location-wrong-or-missing/',
 ];
 const read = (route) => readFileSync(join(dist, route, 'index.html'), 'utf8');
 const plain = (s) => s.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -55,4 +56,12 @@ for (const language of ['en','zh']) {
   assert.match(directory, /"@type":"CollectionPage"/);
   for (const route of routes.filter((r) => r.startsWith(`/${language}/`))) assert.ok(directory.includes(`href="${route}"`));
 }
-console.log('Verified eight guides: body lengths, product/pricing boundaries, Article data, discoverability, fragments and real language counterparts.');
+const standalone = read('/zh/photo-location-wrong-or-missing/');
+assert.doesNotMatch(standalone, /hreflang="(?:en|x-default)"/);
+assert.doesNotMatch(standalone, /href="https:\/\/getlenspin.com\/en\/camera-photos-not-on-apple-photos-map\//);
+assert.match(read('/zh/camera-photos-not-on-apple-photos-map/'), /信息正确，但地图看起来不完整/);
+assert.match(standalone, /新拍的 iPhone 照片没有位置：检查定位权限/);
+for (const route of routes) {
+  assert.doesNotMatch(read(route), /Adjust Info|调整信息|(?<!LensPin )\bUnlimited\b/);
+}
+console.log(`Verified ${routes.length} guides: body lengths, product/pricing boundaries, Article data, discoverability, fragments and actual language counterparts.`);

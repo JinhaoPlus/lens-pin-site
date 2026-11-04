@@ -103,6 +103,13 @@ function availableLocales(path) {
   return siteLocales.filter((locale) => existsSync(localTarget(localizedPath(locale.code, path))));
 }
 
+function alternatesFor(path) {
+  const locales = availableLocales(path);
+  const alternates = locales.map((locale) => [locale.htmlLang, localizedPath(locale.code, path)]);
+  if (locales.some((locale) => locale.code === defaultLanguage)) alternates.push(["x-default", localizedPath(defaultLanguage, path)]);
+  return alternates;
+}
+
 function prepareSource(file) {
   const label = relative(distPath, file).split(sep).join("/");
   const path = routeFor(file);
@@ -227,7 +234,6 @@ for (const file of htmlFiles) {
   }
   if (!isNotFoundPage) {
     if (!siteLocales.some((locale) => routeFor(file).startsWith(`/${locale.code}/`))) errors.push(label + ": unregistered language URL");
-    if (!existsSync(localTarget(localizedPath(defaultLanguage, routeFor(file))))) errors.push(label + ": missing default-language counterpart");
     if ((source.match(/data-language-picker/g) || []).length !== 1) errors.push(label + ": expected one standalone language picker");
   }
 }
@@ -250,7 +256,7 @@ if (!isCheckOnly) {
     source = source.replace(/(<link rel="canonical" href=")[^"]+("\s*>)/, (_, before, after) => before + pageUrl + after);
     source = source.replace(/<link rel="alternate" hreflang="[^"]+" href="[^"]+"\s*>/g, "");
     const locales = availableLocales(pagePath);
-    const alternates = [...locales.map((locale) => [locale.htmlLang, localizedPath(locale.code, pagePath)]), ["x-default", localizedPath(defaultLanguage, pagePath)]];
+    const alternates = alternatesFor(pagePath);
     source = source.replace(/(<link rel="canonical" href="[^"]+"\s*>)/, "$1" + alternates.map(([language, route]) => `<link rel="alternate" hreflang="${language}" href="${siteOrigin}${route}">`).join(""));
     source = source.replace(/<meta property="og:url"[^>]*>/g, "").replace(/<meta property="og:locale(?::alternate)?"[^>]*>/g, "");
     source = source.replace('</head>', `  <meta property="og:url" content="${pageUrl}"><meta property="og:locale" content="${localeFor(pagePath).ogLocale}">${locales.filter((locale) => locale.code !== localeFor(pagePath).code).map((locale) => `<meta property="og:locale:alternate" content="${locale.ogLocale}">`).join('')}\n</head>`);
@@ -264,7 +270,7 @@ if (!isCheckOnly) {
 
   if (siteOrigin) {
     const urls = pages.map((path) => {
-      const alternates = [...availableLocales(path).map((locale) => [locale.htmlLang, localizedPath(locale.code, path)]), ["x-default", localizedPath(defaultLanguage, path)]];
+      const alternates = alternatesFor(path);
       return `  <url><loc>${siteOrigin}${path}</loc>${alternates.map(([language, route]) => `<xhtml:link rel="alternate" hreflang="${language}" href="${siteOrigin}${route}"/>`).join('')}</url>`;
     }).join("\n");
     writeFileSync(new URL("sitemap.xml", dist), "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">\n" + urls + "\n</urlset>\n");

@@ -1010,3 +1010,26 @@ html[lang="zh-Hans"] .content-section[id] { scroll-margin-top: 96px; }
   .language-short { display: inline; }
   .language-picker summary { min-height: 42px; padding: 0 10px; gap: 6px; }
 }
+
+/* Store artwork retains the full composition, including native map attribution. */
+.hero-store-art { margin: 0; min-width: 0; align-self: center; }
+.hero-store-art img, .store-desktop-art img { display: block; width: 100%; height: auto; border-radius: 16px; }
+.hero-store-art figcaption, .store-desktop-art figcaption { margin-top: 12px; color: var(--muted); font-size: .85rem; line-height: 1.6; }
+.store-desktop-art { margin: 28px 0 0; }
+.matching-example .tool-card { max-width: 760px; margin: 0 auto; }
+.guide-directory { max-width: none; }
+.guide-directory .card-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.guide-directory .info-card { grid-column: span 2; }
+.guide-directory .card-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.guide-directory .card-grid.two .info-card { grid-column: auto; }
+.guide-directory .info-card:where(:nth-last-child(2):nth-child(3n+1), :last-child:nth-child(3n+2)) { grid-column: span 3; }
+.guide-directory .info-card:where(:last-child:nth-child(3n+1)) { grid-column: 1 / -1; }
+@media (max-width: 900px) {
+  .guide-directory .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .guide-directory .info-card:nth-child(n) { grid-column: auto; }
+  .guide-directory .info-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .guide-directory .card-grid, .guide-directory .card-grid.two { grid-template-columns: minmax(0, 1fr); }
+  .guide-directory .info-card:last-child:nth-child(odd) { grid-column: auto; }
+}

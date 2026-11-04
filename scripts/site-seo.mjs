@@ -22,6 +22,7 @@ export function campaignUrl(baseUrl, path) {
     'geotag-photos-gpx-mac': 'gpx_mac',
     'camera-photos-no-location': 'camera_no_location',
     'camera-photos-not-on-apple-photos-map': 'photos_map_fix',
+    'photo-location-wrong-or-missing': 'photo_location_fix',
   };
   const topic = parts.join('_') || 'home';
   const slug = aliases[topic] || topic;
@@ -37,7 +38,7 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
   const zh = path.startsWith('/zh/');
   const title = plain(source.match(/<title>([\s\S]*?)<\/title>/)?.[1] || 'LensPin');
   const description = decode(source.match(/<meta name="description" content="([^"]*)"/)?.[1] || 'LensPin');
-  const imageAlt = 'LensPin: add location to camera photos on iPhone, iPad and Mac, with a coastal camera photo and the LensPin app icon';
+  const imageAlt = zh ? 'LensPin 品牌标识与地球背景' : 'LensPin brand name and app icon above the Earth';
   // Recreate these tags to avoid stale home titles and duplicate social metadata.
   source = source.replace(/[\t ]*<meta (?:property="og:(?:title|description|image(?::[^" ]+)?|site_name)"|name="twitter:[^"]+")[^>]*>\s*/g, '');
   const tags = {
@@ -70,6 +71,12 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
     return '';
   });
   if (isHome) {
+    if (!graph.some((node) => node['@type'] === 'WebPage')) graph.unshift({
+      '@type': 'WebPage', name: title, description, url: `${origin}${path}`, inLanguage: zh ? 'zh-Hans' : 'en',
+    });
+    if (!graph.some((node) => node['@type'] === 'BreadcrumbList')) graph.push({
+      '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'LensPin', item: `${origin}${path}` }],
+    });
     if (!graph.some((node) => node['@type'] === 'SoftwareApplication')) graph.push({
       '@type': 'SoftwareApplication', name: 'LensPin', applicationCategory: 'MultimediaApplication',
       operatingSystem: ['iOS 17+', 'iPadOS 17+', 'macOS 14+'], downloadUrl: appStoreUrl,
