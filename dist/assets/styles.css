@@ -1058,3 +1058,13 @@ blockquote p { font-size: 1.25rem; }
 html[lang^="zh"] main p { line-height: 1.8; }
 
 @media (min-width: 901px) { .hero h1 { font-size: clamp(3rem, 4.45vw, 4rem); } }
+
+/* Keep the home source introduction aligned with its card heading. */
+#match-example > .tool-head + p { margin: 0 0 16px; padding-inline: 20px; }
+@media (max-width: 560px) {
+  #match-example > .tool-head + p { padding-inline: 16px; }
+}
+@media (min-width: 901px) {
+  html[lang^="zh"] .hero h1 { font-size: clamp(2rem, 3.05vw, 2.75rem); line-height: 1.15; letter-spacing: -.04em; }
+  html[lang^="zh"] .hero-title-line { display: block; }
+}

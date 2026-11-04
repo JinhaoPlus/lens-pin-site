@@ -623,19 +623,19 @@
       "page": "/en/",
       "tag": "source",
       "attribute": "srcset",
-      "src": "/assets/lenspin-store-mac-03-review-evidence-en.avif",
+      "src": "/assets/lenspin-store-mac-01-add-locations-en.avif",
       "exists": true,
-      "source": "Mac_2.1_四语_2026-10-29_v2/en-US/03-review-evidence.png",
-      "source_sha256": "8ce354d6563b1085f856e2ba14ee9637efac95ae6cc59400b2a2e2b7058d2c8b"
+      "source": "Mac_2.1_四语_2026-10-29_v2/en-US/01-add-locations.png",
+      "source_sha256": "149c36bd3cb9ff06ae25b490d10c2d8a50bf0d1d0cd95eeb598dca0d145d282b"
     },
     {
       "page": "/en/",
       "tag": "img",
       "attribute": "src",
-      "src": "/assets/lenspin-store-mac-03-review-evidence-en.webp",
+      "src": "/assets/lenspin-store-mac-01-add-locations-en.webp",
       "exists": true,
-      "source": "Mac_2.1_四语_2026-10-29_v2/en-US/03-review-evidence.png",
-      "source_sha256": "8ce354d6563b1085f856e2ba14ee9637efac95ae6cc59400b2a2e2b7058d2c8b"
+      "source": "Mac_2.1_四语_2026-10-29_v2/en-US/01-add-locations.png",
+      "source_sha256": "149c36bd3cb9ff06ae25b490d10c2d8a50bf0d1d0cd95eeb598dca0d145d282b"
     },
     {
       "page": "/en/",
@@ -1280,19 +1280,19 @@
       "page": "/zh/how-it-works/",
       "tag": "source",
       "attribute": "srcset",
-      "src": "/assets/lenspin-store-mac-01-add-locations-zh.avif",
+      "src": "/assets/lenspin-store-mac-03-review-evidence-zh.avif",
       "exists": true,
-      "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/01-add-locations.png",
-      "source_sha256": "c6d70c712f64d08427a8ef4656043285ab020e5bdcae770c0a4a154db998fc10"
+      "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/03-review-evidence.png",
+      "source_sha256": "a55a4b788db49f9cbbefc608b9baa1403ca9e9b5f5d4cd38cb7d1dc162930e3c"
     },
     {
       "page": "/zh/how-it-works/",
       "tag": "img",
       "attribute": "src",
-      "src": "/assets/lenspin-store-mac-01-add-locations-zh.webp",
+      "src": "/assets/lenspin-store-mac-03-review-evidence-zh.webp",
       "exists": true,
-      "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/01-add-locations.png",
-      "source_sha256": "c6d70c712f64d08427a8ef4656043285ab020e5bdcae770c0a4a154db998fc10"
+      "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/03-review-evidence.png",
+      "source_sha256": "a55a4b788db49f9cbbefc608b9baa1403ca9e9b5f5d4cd38cb7d1dc162930e3c"
     },
     {
       "page": "/zh/how-it-works/",
@@ -1433,19 +1433,19 @@
       "page": "/zh/",
       "tag": "source",
       "attribute": "srcset",
-      "src": "/assets/lenspin-store-mac-03-review-evidence-zh.avif",
+      "src": "/assets/lenspin-store-mac-01-add-locations-zh.avif",
       "exists": true,
-      "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/03-review-evidence.png",
-      "source_sha256": "a55a4b788db49f9cbbefc608b9baa1403ca9e9b5f5d4cd38cb7d1dc162930e3c"
+      "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/01-add-locations.png",
+      "source_sha256": "c6d70c712f64d08427a8ef4656043285ab020e5bdcae770c0a4a154db998fc10"
     },
     {
       "page": "/zh/",
       "tag": "img",
       "attribute": "src",
-      "src": "/assets/lenspin-store-mac-03-review-evidence-zh.webp",
+      "src": "/assets/lenspin-store-mac-01-add-locations-zh.webp",
       "exists": true,
-      "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/03-review-evidence.png",
-      "source_sha256": "a55a4b788db49f9cbbefc608b9baa1403ca9e9b5f5d4cd38cb7d1dc162930e3c"
+      "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/01-add-locations.png",
+      "source_sha256": "c6d70c712f64d08427a8ef4656043285ab020e5bdcae770c0a4a154db998fc10"
     },
     {
       "page": "/zh/",
