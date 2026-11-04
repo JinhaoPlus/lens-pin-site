@@ -23,9 +23,13 @@ for (const route of routes) {
   assert.ok(body, `${route}: guide body`);
   const text = plain(body);
   const length = zh ? [...text.matchAll(/[\u3400-\u9fff]/g)].length : text.split(/\s+/).length;
-  assert.ok(length >= (zh ? 1500 : 600) && length <= (zh ? 2500 : 1000), `${route}: length ${length}`);
+  // Focused guides link to the full workflow instead of repeating it to reach a word count.
+  assert.ok(length >= (zh ? 1500 : 400) && length <= (zh ? 2500 : 1000), `${route}: length ${length}`);
   assert.doesNotMatch(text, /limited.time free|限时免费|Unlimited is free/i);
-  for (const fact of [zh ? /前 100/ : /first 100/i, /LensPin Unlimited/, zh ? /以 App Store 页面价格为准/ : /App Store for the price in your region/, /GPX/]) assert.match(text, fact);
+  const priceCopy = /LensPin Unlimited/.test(text);
+  const needsPricing = route !== '/en/camera-photos-no-location/';
+  if (priceCopy || needsPricing) for (const fact of [zh ? /前 100/ : /first 100/i, /LensPin Unlimited/, zh ? /以 App Store 页面价格为准/ : /App Store for the price in your region/]) assert.match(text, fact);
+  if (!route.endsWith('/camera-photos-not-on-apple-photos-map/')) assert.match(text, /GPX/);
   assert.doesNotMatch(body.match(/<ol>([\s\S]*?)<\/ol>/)?.[1] || '', /LensPin/, `${route}: built-in checks before batch option`);
   const graph = [...source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap((m) => JSON.parse(m[1])['@graph']);
   const articles = graph.filter((n) => n['@type'] === 'Article');

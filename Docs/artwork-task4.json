@@ -24,8 +24,9 @@
     "asset": "lenspin-app-icon",
     "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
     "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6",
-    "width": 256,
-    "height": 256,
-    "format": "png"
+    "width": 128,
+    "height": 128,
+    "format": "png",
+    "colors": 128
   }
 ]

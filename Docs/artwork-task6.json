@@ -1,0 +1,20 @@
+[
+  {
+    "asset": "lenspin-social-en",
+    "source": "Mac_2.1_四语_2026-10-29_v2/en-US/01-add-locations.png",
+    "source_sha256": "149c36bd3cb9ff06ae25b490d10c2d8a50bf0d1d0cd95eeb598dca0d145d282b",
+    "width": 1200,
+    "height": 630,
+    "format": "jpeg",
+    "layout": "contain"
+  },
+  {
+    "asset": "lenspin-social-zh",
+    "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/01-add-locations.png",
+    "source_sha256": "c6d70c712f64d08427a8ef4656043285ab020e5bdcae770c0a4a154db998fc10",
+    "width": 1200,
+    "height": 630,
+    "format": "jpeg",
+    "layout": "contain"
+  }
+]

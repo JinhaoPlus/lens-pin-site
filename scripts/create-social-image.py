@@ -1,4 +1,4 @@
-"""Rebuild the social card from the approved v3 brand artwork (requires Pillow)."""
+"""Rebuild localized product social cards from approved Mac store artwork (requires Pillow)."""
 from pathlib import Path
 import subprocess
 import sys

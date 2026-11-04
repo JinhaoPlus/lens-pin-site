@@ -234,7 +234,7 @@ for (const file of htmlFiles) {
   }
   if (!isNotFoundPage) {
     if (!siteLocales.some((locale) => routeFor(file).startsWith(`/${locale.code}/`))) errors.push(label + ": unregistered language URL");
-    if ((source.match(/data-language-picker/g) || []).length !== 1) errors.push(label + ": expected one standalone language picker");
+    if ((source.match(/data-language-picker|class="home-language-switch"/g) || []).length !== 1) errors.push(label + ": expected one standalone language picker");
   }
 }
 
@@ -271,7 +271,7 @@ if (!isCheckOnly) {
   if (siteOrigin) {
     const urls = pages.map((path) => {
       const alternates = alternatesFor(path);
-      return `  <url><loc>${siteOrigin}${path}</loc>${alternates.map(([language, route]) => `<xhtml:link rel="alternate" hreflang="${language}" href="${siteOrigin}${route}"/>`).join('')}</url>`;
+      return `  <url><loc>${siteOrigin}${path}</loc><lastmod>2026-11-04</lastmod>${alternates.map(([language, route]) => `<xhtml:link rel="alternate" hreflang="${language}" href="${siteOrigin}${route}"/>`).join('')}</url>`;
     }).join("\n");
     writeFileSync(new URL("sitemap.xml", dist), "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">\n" + urls + "\n</urlset>\n");
     writeFileSync(new URL("robots.txt", dist), "User-agent: *\nAllow: /\n\nSitemap: " + siteOrigin + "/sitemap.xml\n");

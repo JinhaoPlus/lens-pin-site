@@ -1,0 +1,903 @@
+{
+  "pages": [
+    {
+      "route": "/404.html",
+      "title": "Page Not Found | LensPin",
+      "titleLength": 24,
+      "description": "The LensPin page you requested could not be found.",
+      "descriptionLength": 50,
+      "h1": [
+        "This page is not on the map."
+      ],
+      "h2": []
+    },
+    {
+      "route": "/en/add-location-to-camera-photos-apple-photos/",
+      "title": "How to Add GPS to Camera Photos in Apple Photos",
+      "titleLength": 47,
+      "description": "Choose a known place, geotagged reference photos, a timed GPX track or an Apple Health workout route to locate imported camera photos.",
+      "descriptionLength": 134,
+      "h1": [
+        "Choose How to Add GPS to Camera Photos in Apple Photos"
+      ],
+      "h2": [
+        "Start with one photo, not the whole trip",
+        "Add a known place with the built-in tools",
+        "Copy a location when the photos share one spot",
+        "Check time zones and the camera clock",
+        "Batch-fill a trip using same-trip iPhone photos",
+        "Check the saved result and any exported copy",
+        "Related guides",
+        "Get LensPin"
+      ]
+    },
+    {
+      "route": "/en/add-location-to-photos-iphone/",
+      "title": "How to Add Location to Photos on iPhone | LensPin",
+      "titleLength": 49,
+      "description": "Add or change a photo location in Apple Photos, set one place for a batch, or match camera photos to different points along a trip.",
+      "descriptionLength": 131,
+      "h1": [
+        "How to add or change a photo location on iPhone."
+      ],
+      "h2": [
+        "Add or change the location for one photo.",
+        "Set one known place for several photos.",
+        "Match each camera photo along a trip.",
+        "Match each photo to the trip.",
+        "Adding photo locations on iPhone",
+        "Check the workflow before a large batch."
+      ]
+    },
+    {
+      "route": "/en/add-location-to-photos-mac/",
+      "title": "Add Locations in Photos on Mac: Info & Smart Albums",
+      "titleLength": 51,
+      "description": "Use the Mac Photos Info window to assign or copy a place. Find untagged photos with a Smart Album, then choose a separate workflow for timed trips.",
+      "descriptionLength": 147,
+      "h1": [
+        "Add Locations in Photos on Mac with Info and Smart Albums"
+      ],
+      "h2": [
+        "Add a location with the Photos Info window",
+        "Find missing GPS with a Smart Album",
+        "Choose a method for each group",
+        "Check capture times before matching a trip",
+        "Use LensPin for Mac as the batch option",
+        "Decide whether you also need a GPS-bearing file",
+        "Related guides",
+        "Get LensPin"
+      ]
+    },
+    {
+      "route": "/en/camera-photos-no-location/",
+      "title": "Why Do Camera Photos Have No GPS? Check the Original",
+      "titleLength": 52,
+      "description": "Compare the camera original with the Apple Photos copy to learn whether GPS was never recorded or lost during transfer. Check your model before the next trip.",
+      "descriptionLength": 158,
+      "h1": [
+        "Why Do Camera Photos Have No GPS Location?"
+      ],
+      "h2": [
+        "Check the original and the imported photo",
+        "Why a phone GPS link may not have helped",
+        "Sony photos with no location",
+        "Fujifilm photos with no location",
+        "Canon photos with no location",
+        "DJI Osmo photos with no location",
+        "Ricoh photos with no location",
+        "Add locations afterwards, starting with known places",
+        "Related guides",
+        "Get LensPin"
+      ]
+    },
+    {
+      "route": "/en/camera-photos-not-on-apple-photos-map/",
+      "title": "Photo Has a Location but Is Missing from the Photos Map?",
+      "titleLength": 56,
+      "description": "Photo Info shows the right location but the Apple Photos map looks incomplete? Check map grouping, library selection, duplicate copies and device sync.",
+      "descriptionLength": 151,
+      "h1": [
+        "Why Is a Located Photo Missing from the Apple Photos Map?"
+      ],
+      "h2": [
+        "First check whether the photo has a location",
+        "If the photo has no location",
+        "If the pin is in the wrong place",
+        "If Info is correct but the map still looks incomplete",
+        "Batch-fill missing locations after diagnosis",
+        "Verify the library and export as separate results",
+        "Related guides",
+        "Get LensPin"
+      ]
+    },
+    {
+      "route": "/en/export-gpx-from-garmin-coros-suunto/",
+      "title": "Export GPX from Garmin, COROS, Suunto & Apple Watch | LensPin",
+      "titleLength": 61,
+      "description": "Export timed GPX activities from Garmin, COROS or Suunto. For Apple Watch workouts, use Apple Health routes directly in LensPin without exporting.",
+      "descriptionLength": 146,
+      "h1": [
+        "Export the recorded activity as GPX."
+      ],
+      "h2": [
+        "Activity and route are not the same file.",
+        "Export GPX from the activity page.",
+        "Export directly from the activity summary.",
+        "Export the training, not its saved route.",
+        "Use an app that exposes the workout as GPX.",
+        "Keep the original export intact."
+      ]
+    },
+    {
+      "route": "/en/geotag-dslr-photos-with-iphone-photos/",
+      "title": "Use iPhone Photos to Geotag DSLR Photos | LensPin",
+      "titleLength": 49,
+      "description": "No GPX track? Use geotagged iPhone photos taken around the same time as location clues for imported DSLR and mirrorless photos.",
+      "descriptionLength": 127,
+      "h1": [
+        "No GPX? Use nearby iPhone photos as location clues."
+      ],
+      "h2": [
+        "Build a location timeline from photos you already took.",
+        "Close in time, close in place, visible on both sides.",
+        "LensPin does not draw a straight line between distant photos.",
+        "A one-sided clue can help, but it needs more caution.",
+        "See what nearby iPhone photos can—and cannot—support.",
+        "Start with one trip and check the result."
+      ]
+    },
+    {
+      "route": "/en/geotag-photos-gpx-mac/",
+      "title": "Geotag Photos with GPX on Mac: Track and Clock Checks",
+      "titleLength": 53,
+      "description": "Match camera photos to a timed GPX track on Mac. Verify route coverage, UTC and camera clock offsets, then review each suggested location before saving.",
+      "descriptionLength": 152,
+      "h1": [
+        "How to Geotag Photos with a Timed GPX Track on Mac"
+      ],
+      "h2": [
+        "Check that you have the right kind of GPX",
+        "Understand what matching by time can establish",
+        "Resolve the camera clock offset first",
+        "Prepare the photos in Apple Photos on Mac",
+        "Review a GPX batch with LensPin for Mac",
+        "Check exports separately from the library",
+        "Related guides",
+        "Get LensPin"
+      ]
+    },
+    {
+      "route": "/en/gpx-photo-geotagging-iphone/",
+      "title": "Geotag Photos with a GPX Track on iPhone or iPad | LensPin",
+      "titleLength": 58,
+      "description": "Import a timestamped GPX track, correct the camera clock, review every suggested point, and geotag camera photos already in Apple Photos.",
+      "descriptionLength": 137,
+      "h1": [
+        "Geotag camera photos with a GPX track—without a computer."
+      ],
+      "h2": [
+        "A route becomes a location timeline.",
+        "Record the outing or export it from a GPS watch.",
+        "Use a timestamped track, not just a line on a map.",
+        "Estimate the position between recorded points—never across a gap.",
+        "Why an entire batch can land in the wrong place.",
+        "Let an iPhone photo check the track.",
+        "Match it to the camera timeline."
+      ]
+    },
+    {
+      "route": "/en/guides/",
+      "title": "Photo Location Guides for iPhone and Mac | LensPin",
+      "titleLength": 50,
+      "description": "Practical guides to adding photo locations, checking missing camera GPS, matching GPX tracks and fixing Apple Photos map problems.",
+      "descriptionLength": 130,
+      "h1": [
+        "Photo Location Guides for iPhone and Mac"
+      ],
+      "h2": [
+        "Choose the problem you want to solve",
+        "More ways to get started",
+        "Get LensPin"
+      ]
+    },
+    {
+      "route": "/en/how-it-works/",
+      "title": "How to add location to DSLR photos in Apple Photos | LensPin",
+      "titleLength": 60,
+      "description": "Add location to DSLR photos using iPhone or GPS camera photos, GPX, or Apple Watch workout routes. Check times, review suggestions and save to Apple Photos.",
+      "descriptionLength": 156,
+      "h1": [
+        "How to add location to DSLR photos in Apple Photos"
+      ],
+      "h2": [
+        "From a trip to saved locations",
+        "Four sources, one matching timeline",
+        "Understand the match categories",
+        "Saving and exporting",
+        "How it works on iPad"
+      ]
+    },
+    {
+      "route": "/en/how-to-get-gpx-file/",
+      "title": "How to Get a GPX File for Photo Geotagging | LensPin",
+      "titleLength": 52,
+      "description": "Find a timed GPX track from a phone app or GPS watch. Apple Watch workouts can supply routes directly through Apple Health, with no export.",
+      "descriptionLength": 139,
+      "h1": [
+        "How to get a GPX file with the timestamps your photos need."
+      ],
+      "h2": [
+        "Use a recording, not a route plan.",
+        "Four practical ways to create the file.",
+        "Set up a continuous, believable timeline.",
+        "Confirm that you exported the right thing.",
+        "Follow the export path that matches your setup."
+      ]
+    },
+    {
+      "route": "/en/import-camera-photos-to-iphone/",
+      "title": "How to Transfer Digital Camera Photos to iPhone | LensPin",
+      "titleLength": 57,
+      "description": "Import digital camera or SD card photos to iPhone with Apple Photos, check whether GPS came with them, and add missing locations afterward.",
+      "descriptionLength": 139,
+      "h1": [
+        "How to transfer digital camera photos to iPhone"
+      ],
+      "h2": [
+        "Three ways to move the original photos.",
+        "Your photos made it to the iPhone. Their locations may not have.",
+        "Check whether the photo already has a location.",
+        "Use time to suggest a different place for each photo.",
+        "Review the trip before saving anything.",
+        "Camera photos on iPhone"
+      ]
+    },
+    {
+      "route": "/en/",
+      "title": "LensPin: Add GPS to DSLR & Mirrorless Photos on iPhone & Mac",
+      "titleLength": 60,
+      "description": "Add GPS to Sony, Fujifilm, Canon and other camera photos in Apple Photos using iPhone photos, GPX or Apple Watch workouts. First 100 photos/videos free.",
+      "descriptionLength": 152,
+      "h1": [
+        "LensPin: Add GPS to DSLR & mirrorless photos on iPhone, iPad & Mac."
+      ],
+      "h2": [
+        "See which photos are a sure match — on Mac too.",
+        "Geotag DSLR photos with the clues you already have.",
+        "Revisit the trip, then share a copy with GPS.",
+        "From a LensPin user",
+        "Free to start. No subscription.",
+        "LensPin FAQ",
+        "Photo location guides"
+      ]
+    },
+    {
+      "route": "/en/privacy/",
+      "title": "Privacy | LensPin",
+      "titleLength": 17,
+      "description": "How LensPin handles photos, GPX tracks, optional workout routes, Apple Photos access, time-zone lookup, optional app usage statistics, and website data.",
+      "descriptionLength": 152,
+      "h1": [
+        "Your photos and tracks stay where the work happens."
+      ],
+      "h2": [
+        "Photo library access",
+        "Photos and metadata",
+        "GPX files",
+        "Optional workout routes (optional, read-only)",
+        "Automatic location time zone",
+        "iCloud Photos",
+        "saving locations to Apple Photos",
+        "Optional JPG export",
+        "Optional app usage statistics",
+        "This website",
+        "Changes and questions",
+        "Privacy questions"
+      ]
+    },
+    {
+      "route": "/en/record-gpx-on-iphone-apple-watch/",
+      "title": "Record a GPX Track on iPhone or Apple Watch | LensPin",
+      "titleLength": 53,
+      "description": "Record a timed GPX track with a phone or watch app. Already have an Apple Watch workout? LensPin can read its route from Apple Health without export.",
+      "descriptionLength": 149,
+      "h1": [
+        "Record a GPX track on iPhone or Apple Watch."
+      ],
+      "h2": [
+        "Choose for export convenience, not workout metrics.",
+        "Optional: export a GPX file.",
+        "Keep the track closer to the device.",
+        "Three dependable export paths.",
+        "Small habits prevent large gaps."
+      ]
+    },
+    {
+      "route": "/en/support/gpx-requirements/",
+      "title": "GPX File Requirements & Troubleshooting | LensPin Support",
+      "titleLength": 57,
+      "description": "Prepare a GPX 1.1 track for LensPin: timestamped trkpt entries, valid coordinates, segment boundaries, point gaps, and common import errors.",
+      "descriptionLength": 140,
+      "h1": [
+        "A usable track needs time, coordinates, and continuity."
+      ],
+      "h2": [
+        "Accepted input",
+        "What does not work",
+        "Segment boundaries matter",
+        "Maximum point interval",
+        "Common messages",
+        "Before changing the file",
+        "Contact LensPin"
+      ]
+    },
+    {
+      "route": "/en/support/icloud-photos/",
+      "title": "LensPin with iCloud Photos | Downloads & Background Work",
+      "titleLength": 56,
+      "description": "Understand how LensPin handles iCloud-only originals, downloads, progress, storage, and background limits on iOS 17 through iOS 26 and later.",
+      "descriptionLength": 141,
+      "h1": [
+        "When the photo is in your library—but not yet on the device."
+      ],
+      "h2": [
+        "What may need to download",
+        "What progress means",
+        "Start with one trip",
+        "Keep enough local space",
+        "iPhone background behavior by iOS version",
+        "If a scan appears stuck",
+        "Privacy boundary",
+        "Contact LensPin"
+      ]
+    },
+    {
+      "route": "/en/support/",
+      "title": "LensPin Support | Photos, GPX, iCloud and Saving Locations",
+      "titleLength": 58,
+      "description": "Find LensPin help for GPX files, iCloud Photos, saving locations to Apple Photos, supported formats, camera clock offset, and review results.",
+      "descriptionLength": 141,
+      "h1": [
+        "Find the reason, then the safest next step."
+      ],
+      "h2": [
+        "Start here.",
+        "Keep the clues that explains the run.",
+        "Contact LensPin"
+      ]
+    },
+    {
+      "route": "/en/support/location-writeback/",
+      "title": "Apple Photos Location vs EXIF GPS | LensPin Support",
+      "titleLength": 51,
+      "description": "See how LensPin updates Apple Photos library locations without modifying the original file or its EXIF GPS, and how to verify each result.",
+      "descriptionLength": 138,
+      "h1": [
+        "Photos location and EXIF GPS are related—but not the same."
+      ],
+      "h2": [
+        "Apple Photos library location",
+        "Original files stay unchanged when you save",
+        "Writeback outcome",
+        "Why a photo is skipped",
+        "Completion statuses",
+        "LensPin album",
+        "Export a photo copy with GPS",
+        "How to verify",
+        "Contact LensPin"
+      ]
+    },
+    {
+      "route": "/en/supported-formats/",
+      "title": "Photos, Videos, JPG Export & Limits | LensPin",
+      "titleLength": 45,
+      "description": "Check LensPin support for JPEG, HEIC, DNG and RAW photos, timestamped GPX 1.1 tracks, system requirements, iCloud assets, video, and Photos saving locations.",
+      "descriptionLength": 157,
+      "h1": [
+        "Supported formats and honest limits."
+      ],
+      "h2": [
+        "What LensPin can read and what it can change.",
+        "LensPin filters before it suggests.",
+        "One location for the start of recording.",
+        "Timestamped track points, not just a line.",
+        "System and iCloud considerations."
+      ]
+    },
+    {
+      "route": "/en/user-feedback/",
+      "title": "LensPin User Feedback and Practical Limits",
+      "titleLength": 42,
+      "description": "Read public LensPin user reports about camera-photo geotagging, matching controls, iCloud download speed, and JPG export, with links and clear limitations.",
+      "descriptionLength": 155,
+      "h1": [
+        "What people report after trying LensPin."
+      ],
+      "h2": [
+        "About 2,000 camera photos geotagged.",
+        "Detailed review can come with download costs.",
+        "Library locations and portable file GPS are different."
+      ]
+    },
+    {
+      "route": "/zh/add-location-to-photos-iphone/",
+      "title": "照片添加位置信息：iPhone 手动调整与相机照片批量补定位 | LensPin",
+      "titleLength": 40,
+      "description": "先用 iPhone 照片自带的“调整位置”添加已知地点，再用同期定位照片或 GPX 为相机照片批量补位置，检查时区、相机时钟和保存结果。",
+      "descriptionLength": 68,
+      "h1": [
+        "照片添加位置信息：iPhone 手动调整与相机照片批量补定位"
+      ],
+      "h2": [
+        "先给一张照片添加位置信息",
+        "多张照片都在同一个地方，怎么一起调整？",
+        "相机照片为什么需要另外补定位？",
+        "批量补位置前，先检查时间和依据",
+        "用 LensPin 批量处理一趟旅行",
+        "检查图库位置，也检查分享出去的副本",
+        "相关教程",
+        "在 App Store 查看 LensPin"
+      ]
+    },
+    {
+      "route": "/zh/camera-photos-not-on-apple-photos-map/",
+      "title": "相机照片不在 Apple Photos 地图上？先检查位置与视图｜LensPin",
+      "titleLength": 40,
+      "description": "相机照片已导入却不在地图上？先看信息里的地点，分清没有 GPS、图钉错误和地图视图问题，再检查副本、同步与保存结果。",
+      "descriptionLength": 58,
+      "h1": [
+        "相机照片不在 Apple Photos 地图上？先检查位置与视图"
+      ],
+      "h2": [
+        "先检查照片本身是否有位置",
+        "照片没有位置时，先找已有依据",
+        "图钉落错地方时，区分已有位置和未保存建议",
+        "信息正确，但地图看起来不完整",
+        "确认一批照片缺位置后，再批量匹配",
+        "分别验证图库位置和导出文件",
+        "相关教程",
+        "在 App Store 查看 LensPin"
+      ]
+    },
+    {
+      "route": "/zh/export-gpx-from-garmin-coros-suunto/",
+      "title": "如何从 Garmin、COROS、Suunto 导出 GPX | LensPin",
+      "titleLength": 40,
+      "description": "从 GPS 手表的已记录活动导出带时间的 GPX，并转到 iPhone。避免导出只有形状、没有时间的规划路线。",
+      "descriptionLength": 55,
+      "h1": [
+        "从手表导出实际记录的那次活动。"
+      ],
+      "h2": [
+        "先区分活动和路线",
+        "Garmin Connect",
+        "COROS App",
+        "Suunto App",
+        "使用 Apple Watch？",
+        "导入前保留完整轨迹"
+      ]
+    },
+    {
+      "route": "/zh/geotag-dslr-photos-with-iphone-photos/",
+      "title": "没录 GPX，如何用 iPhone 照片给相机照片补位置 | LensPin",
+      "titleLength": 38,
+      "description": "用同次旅行带位置的 iPhone 照片，按拍摄时间为 Apple Photos 中的相机照片批量生成位置建议，无需预先录制 GPX。",
+      "descriptionLength": 66,
+      "h1": [
+        "没录 GPX？用同期 iPhone 照片补位置。"
+      ],
+      "h2": [
+        "先看是否适合你",
+        "前后照片能证明什么？",
+        "为什么有些照片没有建议？",
+        "先验证一次旅行，再处理更大的图库"
+      ]
+    },
+    {
+      "route": "/zh/gpx-photo-geotagging-iphone/",
+      "title": "如何在 iPhone 上用 GPX 给相机照片批量补位置 | LensPin",
+      "titleLength": 38,
+      "description": "导入带时间戳的 GPX 轨迹，校准相机时钟，在 iPhone 或 iPad 上审核并保存 Apple Photos 中相机照片的位置。",
+      "descriptionLength": 67,
+      "h1": [
+        "在 iPhone 上，把相机照片匹配到 GPX 轨迹。"
+      ],
+      "h2": [
+        "从 GPX 到照片位置",
+        "必须是记录过的活动，不能只有一条路线",
+        "轨迹断了，就不能跨过去推算",
+        "整批位置都不对时，先检查时钟",
+        "结合同期 iPhone 照片复核",
+        "保存和数据边界"
+      ]
+    },
+    {
+      "route": "/zh/guides/",
+      "title": "照片添加位置与地图排查教程 | LensPin",
+      "titleLength": 23,
+      "description": "手动添加位置信息、相机照片导入、批量补定位和地图问题排查。",
+      "descriptionLength": 29,
+      "h1": [
+        "照片添加位置与地图排查教程"
+      ],
+      "h2": [
+        "按问题选择教程",
+        "更多操作方法",
+        "在 App Store 查看 LensPin"
+      ]
+    },
+    {
+      "route": "/zh/how-it-works/",
+      "title": "如何给 Apple Photos 中的单反、微单照片补定位 | LensPin",
+      "titleLength": 39,
+      "description": "参考 iPhone 或 GPS 相机照片、GPX、Apple Watch 训练路线，为单反微单照片补定位。检查时间、审核后保存到照片图库。",
+      "descriptionLength": 69,
+      "h1": [
+        "如何给 Apple Photos 中的单反、微单照片补定位"
+      ],
+      "h2": [
+        "从旅行照片到保存位置",
+        "四类来源，组成匹配时间线",
+        "看懂匹配分类",
+        "保存和导出",
+        "在 iPad 上查看工作原理",
+        "在 Mac 上审核位置依据"
+      ]
+    },
+    {
+      "route": "/zh/how-to-get-gpx-file/",
+      "title": "如何获取可用于照片定位的 GPX 文件 | LensPin",
+      "titleLength": 29,
+      "description": "查找手机或 GPS 手表记录的带时间 GPX。Apple Watch 体能训练路线可由 LensPin 从 Apple 健康直接读取，无需导出。",
+      "descriptionLength": 72,
+      "h1": [
+        "照片定位需要的 GPX，要带时间。"
+      ],
+      "h2": [
+        "实录轨迹与规划路线的区别",
+        "从你已经使用的设备开始",
+        "第一次拍照之前",
+        "导出后的快速检查"
+      ]
+    },
+    {
+      "route": "/zh/import-camera-photos-to-iphone/",
+      "title": "相机照片导入 iPhone 没有位置：原因、导入与补定位 | LensPin",
+      "titleLength": 38,
+      "description": "读卡器、线缆或厂商 App 导入成功却没有定位？先检查原文件的 GPS，再用已知地点、同期 iPhone 照片或 GPX 为相机照片补位置。",
+      "descriptionLength": 70,
+      "h1": [
+        "相机照片导入 iPhone 没有位置：原因、导入与补定位"
+      ],
+      "h2": [
+        "先比较一张原片和导入后的照片",
+        "选择适合设备的导入方式",
+        "为什么相机照片没有定位？",
+        "只缺几张，先用 iPhone 自带方法",
+        "有同期 iPhone 照片或 GPX，怎么批量补？",
+        "最后确认你需要哪一种结果",
+        "相关教程",
+        "在 App Store 查看 LensPin"
+      ]
+    },
+    {
+      "route": "/zh/",
+      "title": "LensPin：单反、微单照片补 GPS 定位，支持 iPhone 和 Mac",
+      "titleLength": 39,
+      "description": "为照片图库中的单反、微单照片补定位。参考 iPhone 或 GPS 相机照片、GPX、Apple Watch 训练路线，前100张照片或视频免费。",
+      "descriptionLength": 73,
+      "h1": [
+        "LensPin：单反、微单 照片补定位，支持 iPhone、iPad 和 Mac。"
+      ],
+      "h2": [
+        "在原生 Mac App 上，看清哪些照片匹配更可靠。",
+        "用你已有的线索，找回拍摄地点。",
+        "重温旅程，也能导出带 GPS 的照片副本。",
+        "用户原话",
+        "免费开始，无订阅。",
+        "常见问题",
+        "照片添加地理位置教程"
+      ]
+    },
+    {
+      "route": "/zh/photo-location-wrong-or-missing/",
+      "title": "照片定位不准或不见了：权限、时区和相机时钟怎么排查 | LensPin",
+      "titleLength": 35,
+      "description": "先分清照片没有位置、位置错误还是地图没显示，再检查定位权限、传输副本、时区与相机时钟，选择合适的修正方法。",
+      "descriptionLength": 53,
+      "h1": [
+        "照片定位不准或不见了：权限、时区和相机时钟怎么排查"
+      ],
+      "h2": [
+        "先看照片本身，不要先改所有设置",
+        "新拍的 iPhone 照片没有位置：检查定位权限",
+        "导入或分享后位置不见：检查是否换了副本",
+        "位置建议偏到别处：检查时区和相机时钟",
+        "已有位置错误，先在系统照片里调整",
+        "一批相机照片缺位置，再考虑批量匹配",
+        "图库位置和文件中的 GPS 要分别验证",
+        "相关教程",
+        "在 App Store 查看 LensPin"
+      ]
+    },
+    {
+      "route": "/zh/privacy/",
+      "title": "LensPin 隐私政策 | LensPin",
+      "titleLength": 22,
+      "description": "了解 LensPin 如何处理照片、GPX、可选训练路线、iCloud 下载、Apple 时区查询、可关闭的使用统计及网站数据。",
+      "descriptionLength": 64,
+      "h1": [
+        "匹配在设备上进行，网络使用有明确边界。"
+      ],
+      "h2": [
+        "照片图库权限",
+        "照片、视频与元数据",
+        "GPX 文件",
+        "可选训练路线（可选，只读）",
+        "自动位置时区",
+        "iCloud 照片",
+        "图库位置保存与可选 JPG 导出",
+        "可关闭的 App 使用统计",
+        "本网站",
+        "更新与联系",
+        "隐私问题"
+      ]
+    },
+    {
+      "route": "/zh/record-gpx-on-iphone-apple-watch/",
+      "title": "如何用 iPhone 或 Apple Watch 录制 GPX 轨迹 | LensPin",
+      "titleLength": 44,
+      "description": "了解 Strava、OsmAnd、Gaia GPS、Guru Maps 和 WorkOutDoors 的轨迹录制与 GPX 导出方法。",
+      "descriptionLength": 67,
+      "h1": [
+        "用 iPhone 或 Apple Watch 记录这次出行。"
+      ],
+      "h2": [
+        "iPhone 上的常见选择",
+        "以 Strava 为例",
+        "Apple Watch 的三条文件路径",
+        "Apple 健康的全部导出不是 GPX",
+        "文件准备好以后"
+      ]
+    },
+    {
+      "route": "/zh/support/gpx-requirements/",
+      "title": "LensPin 的 GPX 文件要求与导入排查 | LensPin",
+      "titleLength": 33,
+      "description": "GPX 1.1 需要带有效坐标和时间的轨迹点。了解无时间、分段、点间隔与格式错误的排查方法。",
+      "descriptionLength": 46,
+      "h1": [
+        "一条轨迹，必须说明何时经过哪里。"
+      ],
+      "h2": [
+        "可用文件应具备什么？",
+        "为什么有轨迹线却没有建议？",
+        "常见提示与排查",
+        "改文件之前，先检查相机时间",
+        "联系 LensPin"
+      ]
+    },
+    {
+      "route": "/zh/support/icloud-photos/",
+      "title": "LensPin 扫描 iCloud 照片为什么需要下载 | LensPin",
+      "titleLength": 37,
+      "description": "了解 iCloud 原件下载、扫描等待时间、本地存储与 iOS 后台规则。先用一次旅行检查，再扩大照片批量。",
+      "descriptionLength": 54,
+      "h1": [
+        "照片在图库里，原件可能还在 iCloud。"
+      ],
+      "h2": [
+        "可见缩略图，不代表原件已在本机",
+        "先选一次旅行，控制等待与存储成本",
+        "iPhone 上不同 iOS 的后台行为",
+        "如果扫描看起来停住了",
+        "联系 LensPin"
+      ]
+    },
+    {
+      "route": "/zh/support/",
+      "title": "LensPin 使用帮助与常见问题 | LensPin",
+      "titleLength": 27,
+      "description": "查找 LensPin 的 GPX 要求、iCloud 下载、图库保存、JPG 导出、支持格式与联系方式。",
+      "descriptionLength": 52,
+      "h1": [
+        "从你遇到的这一步开始。"
+      ],
+      "h2": [
+        "准备素材和位置依据",
+        "扫描、保存和文件导出",
+        "位置不合理或没有建议？",
+        "需要联系开发者",
+        "联系 LensPin"
+      ]
+    },
+    {
+      "route": "/zh/support/location-writeback/",
+      "title": "照片图库位置与 JPG GPS 导出有什么区别 | LensPin",
+      "titleLength": 33,
+      "description": "LensPin 保存更新 Apple Photos 图库位置，原件不变。需要带 GPS 的照片文件时，另行导出 JPG 并开启包含位置。",
+      "descriptionLength": 68,
+      "h1": [
+        "图库位置和文件里的 GPS，是两件相关的事。"
+      ],
+      "h2": [
+        "保存完成后，位置在哪里？",
+        "完成报告如何读？",
+        "导出带 GPS 的照片副本",
+        "为什么其他导出方式不一定带位置？",
+        "联系 LensPin"
+      ]
+    },
+    {
+      "route": "/zh/supported-formats/",
+      "title": "LensPin 支持的格式、视频和导出限制 | LensPin",
+      "titleLength": 31,
+      "description": "了解 JPEG、HEIC、RAW、视频与 GPX 的支持条件，以及 Apple Photos 图库位置和带 GPS 的 JPG 副本导出边界。",
+      "descriptionLength": 71,
+      "h1": [
+        "能读取什么，能修改什么。"
+      ],
+      "h2": [
+        "格式和操作范围",
+        "哪些素材会成为候选？",
+        "视频代表起拍位置",
+        "系统与 iCloud"
+      ]
+    },
+    {
+      "route": "/zh/user-feedback/",
+      "title": "LensPin 真实用户反馈与使用限制 | LensPin",
+      "titleLength": 29,
+      "description": "阅读有原始链接的 Reddit 用户反馈：约 2,000 张照片的使用报告、匹配控制、iCloud 下载成本和 JPG 导出限制。",
+      "descriptionLength": 65,
+      "h1": [
+        "用户试用后，具体说了什么。"
+      ],
+      "h2": [
+        "约 2,000 张相机照片的使用报告",
+        "详细控制有价值，大批量下载也有成本",
+        "图库位置不能等同于原文件 GPS",
+        "用户报告和开发者演示，分别能说明什么？"
+      ]
+    }
+  ],
+  "jsonLdBlocksParsed": 41,
+  "externalLinks": [
+    {
+      "url": "https://help.gaiagps.com/hc/en-us/articles/9067661557399-How-to-Use-Gaia-GPS",
+      "result": "403 https://help.gaiagps.com/hc/en-us/articles/9067661557399-How-to-Use-Gaia-GPS 0.994481",
+      "error": "",
+      "cloudflareChallenge": true,
+      "guideContent": false
+    },
+    {
+      "url": "https://help.gaiagps.com/hc/en-us/articles/115003639728-Export-Data-as-GPX-or-KML-from-the-iOS-app",
+      "result": "403 https://help.gaiagps.com/hc/en-us/articles/115003639728-Export-Data-as-GPX-or-KML-from-the-iOS-app 0.998361",
+      "error": "",
+      "cloudflareChallenge": true,
+      "guideContent": false
+    },
+    {
+      "url": "https://support.coros.com/hc/en-us/articles/15284799576980-Activities-Page-Activity-Summary",
+      "result": "403 https://support.coros.com/hc/en-us/articles/15284799576980-Activities-Page-Activity-Summary 0.996313",
+      "error": "",
+      "cloudflareChallenge": true,
+      "guideContent": false
+    },
+    {
+      "url": "https://www.workoutdoors.net/UserGuide.html",
+      "result": "000 https://www.workoutdoors.net/UserGuide.html 1.039821",
+      "error": "curl: (35) LibreSSL/3.3.6: error:1404B438:SSL routines:ST_CONNECT:tlsv1 alert internal error\n",
+      "cloudflareChallenge": false,
+      "guideContent": false
+    },
+    {
+      "url": "http://www.workoutdoors.net/UserGuide.html",
+      "result": "200 http://www.workoutdoors.net/UserGuide.html 1.309614",
+      "error": "",
+      "cloudflareChallenge": false,
+      "guideContent": true
+    }
+  ],
+  "redirects": [
+    {
+      "path": "/",
+      "acceptLanguage": "(absent)",
+      "status": 302,
+      "target": "/en/",
+      "vary": "Accept-Language",
+      "finalStatus": 200
+    },
+    {
+      "path": "/en",
+      "acceptLanguage": "(absent)",
+      "status": 301,
+      "target": "/en/",
+      "vary": null,
+      "finalStatus": 200
+    },
+    {
+      "path": "/zh",
+      "acceptLanguage": "(absent)",
+      "status": 301,
+      "target": "/zh/",
+      "vary": null,
+      "finalStatus": 200
+    },
+    {
+      "path": "/",
+      "acceptLanguage": "zh-CN,zh;q=0.9,en;q=0.8",
+      "status": 302,
+      "target": "/zh/",
+      "vary": "Accept-Language",
+      "finalStatus": 200
+    },
+    {
+      "path": "/en",
+      "acceptLanguage": "zh-CN,zh;q=0.9,en;q=0.8",
+      "status": 301,
+      "target": "/en/",
+      "vary": null,
+      "finalStatus": 200
+    },
+    {
+      "path": "/zh",
+      "acceptLanguage": "zh-CN,zh;q=0.9,en;q=0.8",
+      "status": 301,
+      "target": "/zh/",
+      "vary": null,
+      "finalStatus": 200
+    },
+    {
+      "path": "/",
+      "acceptLanguage": "en-US,en;q=0.9,zh;q=0.8",
+      "status": 302,
+      "target": "/en/",
+      "vary": "Accept-Language",
+      "finalStatus": 200
+    },
+    {
+      "path": "/en",
+      "acceptLanguage": "en-US,en;q=0.9,zh;q=0.8",
+      "status": 301,
+      "target": "/en/",
+      "vary": null,
+      "finalStatus": 200
+    },
+    {
+      "path": "/zh",
+      "acceptLanguage": "en-US,en;q=0.9,zh;q=0.8",
+      "status": 301,
+      "target": "/zh/",
+      "vary": null,
+      "finalStatus": 200
+    }
+  ],
+  "browser": {
+    "results": [
+      {
+        "route": "/en/",
+        "overflow": false,
+        "h1": 1,
+        "brokenImages": [],
+        "languageSwitch": "中文"
+      },
+      {
+        "route": "/zh/",
+        "overflow": false,
+        "h1": 1,
+        "brokenImages": [],
+        "languageSwitch": "English"
+      },
+      {
+        "route": "/en/add-location-to-photos-mac/",
+        "overflow": false,
+        "h1": 1,
+        "brokenImages": []
+      }
+    ],
+    "failures": [],
+    "styleDiffs": []
+  }
+}

@@ -5,28 +5,21 @@ import json
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
-from PIL import Image, ImageOps
+from PIL import Image
+from artwork_render import render
 
 repo = Path(__file__).resolve().parent.parent
 dist = repo / 'dist'
 root = repo.parent / 'appstore_materials/LensPin_商店素材_统一交付_2026-10-23/02_最新导出'
-entries = sum([json.loads((repo / 'Docs' / f'artwork-task{n}.json').read_text()) for n in (3, 4)], [])
+entries = sum([json.loads((repo / 'Docs' / f'artwork-task{n}.json').read_text()) for n in (3, 4, 6)], [])
 provenance = {}
 for entry in entries:
     source = root / entry['source']
     assert hashlib.sha256(source.read_bytes()).hexdigest() == entry['source_sha256'], source
     im = Image.open(source).convert('RGB')
-    size = (entry['width'], entry['height'])
-    if entry['asset'] == 'lenspin-social':
-        scaled = ImageOps.contain(im, size, Image.Resampling.LANCZOS)
-        im = Image.new('RGB', size, '#080d17')
-        im.paste(scaled, ((size[0]-scaled.width)//2, (size[1]-scaled.height)//2))
-        formats = [('png', {'optimize': True})]
-    else:
-        im = im.resize(size, Image.Resampling.LANCZOS)
-        formats = [('png', {'optimize': True})] if entry.get('format') == 'png' else [('avif', {'quality': 65}), ('webp', {'quality': 82})]
+    im, formats = render(im, entry)
     for ext, options in formats:
-        path = '/assets/' + entry['asset'] + '.' + ext
+        path = '/assets/' + entry['asset'] + '.' + ('jpg' if ext == 'jpeg' else ext)
         output = dist / path.lstrip('/')
         expected = io.BytesIO()
         im.save(expected, format=ext, **options)

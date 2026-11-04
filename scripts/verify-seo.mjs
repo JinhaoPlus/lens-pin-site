@@ -33,11 +33,18 @@ for (const file of pages) {
   assert.equal(meta.get('og:title'), text(source.match(/<title>(.*?)<\/title>/s)[1]));
   assert.equal(meta.get('og:description'), meta.get('description'));
   for (const image of source.matchAll(/<img\b[^>]*>/g)) assert.match(image[0], / alt="[^"]*"/, `${label}: alt`);
+  assert.ok([...meta.get('description')].length <= (locale === 'zh' ? 80 : 160), `${label}: description too long`);
   const graph = [...source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap((m) => { const json = JSON.parse(m[1]); return json['@graph'] || [json]; });
   for (const node of graph) {
     assert.equal(node.aggregateRating, undefined);
     if (['SoftwareApplication', 'MobileApplication'].includes(node['@type'])) {
       appCount++;
+      for (const fact of [/iPhone/, /GPS/, /GPX/, /Apple Health|Apple 健康/, /without export|无需导出/]) assert.match(node.description, fact);
+      assert.ok(Array.isArray(node.featureList) && node.featureList.length >= 4);
+      assert.doesNotMatch(node.featureList.join(' '), /writeback|interpolation|evidence fusion/i);
+      assert.equal(node.screenshot.length, 2);
+      for (const url of node.screenshot) assert.ok(walk(dist).includes(join(dist, new URL(url).pathname)));
+
       assert.deepEqual(node.operatingSystem, ['iOS 17+', 'iPadOS 17+', 'macOS 14+', 'visionOS 1+']);
       assert.equal(node.offers.price, 0);
       assert.match(node.offers.description, /100 photos\/videos.*one-time.*Not a subscription/s);
@@ -81,5 +88,7 @@ for (const [,url,alternates] of urls) {
 assert.equal(readFileSync(join(dist,'robots.txt'),'utf8'), 'User-agent: *\nAllow: /\n\nSitemap: https://getlenspin.com/sitemap.xml\n');
 const csp = readFileSync(join(dist,'_headers'),'utf8').match(/Content-Security-Policy: (.*)/)[1];
 assert.equal(csp, "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://tools.applemediaservices.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; font-src 'self'; form-action 'none'");
-const png = readFileSync(join(dist,'assets/lenspin-social.png')); assert.equal(png.readUInt32BE(16),1200); assert.equal(png.readUInt32BE(20),630);
+for (const locale of ['en','zh']) assert.ok(readFileSync(join(dist, `assets/lenspin-social-${locale}.jpg`)).length < 300000);
+assert.ok(readFileSync(join(dist, 'assets/lenspin-app-icon.png')).length < 12000);
+assert.equal([...sitemap.matchAll(/<lastmod>2026-11-04<\/lastmod>/g)].length, urls.length);
 console.log(`Verified ${pages.length} HTML files, ${campaigns.size} unique campaigns, ${faqCount} FAQ answers, ${appCount} application entities, ${urls.length} sitemap alternate sets, social image and CSP.`);

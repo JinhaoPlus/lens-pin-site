@@ -1,7 +1,7 @@
 import { localeFor, localizedPath, siteLocales } from './site-locales.mjs';
 export { contentPath, languageFor, localizedPath } from './site-locales.mjs';
 
-const icon = `<span class="brand-mark" aria-hidden="true"><img src="/assets/lenspin-app-icon.png" width="256" height="256" alt=""></span>`;
+const icon = `<span class="brand-mark" aria-hidden="true"><img src="/assets/lenspin-app-icon.png" width="64" height="64" alt=""></span>`;
 const globe = `<svg class="language-globe" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21c-2.4-2.5-3.6-5.5-3.6-9S9.6 5.5 12 3Z" stroke="currentColor" stroke-width="1.6"/></svg>`;
 const chevron = `<svg class="language-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
@@ -36,7 +36,7 @@ export function renderHeader(path, appStoreUrl, availableLocales = siteLocales) 
     <a class="brand" href="${local('/')}" aria-label="${ui.home}">${icon}<span>LensPin</span></a>
     <nav class="desktop-nav" aria-label="${ui.navigation}">${links}</nav>
     <div class="header-actions">
-      ${renderLanguagePicker(path, availableLocales)}
+      ${/^\/(en|zh)\/$/.test(path) ? `<a class="home-language-switch" href="/${code === 'en' ? 'zh' : 'en'}/" lang="${code === 'en' ? 'zh-Hans' : 'en'}" hreflang="${code === 'en' ? 'zh-Hans' : 'en'}">${globe}${code === 'en' ? '中文' : 'English'}</a>` : renderLanguagePicker(path, availableLocales)}
       <a class="button button-primary button-small header-download" href="${appStoreUrl}" data-app-store-link target="_blank" rel="noopener">${ui.download}</a>
       <details class="mobile-nav"><summary aria-label="${ui.openNavigation}" data-open-label="${ui.openNavigation}" data-close-label="${ui.closeNavigation}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><nav class="mobile-nav-panel" aria-label="${ui.mobileNavigation}">${links}<a class="mobile-download" href="${appStoreUrl}" data-app-store-link target="_blank" rel="noopener">${ui.download}</a></nav></details>
     </div>

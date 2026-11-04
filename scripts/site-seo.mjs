@@ -38,15 +38,16 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
   const zh = path.startsWith('/zh/');
   const title = plain(source.match(/<title>([\s\S]*?)<\/title>/)?.[1] || 'LensPin');
   const description = decode(source.match(/<meta name="description" content="([^"]*)"/)?.[1] || 'LensPin');
-  const imageAlt = zh ? 'LensPin 品牌标识与地球背景' : 'LensPin brand name and app icon above the Earth';
+  const imageAlt = zh ? 'LensPin 将相机照片匹配到地图上的拍摄地点，商店演示画面' : 'LensPin matching a camera photo to its location on a map; store demonstration';
+  const socialImage = `${origin}/assets/lenspin-social-${zh ? 'zh' : 'en'}.jpg`;
   // Recreate these tags to avoid stale home titles and duplicate social metadata.
   source = source.replace(/[\t ]*<meta (?:property="og:(?:title|description|image(?::[^" ]+)?|site_name)"|name="twitter:[^"]+")[^>]*>\s*/g, '');
   const tags = {
     'og:title': title, 'og:description': description, 'og:site_name': 'LensPin',
-    'og:image': `${origin}/assets/lenspin-social.png`, 'og:image:width': '1200',
-    'og:image:height': '630', 'og:image:type': 'image/png', 'og:image:alt': imageAlt,
+    'og:image': socialImage, 'og:image:width': '1200',
+    'og:image:height': '630', 'og:image:type': 'image/jpeg', 'og:image:alt': imageAlt,
     'twitter:card': 'summary_large_image', 'twitter:title': title,
-    'twitter:description': description, 'twitter:image': `${origin}/assets/lenspin-social.png`,
+    'twitter:description': description, 'twitter:image': socialImage,
     'twitter:image:alt': imageAlt,
   };
   source = source.replace('</head>', Object.entries(tags).map(([key, value]) => `  <meta ${key.startsWith('og:') ? 'property' : 'name'}="${key}" content="${attribute(value)}">`).join('\n') + '\n</head>');
@@ -58,6 +59,7 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
     const nodes = data['@graph'] || [data];
     for (const node of nodes) {
       if (['FAQPage', 'Organization', 'WebSite'].includes(node['@type'])) continue;
+      if (node['@type'] === 'Article') { node.headline = plain(source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] || title); node.description = description; }
       if (isHome && node['@type'] === 'WebPage') { node.name = title; node.description = description; }
       if (['MobileApplication', 'SoftwareApplication'].includes(node['@type'])) {
         node['@type'] = 'SoftwareApplication';
@@ -88,6 +90,28 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
     };
     graph.push({ '@type': 'Organization', '@id': `${origin}/#organization`, ...identity });
     graph.push({ '@type': 'WebSite', '@id': `${origin}/#website`, ...identity, publisher: { '@id': `${origin}/#organization` } });
+  }
+  for (const node of graph.filter(n => n['@type'] === 'SoftwareApplication')) {
+    node.name = 'LensPin: Photo Geotagger';
+    node.description = zh
+      ? '为 Apple Photos 中缺少位置的相机照片补定位。按拍摄时间匹配 iPhone 定位照片、其他 GPS 相机照片、GPX 轨迹，或通过 Apple 健康直接读取的 Apple Watch／健身体能训练路线，无需导出。审核建议后保存到图库。'
+      : 'Add missing locations to camera photos in Apple Photos by matching capture times with geotagged iPhone photos, photos from another GPS camera, GPX tracks, or Apple Watch/Fitness workout routes read directly from Apple Health without export. Review suggested places before saving.';
+    node.featureList = zh ? [
+      '参考 iPhone 定位照片或其他 GPS 相机照片', '使用带时间的 GPX 轨迹',
+      '从 Apple 健康直接读取 Apple Watch／健身训练路线，无需导出',
+      '预览相机时钟偏移，不改拍摄时间', '审核地图和参考照片，再保存位置到 Apple Photos',
+      '可选导出包含 GPS 的 JPG 副本',
+    ] : [
+      'Use geotagged iPhone photos or photos from another GPS camera', 'Match photos to timed GPX tracks',
+      'Read Apple Watch/Fitness workout routes directly from Apple Health without export',
+      'Preview camera clock differences without changing capture dates',
+      'Review maps and reference photos before saving locations to Apple Photos',
+      'Optionally export JPG copies with GPS',
+    ];
+    node.screenshot = [
+      `${origin}/assets/lenspin-store-mac-01-add-locations-${zh ? 'zh' : 'en'}.webp`,
+      `${origin}/assets/lenspin-store-iphone-02-suggestion-evidence-${zh ? 'zh' : 'en'}.webp`,
+    ];
   }
   const questions = [...source.matchAll(/<details>\s*<summary>([\s\S]*?)<\/summary>\s*<div class="faq-answer">([\s\S]*?)<\/div>\s*<\/details>/g)].map(([, question, answer]) => ({
     '@type': 'Question', name: plain(question), acceptedAnswer: { '@type': 'Answer', text: plain(answer) },
