@@ -9,7 +9,7 @@
   "Two geotagged iPhone photos taken around the same time point to the same area.": "前后时间接近的两张 iPhone 定位照片，指向同一个区域。",
   "A camera photo at 10:07 matched between GPX points recorded at 10:02 and 10:12": "10:07 的相机照片，匹配到 10:02 与 10:12 的 GPX 记录点之间",
   "A camera photo at 10:07 supported by geotagged iPhone photos recorded at 10:02 and 10:12": "10:07 的相机照片，以 10:02 与 10:12 的 iPhone 定位照片为参考",
-  "Best built-in option": "适合的原生方法",
+  "Best built-in option": "适合的系统方法",
   "Use Apple Photos — no extra app needed": "使用 Apple Photos 即可",
   "Open the photo, swipe up or tap Info, then choose Add a location… for a photo without a place—or Adjust to change one.": "打开照片，向上轻扫或点信息按钮；没有位置时添加位置，已有位置时选择调整。",
   "Use multi-select to set one known place": "多选照片，统一设置已知地点",

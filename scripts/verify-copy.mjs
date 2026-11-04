@@ -9,6 +9,8 @@ const pages = walk(dist).filter(p => p.endsWith('.html'));
 for (const file of walk(dist).filter(p => /\.(html|css|js|xml|txt|json|svg|md|webmanifest)$/.test(p))) {
   const s = readFileSync(file, 'utf8');
   assert.doesNotMatch(s, /visionOS|Apple\s+Vision|Vision\s+Pro/i, file);
+  assert.doesNotMatch(s, /原生|\bnative\b/i, file);
+  assert.doesNotMatch(s, /(?:iOS|iPadOS|macOS)\s*(?:[\/／]\s*iPadOS\s*)?\d+(?:[.\d–—+-]*)/i, file);
   if (!file.endsWith('.svg')) assert.doesNotMatch(s, /\$3\.99|¥12|3\.99|limited-time|限时免费|anchor|launch plan|1\.3\.2|HoudahGeo|GeoTag/);
 }
 for (const file of pages) {

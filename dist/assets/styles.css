@@ -1035,7 +1035,7 @@ html[lang="zh-Hans"] .content-section[id] { scroll-margin-top: 96px; }
   .language-picker summary { min-height: 42px; padding: 0 10px; gap: 6px; }
 }
 
-/* Store artwork retains the full composition, including native map attribution. */
+/* Store artwork retains the full composition, including map attribution. */
 .hero-store-art { margin: 0; min-width: 0; align-self: center; }
 .hero-store-art, .hero-store-art picture, .hero-store-art img { background: transparent; border: 0; border-radius: 0; box-shadow: none; }
 .hero-store-art img, .store-desktop-art img { display: block; width: 100%; height: auto; }

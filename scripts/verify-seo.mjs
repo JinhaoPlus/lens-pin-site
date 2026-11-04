@@ -45,7 +45,7 @@ for (const file of pages) {
       assert.equal(node.screenshot.length, 2);
       for (const url of node.screenshot) assert.ok(walk(dist).includes(join(dist, new URL(url).pathname)));
 
-      assert.deepEqual(node.operatingSystem, ['iOS 17+', 'iPadOS 17+', 'macOS 14+']);
+      assert.deepEqual(node.operatingSystem, ['iOS', 'iPadOS', 'macOS']);
       assert.equal(node.offers.price, 0);
       assert.match(node.offers.description, /100 photos\/videos.*one-time.*Not a subscription/s);
       assert.equal(new URL(node.downloadUrl).searchParams.get('ct'), expectedCampaign);
@@ -57,7 +57,9 @@ for (const file of pages) {
   if (visible.length) { faqCount += visible.length; assert.deepEqual(faq[0].mainEntity.map((q) => [q.name,q.acceptedAnswer.text]), visible, `${label}: FAQ parity`); }
   if (notFound) continue;
   assert.ok(expectedCampaign.length <= 30);
-  assert.match(source, /macOS 14\+/);
+  assert.match(source, /iPhone/);
+  assert.match(source, /iPad/);
+  assert.match(source, /Mac/);
   const links = [...source.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*data-app-store-link[^>]*>/g)];
   assert.ok(links.length);
   for (const [, href] of links) assert.equal(decode(href), `https://apps.apple.com/app/id6812626038?pt=129459678&ct=${expectedCampaign}&mt=8`, `${label}: campaign`);
