@@ -60,3 +60,7 @@ The manifest `artwork-task3.json` records exact source files, SHA-256 hashes and
 ## Open issues / scope
 
 No known task-blocking issues. This is local browser and source validation; no production preview, deployment, push, current App Store publication check or external crawler re-indexing was performed. The pre-existing deletion of `.openai/hosting.json` and untracked materials symlink remain untouched and uncommitted.
+
+## Task 4 follow-up
+
+The retained Apple Photos tutorial image, coastal photo, and hand-drawn favicon are now replaced. See [Task 4 notes](task4-artwork-and-review.md) and the exhaustive [image audit](task4-image-audit.json). Task 3 records above describe its historical scope.

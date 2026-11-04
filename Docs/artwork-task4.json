@@ -1,0 +1,31 @@
+[
+  {
+    "asset": "lenspin-store-ipad-10-journey-map-en",
+    "source": "完整素材_2026-10-24_v5/en-US/ipad/10-journey-map.png",
+    "source_sha256": "71ac9c8eded3753998474c981f3b912827adb719c2ee3ca62f154dba47af126d",
+    "width": 1600,
+    "height": 1200
+  },
+  {
+    "asset": "lenspin-store-ipad-10-journey-map-zh",
+    "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/10-journey-map.png",
+    "source_sha256": "a28834ee103c2783456234490a0d33cce078b8bfcbcc80041dd8854f366e5655",
+    "width": 1600,
+    "height": 1200
+  },
+  {
+    "asset": "lenspin-store-mac-01-add-locations-zh",
+    "source": "Mac_2.1_四语_2026-10-29_v2/zh-Hans/01-add-locations.png",
+    "source_sha256": "c6d70c712f64d08427a8ef4656043285ab020e5bdcae770c0a4a154db998fc10",
+    "width": 1600,
+    "height": 1000
+  },
+  {
+    "asset": "lenspin-app-icon",
+    "source": "../04_演示数据与来源/LensPin-AppIcon-1024.png",
+    "source_sha256": "a3ce6dce9c6a8e31a4d58c4dcb37fdfe603b734f869bd30cb8c5485b1b3810c6",
+    "width": 256,
+    "height": 256,
+    "format": "png"
+  }
+]

@@ -1033,3 +1033,18 @@ html[lang="zh-Hans"] .content-section[id] { scroll-margin-top: 96px; }
   .guide-directory .card-grid, .guide-directory .card-grid.two { grid-template-columns: minmax(0, 1fr); }
   .guide-directory .info-card:last-child:nth-child(odd) { grid-column: auto; }
 }
+
+/* Task 4: show complete localized store compositions, including attribution. */
+.guide-directory .card-grid + h2 { margin-top: 48px; }
+.store-desktop-art { max-width: 800px; margin-inline: auto; }
+.store-phone-art { max-width: 340px; }
+.store-caption { padding: 14px 18px; color: var(--muted); font-size: .85rem; line-height: 1.6; }
+.journey-photo-card picture, .journey-photo-card picture img { display: block; width: 100%; height: auto; border-radius: 17px; }
+.reference-marker { display: grid; place-items: center; height: 100%; color: var(--blue); font-size: .8rem; font-weight: 800; }
+.answer-first-hero:has(> .store-desktop-art) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.answer-first-hero > .store-desktop-art { margin-top: 0; }
+@media (max-width: 760px) {
+  .answer-first-hero:has(> .store-desktop-art) { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .guide-directory .card-grid + h2 { margin-top: 36px; }
+}
+.anchor-photo > .reference-marker { position: static; padding: 0; border: 0; border-radius: 14px; color: var(--blue); font-size: .8rem; transform: none; }

@@ -7,6 +7,7 @@
     "build:production": "node scripts/build.mjs --production",
     "check": "node scripts/build.mjs --check",
     "verify:seo": "node scripts/verify-seo.mjs",
-    "verify:guides": "node scripts/verify-guides.mjs"
+    "verify:guides": "node scripts/verify-guides.mjs",
+    "verify:artwork": "python3 scripts/verify-artwork.py"
   }
 }
