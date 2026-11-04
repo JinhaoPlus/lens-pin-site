@@ -18,6 +18,9 @@ for (const file of pages) {
     'import-camera-photos-to-iphone': 'import_camera_photos', 'add-location-to-photos-iphone': 'add_photo_location',
     'gpx-photo-geotagging-iphone': 'gpx_geotagging', 'geotag-dslr-photos-with-iphone-photos': 'geotag_with_photos',
     'export-gpx-from-garmin-coros-suunto': 'export_watch_gpx', 'record-gpx-on-iphone-apple-watch': 'record_gpx',
+    'add-location-to-camera-photos-apple-photos': 'camera_photo_location',
+    'add-location-to-photos-mac': 'photo_location_mac', 'geotag-photos-gpx-mac': 'gpx_mac',
+    'camera-photos-no-location': 'camera_no_location', 'camera-photos-not-on-apple-photos-map': 'photos_map_fix',
   };
   const topic = parts.join('_') || 'home';
   const expectedCampaign = `web_${aliases[topic] || topic}_${locale}`;
@@ -66,13 +69,16 @@ for (const file of pages) {
 const sitemap = readFileSync(join(dist,'sitemap.xml'),'utf8');
 assert.match(sitemap, /xmlns:xhtml="http:\/\/www.w3.org\/1999\/xhtml"/);
 const urls = [...sitemap.matchAll(/<url><loc>(.*?)<\/loc>(.*?)<\/url>/g)];
-assert.equal(urls.length,32);
+assert.equal(urls.length,pages.length - 1);
 for (const [,url,alternates] of urls) {
-  const route = new URL(url).pathname.replace(/^\/(en|zh)/,'');
-  for (const [lang,locale] of [['en','en'],['zh-Hans','zh'],['x-default','en']]) assert.ok(alternates.includes(`hreflang="${lang}" href="https://getlenspin.com/${locale}${route}"`));
+  const path = new URL(url).pathname;
+  const route = path.replace(/^\/(en|zh)/,'');
+  const expected = [['en','en'],['zh-Hans','zh'],['x-default','en']].filter(([,locale]) => pages.includes(join(dist,locale,route,'index.html')));
+  assert.equal([...alternates.matchAll(/<xhtml:link /g)].length, expected.length, `${path}: alternate count`);
+  for (const [lang,locale] of expected) assert.ok(alternates.includes(`hreflang="${lang}" href="https://getlenspin.com/${locale}${route}"`));
 }
 assert.equal(readFileSync(join(dist,'robots.txt'),'utf8'), 'User-agent: *\nAllow: /\n\nSitemap: https://getlenspin.com/sitemap.xml\n');
 const csp = readFileSync(join(dist,'_headers'),'utf8').match(/Content-Security-Policy: (.*)/)[1];
 assert.equal(csp, "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://tools.applemediaservices.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; font-src 'self'; form-action 'none'");
 const png = readFileSync(join(dist,'assets/lenspin-social.png')); assert.equal(png.readUInt32BE(16),1200); assert.equal(png.readUInt32BE(20),630);
-console.log(`Verified ${pages.length} HTML files, ${campaigns.size} unique campaigns, ${faqCount} FAQ answers, ${appCount} application entities, 32 sitemap alternate sets, social image and CSP.`);
+console.log(`Verified ${pages.length} HTML files, ${campaigns.size} unique campaigns, ${faqCount} FAQ answers, ${appCount} application entities, ${urls.length} sitemap alternate sets, social image and CSP.`);

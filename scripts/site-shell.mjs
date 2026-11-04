@@ -30,6 +30,7 @@ export function renderHeader(path, appStoreUrl, availableLocales = siteLocales) 
     ['/import-camera-photos-to-iphone/', ui.importPhotos],
     ['/add-location-to-photos-iphone/', ui.addLocations],
     ['/how-it-works/', ui.howItWorks],
+    ['/guides/', ui.guides],
     ['/support/', ui.support],
   ].map(([route, label]) => navLink(path, local(route), label)).join('\n        ');
   return `<header class="site-header"><div class="nav-shell">
@@ -48,6 +49,7 @@ export function renderFooter(appStoreUrl, path = '/en/') {
   const local = (route) => localizedPath(code, route);
   const groups = [
     [ui.startHere, [
+      ['/guides/', ui.guides],
       ['/import-camera-photos-to-iphone/', ui.importGuide],
       ['/add-location-to-photos-iphone/', ui.locationGuide],
       ['/how-it-works/', ui.workflowGuide],

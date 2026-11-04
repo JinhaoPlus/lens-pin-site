@@ -17,6 +17,11 @@ export function campaignUrl(baseUrl, path) {
     'geotag-dslr-photos-with-iphone-photos': 'geotag_with_photos',
     'export-gpx-from-garmin-coros-suunto': 'export_watch_gpx',
     'record-gpx-on-iphone-apple-watch': 'record_gpx',
+    'add-location-to-camera-photos-apple-photos': 'camera_photo_location',
+    'add-location-to-photos-mac': 'photo_location_mac',
+    'geotag-photos-gpx-mac': 'gpx_mac',
+    'camera-photos-no-location': 'camera_no_location',
+    'camera-photos-not-on-apple-photos-map': 'photos_map_fix',
   };
   const topic = parts.join('_') || 'home';
   const slug = aliases[topic] || topic;

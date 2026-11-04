@@ -1,6 +1,6 @@
 # LensPin website
 
-Static bilingual product and SEO site for LensPin: English under `/en/` and Simplified Chinese under `/zh/`. Each of the 16 content pages has a language counterpart, including the homepages, tutorials, public user feedback, support and privacy. The deployable output lives in dist/. HTML bodies and static assets in `dist/` are also the maintained source: there is no separate content directory. Edit page-specific copy there; edit shared navigation/footer in `scripts/site-locales.mjs` / `scripts/site-shell.mjs` and generated SEO in `scripts/site-seo.mjs`, then rebuild. The linked lenspin-app directory is read-only product reference and must not be modified.
+Static bilingual product and SEO site for LensPin: English under `/en/` and Simplified Chinese under `/zh/`. There are 40 canonical pages: 18 topics with both languages, plus four English-only guides. The deployable output lives in dist/. HTML bodies and static assets in `dist/` are also the maintained source: there is no separate content directory. Edit page-specific copy there; edit shared navigation/footer in `scripts/site-locales.mjs` / `scripts/site-shell.mjs` and generated SEO in `scripts/site-seo.mjs`, then rebuild. The linked lenspin-app directory is read-only product reference and must not be modified.
 
 ## Local preview
 
@@ -12,6 +12,8 @@ npx wrangler dev --port 4173
 
 ~~~sh
 npm run check
+npm run verify:seo
+npm run verify:guides
 node --check dist/assets/site.js
 ~~~
 
@@ -24,7 +26,7 @@ Local preview uses Wrangler so `_redirects` and static-asset routing match produ
 
 The production domain `getlenspin.com` is attached to the Worker `lens-pin-site`, which is the name in `wrangler.jsonc`. Verify that target before deployment; the repository directory is named `lenspin-site`.
 
-Every language pair uses reciprocal `en` / `zh-Hans` alternates and English `x-default`. Each page has a self-referencing canonical, localized navigation and a language switch to the same topic. The sitemap includes only the 32 localized canonical URLs, each with reciprocal `en`, `zh-Hans`, and `x-default` XML alternates. `_redirects` permanently forwards the old English paths (including `/`, `/home` and support aliases) directly to `/en/` counterparts. There is no language sniffing or automatic language-based redirect. Keep old redirects indefinitely; do not reintroduce content at those legacy paths. The build checks for missing translations and unlocalized internal links. Public feedback is a dated summary of linked user reports, not an accuracy benchmark or aggregate rating.
+Every language pair uses reciprocal `en` / `zh-Hans` alternates and English `x-default`. Each page has a self-referencing canonical, localized navigation and a language switch listing available versions of the same topic. The sitemap includes all 40 localized canonical URLs with XML alternates only for existing counterparts; English-only guides list `en` and `x-default`. `_redirects` permanently forwards the old English paths (including `/`, `/home` and support aliases) directly to `/en/` counterparts. There is no language sniffing or automatic language-based redirect. Keep old redirects indefinitely; do not reintroduce content at those legacy paths. The build checks for missing English counterparts and unlocalized internal links. Public feedback is a dated summary of linked user reports, not an accuracy benchmark or aggregate rating.
 
 The canonical public origin is centralized as `https://getlenspin.com` in `scripts/site-config.mjs`. `SITE_ORIGIN` may override it for a different deployment. The build uses the origin to generate absolute canonical URLs, `sitemap.xml`, and the Sitemap entry in `robots.txt`.
 
@@ -51,5 +53,7 @@ The header has one independent language dropdown on desktop and mobile. It uses 
 `npm run build:production` refreshes social metadata, Organization/WebSite entities on both homepages, free-download SoftwareApplication offers, and FAQPage entities derived from visible FAQ answers. `npm run verify:seo` checks the actual generated files (not an in-memory rebuild), page campaigns, social metadata, FAQ parity, sitemap alternates, and unchanged CSP directives. Decorative images with `aria-hidden` containers intentionally keep empty alt text; content images have descriptive alt text.
 
 The shared social card is `dist/assets/lenspin-social.png` (1200×630), composed from the existing coastal photo and LensPin icon. Recreate it on macOS with `python3 scripts/create-social-image.py` (Pillow required; uses the system Arial font).
+
+The `/en/guides/` and `/zh/guides/` directories, homepage cards, header and footer expose the how-to guides. The November 4 content set adds five English guides and one Chinese troubleshooting guide, and expands the existing Chinese add-location and import guides. These use Article JSON-LD; directories use CollectionPage. `npm run verify:guides` checks all eight article bodies for requested lengths, pricing wording, useful steps before the batch option, Article metadata, homepage/directory links, local fragments and existing language counterparts. Apple operation references are linked next to the relevant instructions; interface labels can vary by OS version.
 
 CSP adds only `https://static.cloudflareinsights.com` to `script-src` and `https://cloudflareinsights.com` to `connect-src`. No Web Analytics beacon snippet or token is maintained in this repository. Cloudflare may inject one at the edge; CSP permission alone does not enable analytics. Confirm injection and incoming events on production after an approved deployment.
