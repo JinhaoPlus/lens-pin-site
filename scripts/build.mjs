@@ -140,6 +140,9 @@ function prepareSource(file) {
       .replace(/<p class="store-search">[\s\S]*?<\/p>/g, '')
       .replace(/(<section\b[^>]*id="pricing"[\s\S]*?)(<a class="app-store-badge-link")/, `$1<p class="store-search">${storeSearch}</p>$2`);
   }
+  if (path === '/en/how-it-works/') {
+    source = source.replace(/<title>[\s\S]*?<\/title>/, '<title>How camera photos are matched by time | LensPin</title>');
+  }
   if (path === '/zh/how-it-works/') {
     source = source.replace(/<title>[\s\S]*?<\/title>/, '<title>相机照片如何按拍摄时间匹配位置 | LensPin</title>');
   }

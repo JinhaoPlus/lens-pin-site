@@ -42,10 +42,10 @@ for (const file of pages) {
   assert.doesNotMatch(h1s[0], /[.。]$/, `${label}: h1 terminal punctuation`);
   assert.equal((title.match(/ \| /g) || []).length, 1, `${label}: one title separator`);
   assert.doesNotMatch(title, /[｜·]/, `${label}: title separator`);
-  const matchingTitle = locale === 'zh' ? '相机照片如何按拍摄时间匹配位置 | LensPin' : 'How LensPin matches camera photos by time | LensPin';
+  const matchingTitle = locale === 'zh' ? '相机照片如何按拍摄时间匹配位置 | LensPin' : 'How camera photos are matched by time | LensPin';
   const isMatchingPage = parts.join('/') === 'how-it-works';
   if (isMatchingPage) assert.equal(title, matchingTitle, `${label}: required matching title`);
-  if (!(isMatchingPage && locale === 'en')) assert.equal((title.match(/LensPin/g) || []).length, 1, `${label}: brand once`);
+  assert.equal((title.match(/LensPin/g) || []).length, 1, `${label}: brand once`);
   assert.ok(parts.length === 0 && !notFound ? title.startsWith('LensPin | ') : title.endsWith(' | LensPin'), `${label}: title brand placement`);
   assert.ok([...title].length <= (locale === 'zh' ? 30 : 60), `${label}: title length`);
   if (locale === 'en' && parts.join('/') === 'privacy') assert.ok([...meta.get('description')].length >= 110, `${label}: privacy description too short`);
