@@ -1,8 +1,8 @@
 {
   "html_pages": 42,
   "internal_links_checked": 1295,
-  "image_references": 205,
-  "unique_img_source_files": 39,
+  "image_references": 215,
+  "unique_img_source_files": 41,
   "provenance_outputs_verified": 39,
   "missing_images": [],
   "unused_images": [],
@@ -123,6 +123,24 @@
       "exists": true,
       "source": "Mac_2.1_四语_2026-10-29_v2/en-US/01-add-locations.png",
       "source_sha256": "149c36bd3cb9ff06ae25b490d10c2d8a50bf0d1d0cd95eeb598dca0d145d282b"
+    },
+    {
+      "page": "/en/add-location-to-photos-mac/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-app-store.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
+    },
+    {
+      "page": "/en/add-location-to-photos-mac/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-mac-app-store.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
     },
     {
       "page": "/en/add-location-to-photos-mac/",
@@ -330,6 +348,24 @@
       "exists": true,
       "source": "Mac_2.1_四语_2026-10-29_v2/en-US/03-review-evidence.png",
       "source_sha256": "8ce354d6563b1085f856e2ba14ee9637efac95ae6cc59400b2a2e2b7058d2c8b"
+    },
+    {
+      "page": "/en/geotag-photos-gpx-mac/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-app-store.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
+    },
+    {
+      "page": "/en/geotag-photos-gpx-mac/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-mac-app-store.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
     },
     {
       "page": "/en/geotag-photos-gpx-mac/",
@@ -603,6 +639,15 @@
     },
     {
       "page": "/en/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-mac-app-store.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
+    },
+    {
+      "page": "/en/",
       "tag": "source",
       "attribute": "srcset",
       "src": "/assets/lenspin-store-search-principle-en.avif",
@@ -654,6 +699,24 @@
       "exists": true,
       "source": "完整素材_2026-10-24_v5/en-US/ipad/10-journey-map.png",
       "source_sha256": "71ac9c8eded3753998474c981f3b912827adb719c2ee3ca62f154dba47af126d"
+    },
+    {
+      "page": "/en/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-app-store.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
+    },
+    {
+      "page": "/en/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-mac-app-store.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
     },
     {
       "page": "/en/",
@@ -1413,6 +1476,15 @@
     },
     {
       "page": "/zh/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-mac-app-store-zh.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
+    },
+    {
+      "page": "/zh/",
       "tag": "source",
       "attribute": "srcset",
       "src": "/assets/lenspin-store-search-principle-zh.avif",
@@ -1464,6 +1536,24 @@
       "exists": true,
       "source": "完整素材_2026-10-24_v5/zh-Hans/ipad/10-journey-map.png",
       "source_sha256": "a28834ee103c2783456234490a0d33cce078b8bfcbcc80041dd8854f366e5655"
+    },
+    {
+      "page": "/zh/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-app-store-zh.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
+    },
+    {
+      "page": "/zh/",
+      "tag": "img",
+      "attribute": "src",
+      "src": "/assets/download-on-the-mac-app-store-zh.svg",
+      "exists": true,
+      "source": "Official Apple App Store badge (exception)",
+      "source_sha256": null
     },
     {
       "page": "/zh/",

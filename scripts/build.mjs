@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { join, relative, sep } from "node:path";
 import { campaignUrl, prepareSeo } from "./site-seo.mjs";
 import { siteConfig } from "./site-config.mjs";
-import { contentPath, localizedPath, renderAppStoreBadge, renderFooter, renderHeader } from "./site-shell.mjs";
+import { contentPath, localizedPath, renderDownloadBadges, renderAppStoreBadge, renderFooter, renderHeader } from "./site-shell.mjs";
 import { defaultLanguage, localeFor, siteLocales } from "./site-locales.mjs";
 
 const dist = new URL("../dist/", import.meta.url);
@@ -46,7 +46,7 @@ if (!/^https:\/\/apps\.apple\.com\//.test(appStoreUrl)) {
   process.exit(1);
 }
 
-for (const badgeUrl of new Set(siteLocales.map((locale) => locale.badgeUrl))) {
+for (const badgeUrl of new Set(siteLocales.map((locale) => locale.badgeUrl).concat([siteConfig.macAppStoreBadgeUrl, siteConfig.macAppStoreBadgeZhUrl]))) {
   if (!/^\/assets\/[^/]+\.svg$/.test(badgeUrl)) throw new Error('Use local, unmodified official App Store artwork.');
   const badgePath = join(distPath, badgeUrl.slice(1));
   if (!existsSync(badgePath) || !readFileSync(badgePath, "utf8").includes("<svg")) {
@@ -137,6 +137,17 @@ function prepareSource(file) {
       renderFooter(pageAppStoreUrl, path)
     );
   }
+  const isHome = contentPath(path) === '/';
+  const isMacGuide = /\/(?:add-location-to-photos-mac|geotag-photos-gpx-mac)\/$/.test(path);
+  if ((isHome || isMacGuide) && !source.includes('data-mac-app-store-badge')) {
+    const badges = renderDownloadBadges(pageAppStoreUrl, path);
+    if (isHome) {
+      source = source.replace(/<a\b[^>]*data-app-store-badge[^>]*>[\s\S]*?<\/a>/, badges);
+      source = source.replace(/(<section\b[^>]*id="pricing"[^>]*>[\s\S]*?)(<\/section>)/, `$1${badges}$2`);
+    } else {
+      source = source.replace(/<a\b[^>]*data-app-store-link[^>]*>View LensPin on the App Store<\/a>/, badges);
+    }
+  }
   source = source.replace(/href="[^"]*"\s+data-app-store-link/g, `href="${pageAppStoreUrl}" data-app-store-link`);
   source = source.replace(
     /(<img class="app-store-badge-image" src=")[^"]+("[^>]*>)/g,
@@ -186,11 +197,11 @@ for (const file of htmlFiles) {
   if (!isNotFoundPage && !/<meta property="og:description"/.test(source)) errors.push(label + ": missing og:description");
   if (!isNotFoundPage && !/<script type="application\/ld\+json">/.test(source)) errors.push(label + ": missing JSON-LD");
   if (!isNotFoundPage && !/data-app-store-link/.test(source)) errors.push(label + ": missing App Store download link");
-  if (!isNotFoundPage && marketingRoutes.has(contentPath(routeFor(file))) && appStoreBadgeCount !== 1) {
-    errors.push(label + ": expected one official App Store badge, found " + appStoreBadgeCount);
-  }
-  if (!isNotFoundPage && !marketingRoutes.has(contentPath(routeFor(file))) && appStoreBadgeCount !== 0) {
-    errors.push(label + ": utility pages must not contain an official App Store badge");
+  const pagePath = routeFor(file);
+  const isMacGuide = /\/(?:add-location-to-photos-mac|geotag-photos-gpx-mac)\/$/.test(pagePath);
+  const expectedBadgeCount = contentPath(pagePath) === '/' ? 2 : marketingRoutes.has(contentPath(pagePath)) || isMacGuide ? 1 : 0;
+  if (appStoreBadgeCount !== expectedBadgeCount) {
+    errors.push(`${label}: expected ${expectedBadgeCount} official App Store badges, found ${appStoreBadgeCount}`);
   }
   if (isProduction && assetPlaceholderCount > 0) {
     errors.push(label + ": replace " + assetPlaceholderCount + " asset placeholder(s) before production");

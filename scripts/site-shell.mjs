@@ -1,3 +1,4 @@
+import { siteConfig } from './site-config.mjs';
 import { localeFor, localizedPath, siteLocales } from './site-locales.mjs';
 export { contentPath, languageFor, localizedPath } from './site-locales.mjs';
 
@@ -69,4 +70,14 @@ export function renderFooter(appStoreUrl, path = '/en/') {
     <div class="footer-brand"><a class="brand" href="${local('/')}">${icon}<span>LensPin</span></a><p>${ui.description}</p><a class="footer-store-link" href="${appStoreUrl}" data-app-store-link target="_blank" rel="noopener">${ui.storeLink}</a></div>
     ${groups.map(([title, links]) => `<div><p class="footer-title">${title}</p><nav class="footer-links">${links.map(([route, label]) => `<a href="${local(route)}">${label}</a>`).join('')}</nav></div>`).join('\n')}
     </div><div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span class="apple-legal">${ui.appleLegal}</span></div></footer>`;
+}
+
+export function renderDownloadBadges(appStoreUrl, path) {
+  const locale = localeFor(path), zh = locale.code === 'zh';
+  const macAlt = zh ? '在 Mac App Store 下载' : 'Download on the Mac App Store';
+  const macLabel = zh ? '在 Mac App Store 下载 LensPin' : 'Download LensPin on the Mac App Store';
+  const appBadge = renderAppStoreBadge(appStoreUrl, locale.badgeUrl)
+    .replace('Download LensPin on the App Store', locale.ui.badgeLabel)
+    .replace('alt="Download on the App Store"', `alt="${locale.ui.badgeAlt}"`);
+  return `<div class="download-badges">${appBadge}<a class="app-store-badge-link mac-app-store-badge-link" href="${siteConfig.macAppStoreUrl}" data-mac-app-store-link data-mac-app-store-badge target="_blank" rel="noopener" aria-label="${macLabel}"><img class="mac-app-store-badge-image" src="${zh ? siteConfig.macAppStoreBadgeZhUrl : siteConfig.macAppStoreBadgeUrl}" width="${zh ? 140.18325 : 156.10054}" height="40" alt="${macAlt}"></a></div>`;
 }

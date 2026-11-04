@@ -52,7 +52,7 @@ pages = {}
 for p in sorted(dist.rglob('*.html')):
     page = Page(); page.feed(p.read_text()); pages[p] = page
 rows, used, links = [], set(), 0
-badges = {'/assets/download-on-the-app-store.svg', '/assets/download-on-the-app-store-zh.svg'}
+badges = {'/assets/download-on-the-app-store.svg', '/assets/download-on-the-app-store-zh.svg', '/assets/download-on-the-mac-app-store.svg', '/assets/download-on-the-mac-app-store-zh.svg'}
 for p, page in pages.items():
     route = '/' + p.relative_to(dist).as_posix().removesuffix('index.html')
     for ref in page.refs:

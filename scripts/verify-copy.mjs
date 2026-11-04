@@ -6,9 +6,10 @@ const walk = dir => readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isD
 const read = route => readFileSync(join(dist, route, 'index.html'), 'utf8');
 const plain = source => source.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 const pages = walk(dist).filter(p => p.endsWith('.html'));
-for (const file of walk(dist).filter(p => /\.(html|css|js|xml|txt)$/.test(p))) {
+for (const file of walk(dist).filter(p => /\.(html|css|js|xml|txt|json|svg|md|webmanifest)$/.test(p))) {
   const s = readFileSync(file, 'utf8');
-  assert.doesNotMatch(s, /\$3\.99|¥12|3\.99|limited-time|限时免费|anchor|launch plan|1\.3\.2|HoudahGeo|GeoTag/);
+  assert.doesNotMatch(s, /visionOS|Apple\s+Vision|Vision\s+Pro/i, file);
+  if (!file.endsWith('.svg')) assert.doesNotMatch(s, /\$3\.99|¥12|3\.99|limited-time|限时免费|anchor|launch plan|1\.3\.2|HoudahGeo|GeoTag/);
 }
 for (const file of pages) {
   if (file.endsWith('/404.html')) continue;
@@ -24,7 +25,7 @@ for (const lang of ['en','zh']) {
   for (const key of ['photos','camera','gpx','workout']) assert.ok(main.includes(`data-evidence-tab="${key}"`));
   assert.match(main, /id="pricing"/);
   assert.match(main, /HealthKit/);
-  assert.match(main, /Apple Vision/);
+  assert.doesNotMatch(main, /visionOS|Apple Vision|Vision Pro/i);
   assert.match(main, /100/);
   assert.match(main, /LensPin Unlimited/);
   assert.match(main, lang === 'en' ? /one photo or video counts as one use/ : /每成功为一张照片或一个视频保存位置计一次/);
@@ -34,3 +35,21 @@ for (const lang of ['en','zh']) {
   for (const label of lang === 'en' ? ['High Confidence','Review','No Clear Suggestion'] : ['高可信','需检查','无明确建议']) assert.ok(how.includes(label));
 }
 console.log(`Verified copy across ${pages.length} HTML files: pricing, navigation, source choices, categories, contact paths and forbidden legacy wording.`);
+
+for (const route of ['en', 'zh', 'en/add-location-to-photos-mac', 'en/geotag-photos-gpx-mac']) {
+  const source = read(route), home = !route.includes('/'), zh = route === 'zh';
+  const badges = [...source.matchAll(/<a\b[^>]*data-mac-app-store-badge[^>]*>[\s\S]*?<\/a>/g)];
+  assert.equal(badges.length, home ? 2 : 1, route);
+  for (const [badge] of badges) {
+    assert.match(badge, /href="https:\/\/apps.apple.com\/app\/id6812626038\?pt=129459678&ct=website_mac&mt=12"/);
+    assert.ok(badge.includes(`/assets/download-on-the-mac-app-store${zh ? '-zh' : ''}.svg`));
+    assert.ok(badge.includes(zh ? '在 Mac App Store 下载' : 'Download on the Mac App Store'));
+    assert.doesNotMatch(badge, /data-app-store-link/);
+  }
+  if (home) for (const section of ['<div class="hero-actions">', 'id="pricing"']) {
+    const region = source.slice(source.indexOf(section)).split('</section>')[0];
+    assert.match(region, /data-app-store-badge/);
+    assert.match(region, /data-mac-app-store-badge/);
+  }
+}
+console.log('Verified localized Mac badges in both home hero/pricing sections and both Mac guides, with independent download URLs.');

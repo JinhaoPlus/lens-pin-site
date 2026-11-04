@@ -45,7 +45,7 @@ for (const file of pages) {
       assert.equal(node.screenshot.length, 2);
       for (const url of node.screenshot) assert.ok(walk(dist).includes(join(dist, new URL(url).pathname)));
 
-      assert.deepEqual(node.operatingSystem, ['iOS 17+', 'iPadOS 17+', 'macOS 14+', 'visionOS 1+']);
+      assert.deepEqual(node.operatingSystem, ['iOS 17+', 'iPadOS 17+', 'macOS 14+']);
       assert.equal(node.offers.price, 0);
       assert.match(node.offers.description, /100 photos\/videos.*one-time.*Not a subscription/s);
       assert.equal(new URL(node.downloadUrl).searchParams.get('ct'), expectedCampaign);
