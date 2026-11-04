@@ -149,6 +149,13 @@ function prepareSource(file) {
       renderFooter(pageAppStoreUrl, path)
     );
   }
+  // Page bodies live in dist; normalize paired secondary navigation on rebuild.
+  source = source.replace(
+    /(<div class="(?:hero-actions|cta-actions)">[\s\S]*?<\/div>)/g,
+    (block) => block.includes('data-app-store-badge')
+      ? block.replace(/class="button button-secondary"/g, 'class="cta-text-link"')
+      : block
+  );
   const isMacGuide = /\/(?:add-location-to-photos-mac|geotag-photos-gpx-mac)\/$/.test(path);
   if (isMacGuide && !source.includes('data-mac-app-store-badge')) {
     source = source.replace(

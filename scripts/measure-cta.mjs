@@ -15,11 +15,24 @@ for(const width of [1440,768,390]) {
   await page.evaluate(()=>document.fonts.ready);
   await page.locator('.app-store-badge-link img').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode())));
   const measurements=await page.evaluate(()=>[...document.querySelectorAll('.app-store-badge-link')].map((link,i)=>{
-   const parent=link.parentElement, button=parent.querySelector(':scope > .button');
+   const parent=link.parentElement, secondary=parent.querySelector(':scope > .cta-text-link');
+   const style=secondary ? getComputedStyle(secondary) : null;
+   const plainLink=!secondary || (!secondary.classList.contains('button') && ['Top','Right','Bottom','Left'].every(side=>parseFloat(style['padding'+side])===0 && parseFloat(style['border'+side+'Width'])===0) && style.backgroundColor==='rgba(0, 0, 0, 0)');
+   const note=parent.nextElementSibling?.matches('.hero-price') ? parent.nextElementSibling : null;
+   const legacyButton=!!parent.querySelector(':scope > .button');
    const rect=e=>{if(!e)return null; const r=e.getBoundingClientRect();return {height:r.height,top:r.top,bottom:r.bottom,width:r.width,left:r.left,right:r.right}};
-   return {section:link.closest('.hero-actions') ? 'hero' : link.closest('#mac-app') ? 'mac-app' : link.closest('#pricing') ? 'pricing' : parent.className || 'badge '+(i+1),kind:link.hasAttribute('data-mac-app-store-badge')?'Mac':'App',link:rect(link),img:rect(link.querySelector('img')),button:rect(button),loaded:link.querySelector('img').naturalWidth>0};
+   return {section:link.closest('.hero-actions') ? 'hero' : link.closest('#mac-app') ? 'mac-app' : link.closest('#pricing') ? 'pricing' : parent.className || 'badge '+(i+1),kind:link.hasAttribute('data-mac-app-store-badge')?'Mac':'App',link:rect(link),img:rect(link.querySelector('img')),secondary:rect(secondary),note:rect(note),plainLink,legacyButton,loaded:link.querySelector('img').naturalWidth>0};
   }));
-  for(const m of measurements){rows.push({route,width,...m}); if(m.link.left < 0 || m.link.right > width || (m.button && (m.button.left < 0 || m.button.right > width || m.button.right <= m.button.left)) || !m.loaded || Math.abs(m.link.height-46)>1 || Math.abs(m.img.height-46)>1 || Math.abs(m.link.top-m.img.top)>1 || (m.button && (Math.abs(m.button.height-46)>1 || Math.abs(m.button.top-m.link.top)>1 || Math.abs(m.button.bottom-m.link.bottom)>1)))failures.push({route,width,...m});}
+  for(const m of measurements) {
+   rows.push({route,width,...m});
+   const inViewport=r=>!r || (r.left>=0 && r.right<=width && r.width>0);
+   const stacked=!m.secondary || (Math.abs(m.secondary.top-m.link.bottom-10)<=1 && Math.abs(m.secondary.left-m.link.left)<=1 && (!m.note || Math.abs(m.note.top-m.secondary.bottom-10)<=1));
+   if(!inViewport(m.link) || !inViewport(m.secondary) || !m.loaded || !m.plainLink || m.legacyButton || !stacked || Math.abs(m.link.height-46)>1 || Math.abs(m.img.height-46)>1 || Math.abs(m.link.top-m.img.top)>1) failures.push({route,width,...m});
+  }
+  for(const secondary of await page.locator('.cta-text-link').all()) {
+   await secondary.hover();
+   if(!await secondary.evaluate(el=>getComputedStyle(el).textDecorationLine.includes('underline'))) failures.push({route,width,error:'Missing hover underline'});
+  }
  }
  await page.close();
 }
@@ -34,11 +47,11 @@ if (failures.length) {
   '',
   'Chromium via Playwright (`channel: chromium`), viewport height 1000px. Values are getBoundingClientRect height / top / bottom in CSS pixels, relative to the unscrolled viewport. Fonts and badge images finished loading before measurement.',
   '',
-  'All '+rows.length+' badge instances passed: link/image height 46px, identical image/link bounds, paired button height/top/bottom within 1px, and controls within the viewport. A dash means there is no secondary button in that block.',
+  'All '+rows.length+' badge instances passed: link/image height 46px, identical image/link bounds, secondary text links on their own line 10px below the badge with no border/background/padding, hover underline, home notes 10px below the link, and controls within the viewport. A dash means there is no secondary link in that block.',
   '',
-  '| Page | Block / badge | Width | Badge link H / T / B | Badge image H / T / B | Button H / T / B |',
+  '| Page | Block / badge | Width | Badge link H / T / B | Badge image H / T / B | Text link H / T / B |',
   '|---|---|---:|---|---|---|',
-  ...rows.map(r=>`| ${r.route} | ${r.section} / ${r.kind} | ${r.width} | ${format(r.link)} | ${format(r.img)} | ${format(r.button)} |`),
+  ...rows.map(r=>`| ${r.route} | ${r.section} / ${r.kind} | ${r.width} | ${format(r.link)} | ${format(r.img)} | ${format(r.secondary)} |`),
   '',
   'Reproduce with a static server serving dist on port 8787:',
   '',

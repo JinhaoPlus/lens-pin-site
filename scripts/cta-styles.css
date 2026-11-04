@@ -16,35 +16,30 @@
   width: auto;
   max-width: none;
 }
-.hero-actions,
-.cta-actions,
 .download-badges {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
 }
-.hero-actions:has(.app-store-badge-link) > .button,
-.cta-actions:has(.app-store-badge-link) > .button,
-.download-badges > .button {
-  box-sizing: border-box;
-  height: 46px;
-  min-height: 46px;
-  width: auto;
-  padding: 0 16px;
-  border-radius: 7px;
-  flex: 0 0 auto;
+.hero-actions:has(.app-store-badge-link),
+.cta-actions:has(.app-store-badge-link) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
-@media (max-width: 560px) {
-  .hero-actions:has(.app-store-badge-link),
-  .cta-actions:has(.app-store-badge-link) {
-    flex-wrap: nowrap;
-  }
-  .hero-actions:has(.app-store-badge-link) > .button,
-  .cta-actions:has(.app-store-badge-link) > .button {
-    flex: 1 1 auto;
-    min-width: 0;
-    padding-inline: 12px;
-    line-height: 1.2;
-  }
+.cta-text-link {
+  color: var(--blue);
+  font-size: .9rem;
+  line-height: 1.55;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+.cta-text-link:hover,
+.cta-text-link:focus-visible {
+  text-decoration: underline;
+}
+.hero-actions:has(.cta-text-link) + .hero-price {
+  margin-top: 10px;
 }

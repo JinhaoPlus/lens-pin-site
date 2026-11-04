@@ -471,7 +471,7 @@ h1 {
   .hero .eyebrow { margin-bottom: 12px; }
   h1 { font-size: clamp(2.7rem, 12.3vw, 3.35rem); line-height: .96; }
   .hero-copy { margin-top: 16px; font-size: 1rem; line-height: 1.5; }
-  .hero-actions { display: grid; margin-top: 20px; grid-template-columns: auto minmax(0,1fr); gap: 9px; }
+  .hero-actions { margin-top: 20px; }
   .button { width: 100%; }
   .availability-note { margin-top: 13px; font-size: .76rem; }
   .hero-proof { padding: 10px 5px; border-radius: 14px; }
@@ -935,7 +935,6 @@ h1 {
   .photo-sandwich { grid-template-columns: 1fr; }
   .time-arrow { transform: rotate(90deg); text-align: center; }
   .cta-band { grid-template-columns: 1fr; }
-  .cta-band .button { width: 100%; }
   .cta-band > .app-store-badge-link { justify-self: start; }
   .cta-actions { max-width: none; justify-content: stretch; }
   .plan-strip { grid-template-columns: 1fr; gap: 8px; }
@@ -972,10 +971,6 @@ h1 {
   .footer-bottom { flex-direction: column; }
   .apple-legal { text-align: left; }
   .clock-toolbar { flex-direction: column; }
-}
-
-@media (max-width: 360px) {
-  .hero-actions { grid-template-columns: 1fr; }
 }
 
 @media print {
@@ -1122,36 +1117,31 @@ html[lang^="zh"] main p:where(:not(.ui-h2):not(.ui-h3)) { line-height: 1.8; }
   width: auto;
   max-width: none;
 }
-.hero-actions,
-.cta-actions,
 .download-badges {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
 }
-.hero-actions:has(.app-store-badge-link) > .button,
-.cta-actions:has(.app-store-badge-link) > .button,
-.download-badges > .button {
-  box-sizing: border-box;
-  height: 46px;
-  min-height: 46px;
-  width: auto;
-  padding: 0 16px;
-  border-radius: 7px;
-  flex: 0 0 auto;
+.hero-actions:has(.app-store-badge-link),
+.cta-actions:has(.app-store-badge-link) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
-@media (max-width: 560px) {
-  .hero-actions:has(.app-store-badge-link),
-  .cta-actions:has(.app-store-badge-link) {
-    flex-wrap: nowrap;
-  }
-  .hero-actions:has(.app-store-badge-link) > .button,
-  .cta-actions:has(.app-store-badge-link) > .button {
-    flex: 1 1 auto;
-    min-width: 0;
-    padding-inline: 12px;
-    line-height: 1.2;
-  }
+.cta-text-link {
+  color: var(--blue);
+  font-size: .9rem;
+  line-height: 1.55;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+.cta-text-link:hover,
+.cta-text-link:focus-visible {
+  text-decoration: underline;
+}
+.hero-actions:has(.cta-text-link) + .hero-price {
+  margin-top: 10px;
 }
 /* END GENERATED CTA STYLES */
