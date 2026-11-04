@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { join, relative, sep } from "node:path";
+import { campaignUrl, prepareSeo } from "./site-seo.mjs";
 import { siteConfig } from "./site-config.mjs";
 import { contentPath, localizedPath, renderAppStoreBadge, renderFooter, renderHeader } from "./site-shell.mjs";
 import { defaultLanguage, localeFor, siteLocales } from "./site-locales.mjs";
@@ -106,15 +107,16 @@ function prepareSource(file) {
   const label = relative(distPath, file).split(sep).join("/");
   const path = routeFor(file);
   const locale = localeFor(path);
+  const pageAppStoreUrl = campaignUrl(appStoreUrl, label === "404.html" ? "/en/404/" : path);
   let source = readFileSync(file, "utf8");
   if (label !== "404.html") {
-    source = source.replace(/<header class="site-header">[\s\S]*?<\/header>/, renderHeader(path, appStoreUrl, availableLocales(path)));
+    source = source.replace(/<header class="site-header">[\s\S]*?<\/header>/, renderHeader(path, pageAppStoreUrl, availableLocales(path)));
     source = source.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, "<!-- SITE_FOOTER -->");
 
     if (marketingRoutes.has(contentPath(path)) && !/data-app-store-badge/.test(source)) {
       source = source.replace(
         /<a class="button button-primary" href="[^"]*" data-app-store-link target="_blank" rel="noopener">Download on the App Store<\/a>/,
-        renderAppStoreBadge(appStoreUrl, siteConfig.appStoreBadgeUrl)
+        renderAppStoreBadge(pageAppStoreUrl, siteConfig.appStoreBadgeUrl)
       );
     }
 
@@ -125,23 +127,23 @@ function prepareSource(file) {
 
     source = source.replace(
       "<!-- SITE_FOOTER -->",
-      renderFooter(appStoreUrl, path)
+      renderFooter(pageAppStoreUrl, path)
     );
   }
-  source = source.replace(/href="[^"]*"\s+data-app-store-link/g, `href="${appStoreUrl}" data-app-store-link`);
+  source = source.replace(/href="[^"]*"\s+data-app-store-link/g, `href="${pageAppStoreUrl}" data-app-store-link`);
   source = source.replace(
     /(<img class="app-store-badge-image" src=")[^"]+("[^>]*>)/g,
     `$1${locale.badgeUrl}$2`
   );
   source = source.replace(/(data-app-store-badge[^>]*aria-label=")[^"]+"/g, `$1${locale.ui.badgeLabel}"`)
     .replace(/(<img class="app-store-badge-image"[^>]*alt=")[^"]+"/g, `$1${locale.ui.badgeAlt}"`);
-  source = source.replace(/"downloadUrl":"[^"]+"/g, `"downloadUrl":"${appStoreUrl}"`);
+  source = source.replace(/"downloadUrl":"[^"]+"/g, `"downloadUrl":"${pageAppStoreUrl}"`);
   source = source.replace(/\/assets\/styles\.css(?:\?v=[^"]*)?/g, `/assets/styles.css?v=${assetVersion}`);
   source = source.replace(/\/assets\/site\.js(?:\?v=[^"]*)?/g, `/assets/site.js?v=${assetVersion}`);
   source = source.replace(/\n?\s*<meta name="apple-itunes-app" content="[^"]+">/g, "");
-  const appId = appStoreUrl.match(/\/id(\d+)/)?.[1];
+  const appId = pageAppStoreUrl.match(/\/id(\d+)/)?.[1];
   if (appId && appId !== siteConfig.appStorePlaceholderId && label !== "404.html") {
-    const campaignParameters = new URL(appStoreUrl).searchParams;
+    const campaignParameters = new URL(pageAppStoreUrl).searchParams;
     const affiliateData = new URLSearchParams();
     for (const parameter of ["pt", "ct", "mt"]) {
       if (campaignParameters.has(parameter)) affiliateData.set(parameter, campaignParameters.get(parameter));
@@ -149,7 +151,7 @@ function prepareSource(file) {
     const campaignAttribute = affiliateData.size ? `, affiliate-data=${affiliateData.toString().replaceAll("&", "&amp;")}` : "";
     source = source.replace(/(<meta name="viewport"[^>]*>)/, `$1\n  <meta name="apple-itunes-app" content="app-id=${appId}${campaignAttribute}">`);
   }
-  return source;
+  return prepareSeo(source, path, siteOrigin, pageAppStoreUrl);
 }
 
 for (const file of htmlFiles) preparedSources.set(file, prepareSource(file));
@@ -254,15 +256,18 @@ if (!isCheckOnly) {
     source = source.replace('</head>', `  <meta property="og:url" content="${pageUrl}"><meta property="og:locale" content="${localeFor(pagePath).ogLocale}">${locales.filter((locale) => locale.code !== localeFor(pagePath).code).map((locale) => `<meta property="og:locale:alternate" content="${locale.ogLocale}">`).join('')}\n</head>`);
     source = source.replace(/"item":"(?:https?:\/\/[^"/]+)?(\/[^"\s]*)"/g, (_, itemPath) => `"item":"${siteOrigin}${itemPath}"`);
     source = source.replace(/"url":"(?:https?:\/\/[^"/]+)?(\/[^"\s]*)"/g, (_, itemPath) => `"url":"${siteOrigin}${itemPath}"`);
-    writeFileSync(file, source.replace(/[\t ]+\n/g, "\n"));
+    writeFileSync(file, source.replace(/\n(?:[\t ]*\n)+/g, "\n").replace(/[\t ]+\n/g, "\n"));
   }
 
   const notFound = htmlFiles.find((file) => relative(distPath, file).split(sep).join("/") === "404.html");
-  if (notFound) writeFileSync(notFound, preparedSources.get(notFound));
+  if (notFound) writeFileSync(notFound, preparedSources.get(notFound).replace(/\n(?:[\t ]*\n)+/g, "\n"));
 
   if (siteOrigin) {
-    const urls = pages.map((path) => "  <url><loc>" + siteOrigin + path + "</loc></url>").join("\n");
-    writeFileSync(new URL("sitemap.xml", dist), "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" + urls + "\n</urlset>\n");
+    const urls = pages.map((path) => {
+      const alternates = [...availableLocales(path).map((locale) => [locale.htmlLang, localizedPath(locale.code, path)]), ["x-default", localizedPath(defaultLanguage, path)]];
+      return `  <url><loc>${siteOrigin}${path}</loc>${alternates.map(([language, route]) => `<xhtml:link rel="alternate" hreflang="${language}" href="${siteOrigin}${route}"/>`).join('')}</url>`;
+    }).join("\n");
+    writeFileSync(new URL("sitemap.xml", dist), "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">\n" + urls + "\n</urlset>\n");
     writeFileSync(new URL("robots.txt", dist), "User-agent: *\nAllow: /\n\nSitemap: " + siteOrigin + "/sitemap.xml\n");
     console.log("Validated " + htmlFiles.length + " HTML files and generated sitemap for " + siteOrigin + ".");
   } else {

@@ -1,0 +1,78 @@
+import assert from 'node:assert/strict';
+import { readFileSync, readdirSync } from 'node:fs';
+import { join, relative } from 'node:path';
+const dist = new URL('../dist/', import.meta.url).pathname;
+const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((item) => item.isDirectory() ? walk(join(dir, item.name)) : [join(dir, item.name)]);
+const decode = (s) => s.replaceAll('&amp;', '&').replaceAll('&quot;', '"').replaceAll('&#39;', "'").replaceAll('&nbsp;', ' ');
+const text = (s) => decode(s.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim());
+const pages = walk(dist).filter((file) => file.endsWith('.html'));
+let faqCount = 0, appCount = 0;
+const campaigns = new Set();
+for (const file of pages) {
+  const label = relative(dist, file), source = readFileSync(file, 'utf8');
+  const route = '/' + label.replace(/index\.html$/, '');
+  const notFound = label === '404.html';
+  const [locale, ...parts] = route.split('/').filter(Boolean);
+  const aliases = {
+    'support_gpx-requirements': 'support_gpx', 'support_location-writeback': 'support_writeback',
+    'import-camera-photos-to-iphone': 'import_camera_photos', 'add-location-to-photos-iphone': 'add_photo_location',
+    'gpx-photo-geotagging-iphone': 'gpx_geotagging', 'geotag-dslr-photos-with-iphone-photos': 'geotag_with_photos',
+    'export-gpx-from-garmin-coros-suunto': 'export_watch_gpx', 'record-gpx-on-iphone-apple-watch': 'record_gpx',
+  };
+  const topic = parts.join('_') || 'home';
+  const expectedCampaign = `web_${aliases[topic] || topic}_${locale}`;
+  const meta = new Map([...source.matchAll(/<meta (?:property|name)="([^"]+)" content="([^"]*)">/g)].map((m) => [m[1], decode(m[2])]));
+  for (const key of ['og:title','og:description','og:image','og:image:width','og:image:height','og:image:alt','twitter:card','twitter:title','twitter:description','twitter:image','twitter:image:alt']) assert.ok(meta.get(key), `${label}: ${key}`);
+  assert.equal(meta.get('og:image:width'), '1200');
+  assert.equal(meta.get('og:image:height'), '630');
+  assert.equal(meta.get('twitter:card'), 'summary_large_image');
+  assert.equal(meta.get('og:title'), text(source.match(/<title>(.*?)<\/title>/s)[1]));
+  assert.equal(meta.get('og:description'), meta.get('description'));
+  for (const image of source.matchAll(/<img\b[^>]*>/g)) assert.match(image[0], / alt="[^"]*"/, `${label}: alt`);
+  const graph = [...source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap((m) => { const json = JSON.parse(m[1]); return json['@graph'] || [json]; });
+  for (const node of graph) {
+    assert.equal(node.aggregateRating, undefined);
+    if (['SoftwareApplication', 'MobileApplication'].includes(node['@type'])) {
+      appCount++;
+      assert.deepEqual(node.operatingSystem, ['iOS 17+', 'iPadOS 17+', 'macOS 14+']);
+      assert.equal(node.offers.price, 0);
+      assert.match(node.offers.description, /100 successful.*one-time.*Not a subscription/s);
+      assert.equal(new URL(node.downloadUrl).searchParams.get('ct'), expectedCampaign);
+    }
+  }
+  const visible = [...source.matchAll(/<details>\s*<summary>([\s\S]*?)<\/summary>\s*<div class="faq-answer">([\s\S]*?)<\/div>\s*<\/details>/g)].map(([, q,a]) => [text(q),text(a)]);
+  const faq = graph.filter((node) => node['@type'] === 'FAQPage');
+  assert.equal(faq.length, visible.length ? 1 : 0, `${label}: FAQ schema count`);
+  if (visible.length) { faqCount += visible.length; assert.deepEqual(faq[0].mainEntity.map((q) => [q.name,q.acceptedAnswer.text]), visible, `${label}: FAQ parity`); }
+  if (notFound) continue;
+  assert.ok(expectedCampaign.length <= 30);
+  assert.match(source, /macOS 14\+/);
+  const links = [...source.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*data-app-store-link[^>]*>/g)];
+  assert.ok(links.length);
+  for (const [, href] of links) assert.equal(decode(href), `https://apps.apple.com/app/id6812626038?pt=129459678&ct=${expectedCampaign}&mt=8`, `${label}: campaign`);
+  assert.ok(meta.get('apple-itunes-app').includes(`ct=${expectedCampaign}&mt=8`));
+  assert.ok(!campaigns.has(expectedCampaign)); campaigns.add(expectedCampaign);
+  if (parts.length === 0) {
+    for (const type of ['Organization','WebSite']) {
+      const entities = graph.filter((n) => n['@type'] === type); assert.equal(entities.length,1);
+      assert.equal(entities[0].name,'LensPin'); assert.equal(entities[0].url,'https://getlenspin.com/');
+      assert.deepEqual(entities[0].alternateName,['LensPin: Photo Geotagger','LensPin：相机照片补定位']);
+      assert.deepEqual(entities[0].sameAs,['https://apps.apple.com/us/app/lenspin-photo-geotagger/id6812626038','https://www.reddit.com/r/LensPin/']);
+    }
+    assert.ok(graph.some((n) => n['@type'] === 'SoftwareApplication'));
+    assert.match(text(source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]), /^LensPin.*Mac/);
+  }
+}
+const sitemap = readFileSync(join(dist,'sitemap.xml'),'utf8');
+assert.match(sitemap, /xmlns:xhtml="http:\/\/www.w3.org\/1999\/xhtml"/);
+const urls = [...sitemap.matchAll(/<url><loc>(.*?)<\/loc>(.*?)<\/url>/g)];
+assert.equal(urls.length,32);
+for (const [,url,alternates] of urls) {
+  const route = new URL(url).pathname.replace(/^\/(en|zh)/,'');
+  for (const [lang,locale] of [['en','en'],['zh-Hans','zh'],['x-default','en']]) assert.ok(alternates.includes(`hreflang="${lang}" href="https://getlenspin.com/${locale}${route}"`));
+}
+assert.equal(readFileSync(join(dist,'robots.txt'),'utf8'), 'User-agent: *\nAllow: /\n\nSitemap: https://getlenspin.com/sitemap.xml\n');
+const csp = readFileSync(join(dist,'_headers'),'utf8').match(/Content-Security-Policy: (.*)/)[1];
+assert.equal(csp, "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://tools.applemediaservices.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; font-src 'self'; form-action 'none'");
+const png = readFileSync(join(dist,'assets/lenspin-social.png')); assert.equal(png.readUInt32BE(16),1200); assert.equal(png.readUInt32BE(20),630);
+console.log(`Verified ${pages.length} HTML files, ${campaigns.size} unique campaigns, ${faqCount} FAQ answers, ${appCount} application entities, 32 sitemap alternate sets, social image and CSP.`);
