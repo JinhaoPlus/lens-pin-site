@@ -16,17 +16,21 @@ for (const file of walk(dist).filter(p => /\.(html|css|js|xml|txt|json|svg|md|we
 for (const file of pages) {
   if (file.endsWith('/404.html')) continue;
   const s = readFileSync(file, 'utf8'), zh = file.includes('/zh/');
+  assert.doesNotMatch(s, /前\s*100\s*张|first 100 photos|no promise|does not guarantee|makes no|不保证|不承诺/i, file);
+  const callouts = /<p class="page-lede">(?:LensPin reads Apple Watch workout routes|Apple Watch 用户可在 LensPin 中通过 HealthKit)/;
+  if (!/\/(?:how-it-works|how-to-get-gpx-file|privacy)\//.test(file)) assert.doesNotMatch(s, callouts, file);
   assert.doesNotMatch(plain(s), /Writeback outcome|Completion statuses|XMP sidecar|XMP 附属|\bderivative\b|\bassets?\b|Photos framework|ImageIO|continued-processing task|interpolat|receives a penalty|衍生|资源|框架|插值|惩罚|续行任务/i, file);
   const nav = s.match(/<nav class="desktop-nav"[^>]*>([\s\S]*?)<\/nav>/)[1];
   const labels = [...nav.matchAll(/<a[^>]*>(.*?)<\/a>/g)].map(m => m[1]);
   assert.deepEqual(labels, zh ? ['工作原理', '价格', '教程', '帮助'] : ['How it works', 'Pricing', 'Guides', 'Support']);
-  assert.doesNotMatch(plain(s), /High confidence|No Suggestion|待检查|无建议|one-pin editor|source agreement|location additions/);
+  assert.doesNotMatch(plain(s), /No Suggestion|待检查|无建议|one-pin editor|source agreement/);
 }
 for (const lang of ['en','zh']) {
   const s = read(lang), main = s.match(/<main[^>]*>([\s\S]*?)<\/main>/)[1];
   assert.equal((main.match(/<section\b/g) || []).length, 8);
   for (const key of ['photos','camera','gpx','workout']) assert.ok(main.includes(`data-evidence-tab="${key}"`));
-  assert.match(main, /id="pricing"/);
+  assert.equal((main.match(/id="pricing"/g) || []).length, 1);
+  assert.equal((main.match(/LensPin Unlimited/g) || []).length, 1, 'Full pricing appears once');
   assert.match(main, /HealthKit/);
   assert.doesNotMatch(main, /visionOS|Apple Vision|Vision Pro/i);
   assert.match(main, /100/);
@@ -42,7 +46,7 @@ for (const lang of ['en','zh']) {
   for (const phrase of lang === 'en' ? ['GoPro', 'Insta360', 'videos', '100', 'Remove Location', 'Apple Health workout routes'] : ['GoPro', 'Insta360', '视频', '100', '移除位置', '体能训练路线']) assert.ok(support.includes(phrase));
   assert.ok(read(`${lang}/privacy`).includes(lang === 'en' ? 'Share Usage Statistics' : '分享使用统计'));
   const how = plain(read(`${lang}/how-it-works`));
-  for (const label of lang === 'en' ? ['High Confidence','Review','No Clear Suggestion'] : ['高可信','需检查','无明确建议']) assert.ok(how.includes(label));
+  for (const label of lang === 'en' ? ['High confidence','Review','No clear suggestion'] : ['高可信','需检查','无明确建议']) assert.ok(how.includes(label));
 }
 console.log(`Verified copy across ${pages.length} HTML files: pricing, navigation, source choices, categories, support FAQs, contact removal and forbidden legacy wording.`);
 

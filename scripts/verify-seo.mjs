@@ -34,6 +34,18 @@ for (const file of pages) {
   assert.equal(meta.get('og:description'), meta.get('description'));
   for (const image of source.matchAll(/<img\b[^>]*>/g)) assert.match(image[0], / alt="[^"]*"/, `${label}: alt`);
   assert.ok([...meta.get('description')].length <= (locale === 'zh' ? 80 : 160), `${label}: description too long`);
+  const title = text(source.match(/<title>(.*?)<\/title>/s)[1]);
+  const h1s = [...source.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)].map(m => text(m[1]));
+  assert.equal(h1s.length, 1, `${label}: exactly one h1`);
+  assert.ok(h1s[0], `${label}: nonempty h1`);
+  assert.doesNotMatch(h1s[0], /[.。]$/, `${label}: h1 terminal punctuation`);
+  assert.equal((title.match(/ \| /g) || []).length, 1, `${label}: one title separator`);
+  assert.doesNotMatch(title, /[｜·]/, `${label}: title separator`);
+  assert.equal((title.match(/LensPin/g) || []).length, 1, `${label}: brand once`);
+  assert.ok(parts.length === 0 && !notFound ? title.startsWith('LensPin | ') : title.endsWith(' | LensPin'), `${label}: title brand placement`);
+  assert.ok([...title].length <= (locale === 'zh' ? 30 : 60), `${label}: title length`);
+  if (locale === 'en' && parts.join('/') === 'privacy') assert.ok([...meta.get('description')].length >= 110, `${label}: privacy description too short`);
+  if (locale === 'zh' && parts.join('/') === 'guides') assert.ok([...meta.get('description')].length >= 50, `${label}: guide description too short`);
   const graph = [...source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap((m) => { const json = JSON.parse(m[1]); return json['@graph'] || [json]; });
   for (const node of graph) {
     assert.equal(node.aggregateRating, undefined);
@@ -47,7 +59,7 @@ for (const file of pages) {
 
       assert.deepEqual(node.operatingSystem, ['iOS', 'iPadOS', 'macOS']);
       assert.equal(node.offers.price, 0);
-      assert.match(node.offers.description, /100 photos\/videos.*one-time.*Not a subscription/s);
+      assert.match(node.offers.description, /100 successful location additions.*one-time.*Not a subscription/s);
       assert.equal(new URL(node.downloadUrl).searchParams.get('ct'), expectedCampaign);
     }
   }
@@ -96,12 +108,21 @@ for (const [,url,entry] of urls) {
   const source = readFileSync(join(dist,new URL(url).pathname,'index.html'),'utf8');
   const date = source.match(/<meta name="last-modified" content="([^"]+)"/)?.[1];
   assert.match(entry, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
-  if (date) {
+  assert.match(date || '', /^\d{4}-\d{2}-\d{2}$/, url + ': required last-modified');
+  {
     assert.ok(entry.includes(`<lastmod>${date}</lastmod>`), url);
-    assert.ok(source.includes(`<time datetime="${date}">`), url + ': visible update date');
+    const updates = [...source.matchAll(/(?:Last updated|更新于)\s*<time datetime="([^"]+)">([^<]+)<\/time>/g)];
+    assert.equal(updates.length, 1, url + ': one visible update date');
+    assert.equal(updates[0][1], date, url + ': visible update datetime');
+    const [year, month, day] = date.split('-').map(Number);
+    const displayDate = url.includes('/zh/') ? `${year} 年 ${month} 月 ${day} 日` : new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric', timeZone:'UTC'});
+    assert.equal(updates[0][2], displayDate, url + ': visible update text');
+    assert.match(source, new RegExp(`(?:Last updated|更新于)\\s*<time datetime="${date}">`), url + ': labeled visible date');
+    let datedNodes = 0;
     for (const [,raw] of source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
-      for (const node of JSON.parse(raw)['@graph'] || []) if (['Article','WebPage','CollectionPage'].includes(node['@type'])) assert.equal(node.dateModified,date,url);
+      for (const node of JSON.parse(raw)['@graph'] || []) if (['Article','WebPage','CollectionPage'].includes(node['@type'])) { datedNodes++; assert.equal(node.dateModified,date,url); }
     }
+    assert.ok(datedNodes > 0, url + ': dated page schema');
   }
 }
 console.log(`Verified ${pages.length} HTML files, ${campaigns.size} unique campaigns, ${faqCount} FAQ answers, ${appCount} application entities, ${urls.length} sitemap alternate sets, social image and CSP.`);

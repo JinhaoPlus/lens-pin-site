@@ -24,9 +24,11 @@ for (const route of routes) {
   // Focused guides link to the full workflow instead of repeating it to reach a word count.
   assert.ok(length >= (zh ? (route === '/zh/add-location-to-photos-iphone/' ? 1400 : 1500) : 400) && length <= (zh ? 2500 : 1000), `${route}: length ${length}`);
   assert.doesNotMatch(text, /limited.time free|限时免费|Unlimited is free/i);
-  const priceCopy = /LensPin Unlimited/.test(text);
-  const needsPricing = route !== '/en/camera-photos-no-location/';
-  if (priceCopy || needsPricing) for (const fact of [zh ? /前 100/ : /first 100/i, /LensPin Unlimited/, zh ? /以 App Store 页面价格为准/ : /App Store for the price in your region/]) assert.match(text, fact);
+  const pricing = zh ? '免费下载 · 前 100 次补定位免费 · 一次性买断' : 'Free to try · first 100 locations free · one-time unlock';
+  // A troubleshooting article need not pitch a download; existing pricing is one short line.
+  if (route !== '/en/camera-photos-no-location/') assert.ok(source.includes(pricing), `${route}: concise pricing`);
+  assert.ok(source.split(pricing).length <= 2, `${route}: pricing once`);
+  assert.doesNotMatch(text, /LensPin Unlimited|App Store for the price|以 App Store 页面价格为准/, `${route}: no full pricing paragraph`);
   if (!route.endsWith('/camera-photos-not-on-apple-photos-map/')) assert.match(text, /GPX/);
   assert.doesNotMatch(body.match(/<ol>([\s\S]*?)<\/ol>/)?.[1] || '', /LensPin/, `${route}: built-in checks before batch option`);
   const graph = [...source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap((m) => JSON.parse(m[1])['@graph']);

@@ -59,13 +59,17 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
     const nodes = data['@graph'] || [data];
     for (const node of nodes) {
       if (['FAQPage', 'Organization', 'WebSite'].includes(node['@type'])) continue;
+      if (['Article', 'WebPage', 'CollectionPage'].includes(node['@type'])) {
+        node.name = title;
+        node.description = description;
+      }
       if (node['@type'] === 'Article') { node.headline = plain(source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] || title); node.description = description; }
       if (isHome && node['@type'] === 'WebPage') { node.name = title; node.description = description; }
       if (['MobileApplication', 'SoftwareApplication'].includes(node['@type'])) {
         node['@type'] = 'SoftwareApplication';
         node.operatingSystem = ['iOS', 'iPadOS', 'macOS'];
         node.downloadUrl = appStoreUrl;
-        node.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: 'Free download. First 100 photos/videos located are free. One photo or video saved counts as one use. Optional LensPin Unlimited one-time purchase. Not a subscription. See the App Store for the price in your region.' };
+        node.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: 'Free download. First 100 successful location additions free. Photos and videos share the allowance; one photo or video saved counts as one use. Optional LensPin Unlimited one-time purchase. Not a subscription. Price as shown on the App Store.' };
         delete node.aggregateRating;
       }
       graph.push(node);
@@ -82,7 +86,7 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
     if (!graph.some((node) => node['@type'] === 'SoftwareApplication')) graph.push({
       '@type': 'SoftwareApplication', name: 'LensPin', applicationCategory: 'MultimediaApplication',
       operatingSystem: ['iOS', 'iPadOS', 'macOS'], downloadUrl: appStoreUrl,
-      offers: { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: 'Free download. First 100 photos/videos located are free. One photo or video saved counts as one use. Optional LensPin Unlimited one-time purchase. Not a subscription. See the App Store for the price in your region.' },
+      offers: { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: 'Free download. First 100 successful location additions free. Photos and videos share the allowance; one photo or video saved counts as one use. Optional LensPin Unlimited one-time purchase. Not a subscription. Price as shown on the App Store.' },
     });
     const identity = {
       name: 'LensPin', alternateName: ['LensPin: Photo Geotagger', 'LensPin：相机照片补定位'],
