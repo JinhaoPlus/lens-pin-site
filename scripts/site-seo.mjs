@@ -69,7 +69,7 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
         node['@type'] = 'SoftwareApplication';
         node.operatingSystem = ['iOS', 'iPadOS', 'macOS'];
         node.downloadUrl = appStoreUrl;
-        node.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: 'Free download. First 100 successful location additions free. Photos and videos share the allowance; one photo or video saved counts as one use. Optional LensPin Unlimited one-time purchase. Not a subscription. Price as shown on the App Store.' };
+        node.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: zh ? '免费下载。前 100 次成功补定位免费，照片和视频共享额度；每成功为一张照片或一个视频保存位置计一次。之后可选一次性购买 LensPin Unlimited，不是订阅。以 App Store 页面价格为准。' : 'Free download. First 100 successful location additions free. Photos and videos share the allowance; one photo or video saved counts as one use. Optional LensPin Unlimited one-time purchase. Not a subscription. Price as shown on the App Store.' };
         delete node.aggregateRating;
       }
       graph.push(node);
@@ -86,7 +86,7 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
     if (!graph.some((node) => node['@type'] === 'SoftwareApplication')) graph.push({
       '@type': 'SoftwareApplication', name: 'LensPin', applicationCategory: 'MultimediaApplication',
       operatingSystem: ['iOS', 'iPadOS', 'macOS'], downloadUrl: appStoreUrl,
-      offers: { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: 'Free download. First 100 successful location additions free. Photos and videos share the allowance; one photo or video saved counts as one use. Optional LensPin Unlimited one-time purchase. Not a subscription. Price as shown on the App Store.' },
+      offers: { '@type': 'Offer', price: 0, priceCurrency: 'USD', description: zh ? '免费下载。前 100 次成功补定位免费，照片和视频共享额度；每成功为一张照片或一个视频保存位置计一次。之后可选一次性购买 LensPin Unlimited，不是订阅。以 App Store 页面价格为准。' : 'Free download. First 100 successful location additions free. Photos and videos share the allowance; one photo or video saved counts as one use. Optional LensPin Unlimited one-time purchase. Not a subscription. Price as shown on the App Store.' },
     });
     const identity = {
       name: 'LensPin', alternateName: ['LensPin: Photo Geotagger', 'LensPin：相机照片补定位'],
@@ -98,12 +98,12 @@ export function prepareSeo(source, path, origin, appStoreUrl) {
   for (const node of graph.filter(n => n['@type'] === 'SoftwareApplication')) {
     node.name = 'LensPin: Photo Geotagger';
     node.description = zh
-      ? '为 Apple Photos 中缺少位置的相机照片补定位。按拍摄时间匹配同一趟出行用 iPhone 拍的带定位照片、其他带 GPS 的相机拍的照片、GPX 轨迹，或“健康”App 里的体能训练路线。健康路线可在 iPhone 和 iPad 上直接读取，无需导出。审核建议后保存到图库。'
+      ? '为照片 App 中缺少位置的相机照片补定位。按拍摄时间匹配同一趟出行用 iPhone 拍的带定位照片、其他带 GPS 的相机拍的照片、GPX 轨迹，或“健康”App 里的体能训练路线。健康路线可在 iPhone 和 iPad 上直接读取，无需导出。审核建议后保存到图库。'
       : 'Add missing locations to camera photos in Apple Photos by matching capture times with geotagged iPhone photos from the same trip, geotagged photos from other GPS-equipped cameras, GPX tracks, or Apple Health workout routes. Read Health workout routes directly on iPhone and iPad without export. Review suggested places before saving.';
     node.featureList = zh ? [
       '参考同一趟出行用 iPhone 拍的带定位照片', '参考其他带 GPS 的相机拍的照片', '使用带时间的 GPX 轨迹',
       '在 iPhone 和 iPad 上从健康直接读取体能训练路线，无需导出',
-      '预览相机时钟偏移，不改拍摄时间', '审核地图和参考照片，再保存位置到 Apple Photos',
+      '预览相机时钟偏移，不改拍摄时间', '审核地图和参考照片，再保存位置到照片 App',
       '可选导出包含 GPS 的 JPG 副本',
     ] : [
       'Use geotagged iPhone photos from the same trip', 'Use geotagged photos from other GPS-equipped cameras', 'Match photos to timed GPX tracks',

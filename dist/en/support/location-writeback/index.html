@@ -5,7 +5,7 @@
   <meta name="apple-itunes-app" content="app-id=6812626038, affiliate-data=pt=129459678&amp;ct=web_support_writeback_en&amp;mt=8">
 <title>Apple Photos location vs EXIF GPS | LensPin</title>
 <meta name="description" content="See how LensPin updates Apple Photos library locations without modifying the original file or its EXIF GPS, and how to verify each result.">
-<meta property="og:type" content="article"><meta name="theme-color" content="#f4f4f1"><link rel="canonical" href="https://getlenspin.com/en/support/location-writeback/"><link rel="alternate" hreflang="en" href="https://getlenspin.com/en/support/location-writeback/"><link rel="alternate" hreflang="zh-Hans" href="https://getlenspin.com/zh/support/location-writeback/"><link rel="alternate" hreflang="x-default" href="https://getlenspin.com/en/support/location-writeback/"><link rel="icon" href="/assets/lenspin-app-icon.png" type="image/png"><link rel="stylesheet" href="/assets/styles.css?v=0574bcbbb6">
+<meta property="og:type" content="article"><meta name="theme-color" content="#f4f4f1"><link rel="canonical" href="https://getlenspin.com/en/support/location-writeback/"><link rel="alternate" hreflang="en" href="https://getlenspin.com/en/support/location-writeback/"><link rel="alternate" hreflang="zh-Hans" href="https://getlenspin.com/zh/support/location-writeback/"><link rel="alternate" hreflang="x-default" href="https://getlenspin.com/en/support/location-writeback/"><link rel="icon" href="/assets/lenspin-app-icon.png" type="image/png"><link rel="stylesheet" href="/assets/styles.css?v=16195c221d">
 <meta name="last-modified" content="2026-11-05">
   <meta property="og:title" content="Apple Photos location vs EXIF GPS | LensPin">
   <meta property="og:description" content="See how LensPin updates Apple Photos library locations without modifying the original file or its EXIF GPS, and how to verify each result.">
@@ -55,12 +55,12 @@
 <p>Each item is reported as Added, Failed, or Skipped based on the Apple Photos library-location update. JPG export is a separate action; it does not happen automatically when you save a library location.</p>
 <h2>Why a photo is skipped</h2>
 <p>LensPin reads the Photos item immediately before writing. If another app, device, or sync operation added a location after the preview was created, LensPin skips that photo rather than overwriting it.</p>
-<h3>Added, failed or skipped</h3>
-<div class="card-grid">
-<article class="info-card"><span class="icon-tile mint">✓</span><h3>Added</h3><p>The Photos-library location was successfully written.</p></article>
-<article class="info-card"><span class="icon-tile orange">×</span><h3>Failed</h3><p>The location write did not complete. Keep the displayed per-item reason for support.</p></article>
-<article class="info-card"><span class="icon-tile">↷</span><h3>Skipped</h3><p>The item was intentionally left alone, commonly because it already had a location.</p></article>
-</div>
+<h2>Added, failed or skipped</h2>
+<ul class="card-grid status-list">
+<li class="info-card"><span class="icon-tile mint">✓</span><p class="ui-h3">Added</p><p>The Photos-library location was successfully written.</p></li>
+<li class="info-card"><span class="icon-tile orange">×</span><p class="ui-h3">Failed</p><p>The location write did not complete. Keep the displayed per-item reason for support.</p></li>
+<li class="info-card"><span class="icon-tile">↷</span><p class="ui-h3">Skipped</p><p>The item was intentionally left alone, commonly because it already had a location.</p></li>
+</ul>
 <h2>LensPin album</h2>
 <p>Photos and videos whose locations were successfully added are collected in the LensPin album. If album collection fails, the completion screen shows a separate warning; it does not undo or hide a successful location write.</p>
 <h2>Export a photo copy with GPS</h2><ol><li>Open the photo or select photos in the LensPin album.</li><li>Choose Export JPG and enable Include Location.</li><li>Export the JPG copies, then inspect the location in the destination app or a metadata viewer.</li></ol><p>The current Apple Photos library location is used for export. Non-JPG photos, including supported RAW photos, are converted to JPG. Original files stay unchanged. This is not original-format or RAW-preserving GPS export, and video GPS export is not supported.</p>
@@ -73,8 +73,8 @@
     <div class="footer-brand"><a class="brand" href="/en/"><span class="brand-mark" aria-hidden="true"><img src="/assets/lenspin-app-icon.png" width="64" height="64" alt=""></span><span>LensPin</span></a><p>For iPhone, iPad and Mac. Available worldwide on the App Store, including China.</p><a class="footer-store-link" href="https://apps.apple.com/app/id6812626038?pt=129459678&ct=web_support_writeback_en&mt=8" data-app-store-link target="_blank" rel="noopener">View LensPin on the App Store →</a></div>
     <div><p class="footer-title">Start here</p><nav class="footer-links"><a href="/en/guides/">Guides</a><a href="/en/import-camera-photos-to-iphone/">Import camera photos</a><a href="/en/add-location-to-photos-iphone/">Add photo locations</a><a href="/en/how-it-works/">How LensPin works</a></nav></div>
 <div><p class="footer-title">Methods</p><nav class="footer-links"><a href="/en/how-to-get-gpx-file/">Get a GPX file</a><a href="/en/gpx-photo-geotagging-iphone/">With a GPX track</a><a href="/en/geotag-dslr-photos-with-iphone-photos/">Without GPX</a><a href="/en/supported-formats/">Formats &amp; limits</a></nav></div>
-<div><p class="footer-title">Help</p><nav class="footer-links"><a href="/en/user-feedback/">User feedback</a><a href="/en/support/">Support</a><a href="/en/privacy/">Privacy</a></nav></div>
+<div><p class="footer-title">Help</p><nav class="footer-links"><a href="/en/user-feedback/">User feedback</a><a href="/en/support/">Support and FAQs</a><a href="/en/privacy/">Privacy</a></nav></div>
     </div><div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span class="apple-legal">Apple, the Apple logo, App Store, iPhone, iPad, and Mac are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</span></div></footer>
-<script defer="" src="/assets/site.js?v=0574bcbbb6"></script>
+<script defer="" src="/assets/site.js?v=16195c221d"></script>
 </body>
 </html>

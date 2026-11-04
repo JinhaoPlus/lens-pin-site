@@ -93,6 +93,7 @@ const previousLastmods = new Map([...readFileSync(new URL('sitemap.xml', dist), 
 const marketingRoutes = new Set([
   "/",
   "/import-camera-photos-to-iphone/",
+  "/add-location-to-camera-photos-apple-photos/",
   "/add-location-to-photos-iphone/",
   "/how-it-works/",
   "/gpx-photo-geotagging-iphone/",
@@ -217,7 +218,7 @@ for (const file of htmlFiles) {
   if (!isNotFoundPage && !/data-app-store-link/.test(source)) errors.push(label + ": missing App Store download link");
   const pagePath = routeFor(file);
   const isMacGuide = /\/(?:add-location-to-photos-mac|geotag-photos-gpx-mac)\/$/.test(pagePath);
-  const expectedBadgeCount = contentPath(pagePath) === '/' ? 2 : marketingRoutes.has(contentPath(pagePath)) || isMacGuide ? 1 : 0;
+  const expectedBadgeCount = contentPath(pagePath) === '/' ? 2 : isMacGuide && pagePath.startsWith('/zh/') ? 0 : marketingRoutes.has(contentPath(pagePath)) || isMacGuide ? 1 : 0;
   if (appStoreBadgeCount !== expectedBadgeCount) {
     errors.push(`${label}: expected ${expectedBadgeCount} official App Store badges, found ${appStoreBadgeCount}`);
   }

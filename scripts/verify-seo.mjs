@@ -41,9 +41,12 @@ for (const file of pages) {
   assert.doesNotMatch(h1s[0], /[.。]$/, `${label}: h1 terminal punctuation`);
   assert.equal((title.match(/ \| /g) || []).length, 1, `${label}: one title separator`);
   assert.doesNotMatch(title, /[｜·]/, `${label}: title separator`);
-  assert.equal((title.match(/LensPin/g) || []).length, 1, `${label}: brand once`);
+  const matchingTitle = locale === 'zh' ? 'LensPin 如何按拍摄时间匹配相机照片位置 | LensPin' : 'How LensPin matches camera photos by time | LensPin';
+  const isMatchingPage = parts.join('/') === 'how-it-works';
+  if (isMatchingPage) assert.equal(title, matchingTitle, `${label}: required matching title`);
+  else assert.equal((title.match(/LensPin/g) || []).length, 1, `${label}: brand once`);
   assert.ok(parts.length === 0 && !notFound ? title.startsWith('LensPin | ') : title.endsWith(' | LensPin'), `${label}: title brand placement`);
-  assert.ok([...title].length <= (locale === 'zh' ? 30 : 60), `${label}: title length`);
+  assert.ok([...title].length <= (locale === 'zh' ? (isMatchingPage ? [...matchingTitle].length : 30) : 60), `${label}: title length`);
   if (locale === 'en' && parts.join('/') === 'privacy') assert.ok([...meta.get('description')].length >= 110, `${label}: privacy description too short`);
   if (locale === 'zh' && parts.join('/') === 'guides') assert.ok([...meta.get('description')].length >= 50, `${label}: guide description too short`);
   const graph = [...source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap((m) => { const json = JSON.parse(m[1]); return json['@graph'] || [json]; });
@@ -59,7 +62,7 @@ for (const file of pages) {
 
       assert.deepEqual(node.operatingSystem, ['iOS', 'iPadOS', 'macOS']);
       assert.equal(node.offers.price, 0);
-      assert.match(node.offers.description, /100 successful location additions.*one-time.*Not a subscription/s);
+      assert.match(node.offers.description, locale === 'zh' ? /100 次成功补定位.*一次性.*不是订阅/s : /100 successful location additions.*one-time.*Not a subscription/s);
       assert.equal(new URL(node.downloadUrl).searchParams.get('ct'), expectedCampaign);
     }
   }
@@ -126,3 +129,12 @@ for (const [,url,entry] of urls) {
   }
 }
 console.log(`Verified ${pages.length} HTML files, ${campaigns.size} unique campaigns, ${faqCount} FAQ answers, ${appCount} application entities, ${urls.length} sitemap alternate sets, social image and CSP.`);
+
+// Counterparts must expose the same schema types, including visible FAQ coverage.
+const schemaTypes = file => [...readFileSync(file, 'utf8').matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+  .flatMap(m => JSON.parse(m[1])['@graph'] || [JSON.parse(m[1])]).map(n => n['@type']).sort();
+for (const file of pages.filter(p => p.includes('/en/'))) {
+  const counterpart = file.replace('/en/', '/zh/');
+  assert.ok(pages.includes(counterpart), `${file}: missing Chinese counterpart`);
+  assert.deepEqual(schemaTypes(counterpart), schemaTypes(file), `${file}: localized schema type parity`);
+}

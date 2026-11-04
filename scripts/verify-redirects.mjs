@@ -49,3 +49,17 @@ for (const [source,target] of entries) {
   assert.equal(final.status,200,source + ': target must return 200 without another redirect');
 }
 console.log(`Verified all ${entries.length} permanent redirects and their direct 200 targets.`);
+
+// Exercise real Static Assets responses; Worker delegation alone cannot prove headers.
+for (const [path, mime] of [
+  ['/en/', 'text/html'], ['/zh/', 'text/html'], ['/assets/styles.css', 'text/css'],
+  ['/assets/site.js', 'text/javascript'], ['/sitemap.xml', 'application/xml'],
+  ['/robots.txt', 'text/plain'], ['/assets/download-on-the-app-store.svg', 'image/svg+xml'],
+]) {
+  const response = await read(base + path, {});
+  assert.equal(response.status, 200, path);
+  const type = response.headers.get('content-type') || '';
+  assert.equal(type.split(';')[0].trim().toLowerCase(), mime, path);
+  assert.match(type, /;\s*charset=utf-8(?:;|$)/i, `${path}: UTF-8 charset`);
+}
+console.log('Verified UTF-8 Content-Type for HTML, CSS, JavaScript, XML, text and SVG static responses.');

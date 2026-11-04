@@ -62,7 +62,7 @@ export function renderFooter(appStoreUrl, path = '/en/') {
     ]],
     [ui.help, [
       ['/user-feedback/', ui.feedback],
-      ['/support/', ui.support],
+      ['/support/', ui.supportLink],
       ['/privacy/', ui.privacy],
     ]],
   ];

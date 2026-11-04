@@ -50,13 +50,13 @@ for (const lang of ['en','zh']) {
 }
 console.log(`Verified copy across ${pages.length} HTML files: pricing, navigation, source choices, categories, support FAQs, contact removal and forbidden legacy wording.`);
 
-const macBadgeRoutes = ['en', 'zh', 'en/add-location-to-photos-mac', 'en/geotag-photos-gpx-mac'];
+const macBadgeRoutes = ['en', 'zh', 'en/add-location-to-photos-mac', 'en/geotag-photos-gpx-mac', 'zh/add-location-to-photos-mac', 'zh/geotag-photos-gpx-mac'];
 for (const file of pages) {
   const route = file.slice(dist.length).replace(/\/index\.html$/, '');
   if (!macBadgeRoutes.includes(route)) assert.doesNotMatch(readFileSync(file, 'utf8'), /data-mac-app-store-badge/, file);
 }
 for (const route of macBadgeRoutes) {
-  const source = read(route), home = !route.includes('/'), zh = route === 'zh';
+  const source = read(route), home = !route.includes('/'), zh = route.startsWith('zh');
   const badges = [...source.matchAll(/<a\b[^>]*data-mac-app-store-badge[^>]*>[\s\S]*?<\/a>/g)];
   assert.equal(badges.length, 1, route);
   for (const [badge] of badges) {
@@ -77,7 +77,7 @@ for (const route of macBadgeRoutes) {
     assert.match(macSection, /data-mac-app-store-badge/);
     assert.doesNotMatch(macSection, /data-app-store-badge/);
   } else {
-    const downloadSection = source.match(/<section\b[^>]*><div class="prose"><h2>Get LensPin<\/h2>[\s\S]*?<\/section>/)?.[0];
+    const downloadSection = source.match(/<section\b[^>]*><div class="prose"><h2>(?:Get LensPin|下载 LensPin)<\/h2>[\s\S]*?<\/section>/)?.[0];
     assert.ok(downloadSection, route);
     assert.match(downloadSection, /data-mac-app-store-badge/);
   }
@@ -90,4 +90,18 @@ for (const file of pages) {
   const source = readFileSync(file,'utf8');
   if (!file.includes('/how-to-get-gpx-file/')) assert.doesNotMatch(source,/Strava|WorkOutDoors|OsmAnd|Gaia GPS|Guru Maps/i,file);
   assert.doesNotMatch(source,/15402024-apple-health-and-strava|15401820-strava-apple-watch-app|Apple Workout → Strava|Workouts & Routes/,file);
+}
+
+for (const file of pages) {
+  const source = readFileSync(file, 'utf8');
+  assert.doesNotMatch(source, /<h3\b[^>]*>\s*(?:Added|Failed|Skipped|High confidence|Review|No clear suggestion|新增|失败|跳过|高可信|需检查|无明确建议)\s*<\/h3>/i, file);
+  if (file.includes('/zh/')) {
+    assert.doesNotMatch(plain(source), /Apple Photos|\bPhotos\b/, `${file}: localized Photos name`);
+    assert.doesNotMatch(source, /Apple Photos/, `${file}: localized metadata and JSON-LD`);
+    assert.doesNotMatch(plain(source), /\b(?:Sony|Fujifilm|Canon|Nikon)\b/, `${file}: localized camera brands`);
+  }
+  const footer = source.match(/<footer[\s\S]*?<\/footer>/)?.[0] || '';
+  for (const [, heading, links] of footer.matchAll(/<p class="footer-title">(.*?)<\/p><nav class="footer-links">([\s\S]*?)<\/nav>/g)) {
+    for (const [, label] of links.matchAll(/<a\b[^>]*>(.*?)<\/a>/g)) assert.notEqual(label, heading, `${file}: footer heading duplicates link`);
+  }
 }

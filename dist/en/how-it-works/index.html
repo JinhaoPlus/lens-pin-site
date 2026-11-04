@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-itunes-app" content="app-id=6812626038, affiliate-data=pt=129459678&amp;ct=web_how-it-works_en&amp;mt=8">
-<title>How camera photo location matching works | LensPin</title>
+<title>How LensPin matches camera photos by time | LensPin</title>
 <meta name="description" content="Understand time matching with four location sources, camera clock offset previews, and reviewing suggestions before saving to Photos.">
 <meta name="theme-color" content="#f4f4f1">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://getlenspin.com/en/how-it-works/"><link rel="alternate" hreflang="en" href="https://getlenspin.com/en/how-it-works/"><link rel="alternate" hreflang="zh-Hans" href="https://getlenspin.com/zh/how-it-works/"><link rel="alternate" hreflang="x-default" href="https://getlenspin.com/en/how-it-works/">
 <link rel="icon" href="/assets/lenspin-app-icon.png" type="image/png">
-<link rel="stylesheet" href="/assets/styles.css?v=0574bcbbb6">
+<link rel="stylesheet" href="/assets/styles.css?v=16195c221d">
 <meta name="last-modified" content="2026-11-05">
-  <meta property="og:title" content="How camera photo location matching works | LensPin">
+  <meta property="og:title" content="How LensPin matches camera photos by time | LensPin">
   <meta property="og:description" content="Understand time matching with four location sources, camera clock offset previews, and reviewing suggestions before saving to Photos.">
   <meta property="og:site_name" content="LensPin">
   <meta property="og:image" content="https://getlenspin.com/assets/lenspin-social-en.jpg">
@@ -21,11 +21,11 @@
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:alt" content="LensPin matching a camera photo to its location on a map; store demonstration">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="How camera photo location matching works | LensPin">
+  <meta name="twitter:title" content="How LensPin matches camera photos by time | LensPin">
   <meta name="twitter:description" content="Understand time matching with four location sources, camera clock offset previews, and reviewing suggestions before saving to Photos.">
   <meta name="twitter:image" content="https://getlenspin.com/assets/lenspin-social-en.jpg">
   <meta name="twitter:image:alt" content="LensPin matching a camera photo to its location on a map; store demonstration">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"How LensPin matches camera photos by time","description":"Understand time matching with four location sources, camera clock offset previews, and reviewing suggestions before saving to Photos.","datePublished":"2026-09-17","dateModified":"2026-11-05","author":{"@type":"Organization","name":"LensPin"},"name":"How camera photo location matching works | LensPin","url":"https://getlenspin.com/en/how-it-works/","mainEntityOfPage":"https://getlenspin.com/en/how-it-works/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LensPin","item":"https://getlenspin.com/en/"},{"@type":"ListItem","position":2,"name":"How LensPin Matches Camera Photos by Time","item":"https://getlenspin.com/en/how-it-works/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"How LensPin matches camera photos by time","description":"Understand time matching with four location sources, camera clock offset previews, and reviewing suggestions before saving to Photos.","datePublished":"2026-09-17","dateModified":"2026-11-05","author":{"@type":"Organization","name":"LensPin"},"name":"How LensPin matches camera photos by time | LensPin","url":"https://getlenspin.com/en/how-it-works/","mainEntityOfPage":"https://getlenspin.com/en/how-it-works/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LensPin","item":"https://getlenspin.com/en/"},{"@type":"ListItem","position":2,"name":"How LensPin Matches Camera Photos by Time","item":"https://getlenspin.com/en/how-it-works/"}]}]}</script>
   <meta property="og:url" content="https://getlenspin.com/en/how-it-works/"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="zh_CN">
 </head>
 <body>
@@ -53,15 +53,15 @@
 </figure></div></section>
 <section class="content-section" id="health-workout-routes"><div class="prose"><h2>Apple Watch workout routes from Apple Health</h2><p>Apple Watch users do not need a GPX file. With your permission, LensPin reads existing workout routes directly from Apple Health through read-only HealthKit access and matches photo times to route positions. No export or sync through another service is needed. A workout without a recorded route cannot provide positions.</p></div></section>
 <section class="content-section" id="clock-offset"><div class="prose"><h2>Camera clock offsets affect the matching preview</h2><p>A fast or slow camera clock, or a time-zone difference, can shift a match along the trip. LensPin previews a fixed camera clock offset without changing capture dates. Time-zone display options control how times appear. Check different cameras and periods with changed clocks separately.</p></div></section>
-<section class="content-section page-shell"><h2>Understand the match categories</h2><div class="card-grid"><article class="info-card"><h3>High confidence</h3><p>Clues are close in time and consistent. Selected by default, pending your confirmation.</p></article><article class="info-card"><h3>Review</h3><p>Clues may be sparse, one-sided or conflicting. Inspect the explanation before selecting.</p></article><article class="info-card"><h3>No clear suggestion</h3><p>The available clues are insufficient. Check the nearest references and leave the photo unchanged if you cannot confirm a place.</p></article></div></section>
+<section class="content-section page-shell"><h2>Understand the match categories</h2><ul class="card-grid status-list"><li class="info-card"><p class="ui-h3">High confidence</p><p>Clues are close in time and consistent. Selected by default, pending your confirmation.</p></li><li class="info-card"><p class="ui-h3">Review</p><p>Clues may be sparse, one-sided or conflicting. Inspect the explanation before selecting.</p></li><li class="info-card"><p class="ui-h3">No clear suggestion</p><p>The available clues are insufficient. Check the nearest references and leave the photo unchanged if you cannot confirm a place.</p></li></ul></section>
 <section class="content-section" id="review-save"><div class="prose"><h2>How the location clues agree</h2><p>When a track and nearby geotagged photos are both available, LensPin compares the photo’s saved location with the track’s estimated location at that photo’s capture time. It uses a nearby reference in the same track segment and within the matching time window. A verified iPhone photo within 100 m strengthens the suggestion. A difference over 100 m and up to 300 m leaves the track’s confidence unchanged; another camera’s photo within 100 m also leaves it unchanged. Over 300 m means the clues conflict and the suggestion needs review. Time gaps, track coverage and your confidence settings also affect the result.</p><h2>Review each suggestion, then save to the library</h2><p>Check each suggestion’s map, reference photos and time gaps before approving it. Processing stays on device. Saving updates the location in the Photos library, leaves original files unchanged, and never overwrites existing locations.</p><p><a href="/en/add-location-to-camera-photos-apple-photos/">Follow the camera-photo location guide</a></p></div></section>
 <section class="content-section" id="download"><div class="prose"><h2>Get LensPin</h2><a class="app-store-badge-link" href="https://apps.apple.com/app/id6812626038?pt=129459678&ct=web_how-it-works_en&mt=8" data-app-store-link data-app-store-badge target="_blank" rel="noopener" aria-label="Download LensPin on the App Store"><img class="app-store-badge-image" src="/assets/download-on-the-app-store.svg" width="250" height="83" alt="Download on the App Store"></a></div></section></main>
 <footer class="site-footer"><div class="footer-shell">
     <div class="footer-brand"><a class="brand" href="/en/"><span class="brand-mark" aria-hidden="true"><img src="/assets/lenspin-app-icon.png" width="64" height="64" alt=""></span><span>LensPin</span></a><p>For iPhone, iPad and Mac. Available worldwide on the App Store, including China.</p><a class="footer-store-link" href="https://apps.apple.com/app/id6812626038?pt=129459678&ct=web_how-it-works_en&mt=8" data-app-store-link target="_blank" rel="noopener">View LensPin on the App Store →</a></div>
     <div><p class="footer-title">Start here</p><nav class="footer-links"><a href="/en/guides/">Guides</a><a href="/en/import-camera-photos-to-iphone/">Import camera photos</a><a href="/en/add-location-to-photos-iphone/">Add photo locations</a><a href="/en/how-it-works/">How LensPin works</a></nav></div>
 <div><p class="footer-title">Methods</p><nav class="footer-links"><a href="/en/how-to-get-gpx-file/">Get a GPX file</a><a href="/en/gpx-photo-geotagging-iphone/">With a GPX track</a><a href="/en/geotag-dslr-photos-with-iphone-photos/">Without GPX</a><a href="/en/supported-formats/">Formats &amp; limits</a></nav></div>
-<div><p class="footer-title">Help</p><nav class="footer-links"><a href="/en/user-feedback/">User feedback</a><a href="/en/support/">Support</a><a href="/en/privacy/">Privacy</a></nav></div>
+<div><p class="footer-title">Help</p><nav class="footer-links"><a href="/en/user-feedback/">User feedback</a><a href="/en/support/">Support and FAQs</a><a href="/en/privacy/">Privacy</a></nav></div>
     </div><div class="footer-bottom"><span>© <span data-year>2026</span> LensPin.</span><span class="apple-legal">Apple, the Apple logo, App Store, iPhone, iPad, and Mac are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</span></div></footer>
-<script defer="" src="/assets/site.js?v=0574bcbbb6"></script>
+<script defer="" src="/assets/site.js?v=16195c221d"></script>
 </body>
 </html>

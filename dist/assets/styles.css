@@ -1144,4 +1144,8 @@ html[lang^="zh"] main p:where(:not(.ui-h2):not(.ui-h3)) { line-height: 1.8; }
 .hero-actions:has(.cta-text-link) + .hero-price {
   margin-top: 10px;
 }
+
+/* Category and outcome cards are a list, not document subsections. */
+.status-list { list-style: none; padding: 0; }
+.status-list .ui-h3 { font-weight: 650; font-size: 1.1rem; margin: 0 0 .6rem; }
 /* END GENERATED CTA STYLES */
