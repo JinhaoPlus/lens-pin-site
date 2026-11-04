@@ -6,7 +6,8 @@
     "width": 1200,
     "height": 630,
     "format": "jpeg",
-    "layout": "contain"
+    "layout": "social-full-bleed",
+    "remove_tag_box": [910, 20, 980, 42]
   },
   {
     "asset": "lenspin-social-zh",
@@ -15,6 +16,7 @@
     "width": 1200,
     "height": 630,
     "format": "jpeg",
-    "layout": "contain"
+    "layout": "social-full-bleed",
+    "remove_tag_box": [910, 20, 980, 42]
   }
 ]

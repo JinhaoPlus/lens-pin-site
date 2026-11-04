@@ -24,6 +24,14 @@ for entry in entries:
         expected = io.BytesIO()
         im.save(expected, format=ext, **options)
         assert expected.getvalue() == output.read_bytes(), f'Output differs from declared source: {path}'
+        if entry['asset'].startswith('lenspin-social-'):
+            assert im.size == (1200, 630), path
+            assert output.stat().st_size < 300000, path
+            # Blue must reach both edges through the header, without beige strips.
+            for x in (0, im.width-1):
+                for y in range(150):
+                    r, g, b = im.getpixel((x, y))
+                    assert b > 180 and b > r*2, (path, x, y)
         provenance[path] = entry
 
 class Page(HTMLParser):
@@ -49,6 +57,7 @@ for p, page in pages.items():
     route = '/' + p.relative_to(dist).as_posix().removesuffix('index.html')
     for ref in page.refs:
         src = ref['src']; parsed = urlsplit(src)
+        assert 'lenspin-social-' not in parsed.path, f'Social card used as visible artwork: {p} {src}'
         assert not parsed.scheme and src.startswith('/'), (p,src)
         target = dist / unquote(parsed.path).lstrip('/')
         assert target.is_file(), (p, src)
@@ -65,6 +74,9 @@ for p, page in pages.items():
             entry = provenance[img['src']]
             assert img['alt'].strip() and int(img['width'])==entry['width'] and int(img['height'])==entry['height'], (p,img)
             assert img.get('loading') in ('eager','lazy'), (p,img)
+    if route == '/en/add-location-to-photos-mac/':
+        assert any(i['src'] == '/assets/lenspin-store-mac-01-add-locations-en.webp'
+                   and i.get('loading') == 'eager' for i in page.images), 'Mac guide must keep its store-artwork hero'
     for href in page.links:
         url = urlsplit(href)
         if url.scheme or url.netloc: continue
