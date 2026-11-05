@@ -5,9 +5,11 @@ const dist = new URL('../dist/', import.meta.url).pathname;
 const walk = dir => readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(join(dir, e.name)) : [join(dir, e.name)]);
 const read = route => readFileSync(join(dist, route, 'index.html'), 'utf8');
 const plain = source => source.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+const contactText = source => plain(source.replace(/<\/?a\b[^>]*>/g, '')).trim();
 const pages = walk(dist).filter(p => p.endsWith('.html'));
 for (const file of walk(dist).filter(p => /\.(html|css|js|xml|txt|json|svg|md|webmanifest)$/.test(p))) {
   const s = readFileSync(file, 'utf8');
+  assert.doesNotMatch(s, /mailto:|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i, `${file}: no email addresses`);
   assert.doesNotMatch(s, /visionOS|Apple\s+Vision|Vision\s+Pro/i, file);
   assert.doesNotMatch(s, /原生|\bnative\b/i, file);
   assert.doesNotMatch(s, /(?:iOS|iPadOS|macOS)\s*(?:[\/／]\s*iPadOS\s*)?\d+(?:[.\d–—+-]*)/i, file);
@@ -42,18 +44,42 @@ for (const lang of ['en','zh']) {
   assert.match(main, /LensPin Unlimited/);
   assert.match(main, lang === 'en' ? /one photo or video counts as one use/ : /每成功为一张照片或一个视频保存位置计一次/);
   if (lang === 'en') assert.doesNotMatch(plain(main), /\bevidence\b/i);
-  for (const route of ['support', 'privacy']) {
-    const page = plain(read(`${lang}/${route}`));
-    assert.doesNotMatch(page, /Contact LensPin|Privacy questions|support contact|联系 LensPin|需要联系开发者|支持联系方式|mailto:/i);
+  const contactQuestion = lang === 'en' ? 'How do I contact LensPin?' : '如何联系 LensPin？';
+  const contactAnswer = lang === 'en'
+    ? 'Use the support contact on the LensPin App Store page. You can also ask in the LensPin community on Reddit.'
+    : '请使用 App Store 产品页面上的支持联系方式。也可以在 Reddit 的 LensPin 社区提问。';
+  for (const route of ['', '/support']) {
+    const page = read(`${lang}${route}`);
+    const faq = page.match(new RegExp(`<details><summary>${contactQuestion.replace('?', '\\?')}</summary>([\\s\\S]*?)</details>`))?.[1];
+    assert.ok(faq, `${lang}${route}: contact FAQ`);
+    assert.equal(contactText(faq), contactAnswer);
+    assert.match(faq, /data-app-store-link/);
+    assert.match(faq, /href="https:\/\/www\.reddit\.com\/r\/LensPin\/"/);
+    const graph = JSON.parse(page.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
+    const entry = graph.find(node => node['@type'] === 'FAQPage').mainEntity.find(node => node.name === contactQuestion);
+    assert.equal(entry?.acceptedAnswer.text, plain(faq).trim());
   }
   const support = read(`${lang}/support`);
-  assert.equal((support.match(/<details><summary>/g) || []).length, 6);
+  assert.equal((support.match(/<details><summary>/g) || []).length, 7);
+  const contact = support.match(/<section class="content-section" id="contact">[\s\S]*?<\/section>/)?.[0];
+  assert.ok(contact);
+  assert.ok(contactText(contact).includes(lang === 'en'
+    ? 'Ask in the LensPin community or use the support contact on the App Store page.'
+    : '前往 LensPin 社区求助，或使用 App Store 页面上的支持联系方式。'));
+  assert.match(contact, /data-app-store-link/);
+  assert.match(contact, /href="https:\/\/www\.reddit\.com\/r\/LensPin\/"/);
+  const privacy = read(`${lang}/privacy`);
+  const updates = privacy.match(/<h2>(?:Policy updates|政策更新)<\/h2><p>([\s\S]*?)<\/p>/)?.[1];
+  assert.ok(updates);
+  assert.ok(updates.includes(`href="/${lang}/support/"`));
+  assert.match(updates, /data-app-store-link/);
+  assert.ok(contactText(updates).includes(lang === 'en' ? 'support contact shown on the App Store listing.' : 'App Store 产品页面显示的支持联系方式。'));
   for (const phrase of lang === 'en' ? ['GoPro', 'Insta360', 'videos', '100', 'Remove Location', 'Apple Health workout routes'] : ['GoPro', 'Insta360', '视频', '100', '移除位置', '体能训练路线']) assert.ok(support.includes(phrase));
   assert.ok(read(`${lang}/privacy`).includes(lang === 'en' ? 'Share Usage Statistics' : '分享使用统计'));
   const how = plain(read(`${lang}/how-it-works`));
   for (const label of lang === 'en' ? ['High confidence','Review','No clear suggestion'] : ['高可信','需检查','无明确建议']) assert.ok(how.includes(label));
 }
-console.log(`Verified copy across ${pages.length} HTML files: pricing, navigation, source choices, categories, support FAQs, contact removal and forbidden legacy wording.`);
+console.log(`Verified copy across ${pages.length} HTML files: pricing, navigation, source choices, categories, support FAQs, App Store contact links, email exclusion and forbidden legacy wording.`);
 
 const macBadgeRoutes = ['en', 'zh', 'en/add-location-to-photos-mac', 'en/geotag-photos-gpx-mac', 'zh/add-location-to-photos-mac', 'zh/geotag-photos-gpx-mac'];
 for (const file of pages) {

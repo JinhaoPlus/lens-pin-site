@@ -2,6 +2,7 @@ import { existsSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync 
 import { createHash } from "node:crypto";
 import { join, relative, sep } from "node:path";
 import { campaignUrl, prepareSeo } from "./site-seo.mjs";
+import { prepareContact } from "./site-contact.mjs";
 import { siteConfig } from "./site-config.mjs";
 import { contentPath, localizedPath, renderDownloadBadges, renderAppStoreBadge, renderFooter, renderHeader } from "./site-shell.mjs";
 import { defaultLanguage, localeFor, siteLocales } from "./site-locales.mjs";
@@ -130,7 +131,7 @@ function prepareSource(file) {
   const path = routeFor(file);
   const locale = localeFor(path);
   const pageAppStoreUrl = campaignUrl(appStoreUrl, label === "404.html" ? "/en/404/" : path);
-  let source = readFileSync(file, "utf8");
+  let source = prepareContact(readFileSync(file, "utf8"), path, pageAppStoreUrl);
   if (path === '/en/' || path === '/zh/') {
     const zh = locale.code === 'zh';
     const eyebrow = zh ? '索尼、富士、佳能、GoPro、Insta360 等相机照片没有位置？' : 'Sony, Fujifilm, Canon, GoPro, Insta360 and more';
