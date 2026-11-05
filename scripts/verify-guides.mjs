@@ -61,6 +61,12 @@ for (const route of routes) {
 for (const language of ['en','zh']) {
   const directory = read(`/${language}/guides/`);
   assert.match(directory, /"@type":"CollectionPage"/);
+  const intro = language === 'zh' ? '按设备、位置来源和问题选择教程。' : 'Choose a guide by device, location source or troubleshooting need.';
+  const pricing = language === 'zh'
+    ? '免费下载，前 100 次成功补定位免费（照片和视频共享额度），之后可选择一次性买断（非订阅），以 App Store 页面价格为准。'
+    : 'Free download. The first 100 successful location additions are free (shared by photos and videos), then an optional one-time purchase (not a subscription); price as shown on the App Store.';
+  assert.ok(directory.includes(`<p class="page-lede">${intro}</p><p class="guides-pricing">${pricing}</p>`), `${language}: directory intro and pricing`);
+  assert.equal(directory.split(pricing).length - 1, 1, `${language}: directory pricing once`);
   for (const route of routes.filter((r) => r.startsWith(`/${language}/`))) assert.ok(directory.includes(`href="${route}"`));
 }
 for (const lang of ['en','zh']) {

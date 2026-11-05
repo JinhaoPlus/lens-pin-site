@@ -132,6 +132,26 @@ function prepareSource(file) {
   const locale = localeFor(path);
   const pageAppStoreUrl = campaignUrl(appStoreUrl, label === "404.html" ? "/en/404/" : path);
   let source = prepareContact(readFileSync(file, "utf8"), path, pageAppStoreUrl);
+  // Keep Mac source copy scoped to the two sources offered on Mac.
+  if (/\/(?:add-location-to-photos-mac|geotag-photos-gpx-mac)\/$/.test(path)) {
+    source = source
+      .replace('LensPin offers four sources: geotagged iPhone photos from the same trip; geotagged photos from other GPS-equipped cameras; GPX tracks; Apple Health workout routes. On Mac, use reference photos or GPX; read Health workout routes on iPhone or iPad.',
+        'On Mac, LensPin matches with geotagged reference photos from the same trip or a timed GPX track. Apple Health workout routes can be read directly on iPhone or iPad; Apple Watch users do not need to export GPX for that flow.')
+      .replace('LensPin 支持四种来源：同次旅行中带定位的 iPhone 照片、其他带 GPS 的相机照片、GPX 轨迹，以及“健康”App 的体能训练路线。Mac 使用参考照片或 GPX；健康训练路线可在 iPhone、iPad 上直接读取。Apple Watch 用户不必为了这个流程导出 GPX。',
+        '在 Mac 上，LensPin 用同次旅行的带定位参考照片或带时间的 GPX 轨迹匹配。“健康”App 体能训练路线可在 iPhone、iPad 上直接读取；Apple Watch 用户不必为此导出 GPX。')
+      .replace('LensPin 支持同次旅行中带定位的 iPhone 照片、其他带 GPS 的相机照片、GPX 轨迹和健康训练路线。Mac 可用参考照片或 GPX；在 iPhone、iPad 上可通过 HealthKit 直接读取健康训练路线。',
+        '在 Mac 上，LensPin 用同次旅行的带定位参考照片或带时间的 GPX 轨迹匹配。“健康”App 体能训练路线可在 iPhone、iPad 上直接读取；Apple Watch 用户不必为此导出 GPX。');
+  }
+  if (path === '/en/guides/' || path === '/zh/guides/') {
+    const pricing = locale.code === 'zh'
+      ? '免费下载，前 100 次成功补定位免费（照片和视频共享额度），之后可选择一次性买断（非订阅），以 App Store 页面价格为准。'
+      : 'Free download. The first 100 successful location additions are free (shared by photos and videos), then an optional one-time purchase (not a subscription); price as shown on the App Store.';
+    source = source.replace(/<p class="guides-pricing">[\s\S]*?<\/p>/g, '')
+      .replace(/(<p class="page-lede">[\s\S]*?<\/p>)/, `$1<p class="guides-pricing">${pricing}</p>`);
+  }
+  if (path === '/zh/') {
+    source = source.replace('完整操作教程（英文）</a>', '完整操作教程</a>');
+  }
   if (path === '/en/' || path === '/zh/') {
     const zh = locale.code === 'zh';
     const eyebrow = zh ? '索尼、富士、佳能、GoPro、Insta360 等相机照片没有位置？' : 'Sony, Fujifilm, Canon, GoPro, Insta360 and more';

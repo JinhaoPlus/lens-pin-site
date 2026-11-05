@@ -7,6 +7,19 @@ const read = route => readFileSync(join(dist, route, 'index.html'), 'utf8');
 const plain = source => source.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 const contactText = source => plain(source.replace(/<\/?a\b[^>]*>/g, '')).trim();
 const pages = walk(dist).filter(p => p.endsWith('.html'));
+for (const lang of ['en', 'zh']) {
+  for (const topic of ['add-location-to-photos-mac', 'geotag-photos-gpx-mac']) {
+    const route = `${lang}/${topic}`, source = read(route);
+    assert.doesNotMatch(source, /four sources|四种来源/i, `${route}: Mac has two sources`);
+    assert.ok(source.includes(lang === 'en'
+      ? 'On Mac, LensPin matches with geotagged reference photos from the same trip or a timed GPX track.'
+      : '在 Mac 上，LensPin 用同次旅行的带定位参考照片或带时间的 GPX 轨迹匹配。'), `${route}: Mac sources`);
+    assert.ok(source.includes(lang === 'en'
+      ? 'Apple Health workout routes can be read directly on iPhone or iPad;'
+      : '“健康”App 体能训练路线可在 iPhone、iPad 上直接读取；'), `${route}: separate mobile Health flow`);
+  }
+}
+assert.ok(read('zh').includes('需要为相机照片补位置？查看<a href="/zh/add-location-to-camera-photos-apple-photos/">完整操作教程</a>。'));
 for (const file of walk(dist).filter(p => /\.(html|css|js|xml|txt|json|svg|md|webmanifest)$/.test(p))) {
   const s = readFileSync(file, 'utf8');
   assert.doesNotMatch(s, /mailto:|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i, `${file}: no email addresses`);
